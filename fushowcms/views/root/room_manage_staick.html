@@ -1,0 +1,89 @@
+{{ define "root/room_manage_staick.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+<link href="../../static/css/background/menu3.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+	.panel{
+		overflow-x:scroll;
+	}
+</style>
+<div id="mainPanle" region="center" style="overflow: hidden;padding:20px 0 0 20px;">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+	
+	<script type="text/javascript">
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/staicklist',
+			});
+		});
+		/**
+		 * eventtype,替换后台返回值
+		 * param：val(替换值)
+		 */
+		function eventtype(val, replace) {
+			if (val == 0) {
+				return "未置顶"
+			}else if(val == 1){
+				return "置顶"
+			}
+		}
+		
+		function livestate(val,replace){
+			if(val==0){
+				return "未直播"
+			}else if (val==1){
+				return "直播中"
+			}
+		}
+		
+		function roomtype(val,replace){
+			if(val==0){
+				return "普通直播间"
+			}else if (val==1){
+				return "竞猜直播间"
+			}
+		}
+	</script>
+
+	<h2 >置顶房间列表</h2>
+	<div class="demo-info" style="margin-bottom:10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>管理员置顶房间页面，由房管操作！</div>
+	</div>
+	
+	<table id="dg" title="置顶房间列表"  style="margin:0 0 0 50px;height:500px"
+			toolbar="#toolbar" pagination="true" idField="Id"
+ 			singleSelect ="true" checkbox="true"
+			rownumbers="true" fitColumns="true" >
+		<thead>
+			<tr> 
+<!-- 				<th field="ck" checkbox="true"></th> 	-->
+				<th field="Id" width="30" editor="text">主播Id</th>
+				<th field="RoomType" width="30" editor="{type:'validatebox',options:{required:true}}" formatter="roomtype">房间类型</th>
+				<th field="RoomAlias" width="30" editor="{type:'validatebox',options:{required:true}}">房间别名</th>
+				<th field="LiveAddress" width="100" editor="text">直播地址</th>
+				<th field="LiveCover" width="80" editor="text">直播封面</th>
+				<th field="LiveState" width="50" editor="text" formatter="livestate">直播状态</th>
+				<th field="RoomStick" width="50" editor="text" formatter="eventtype">置顶状态</th>
+				<th field="PeriodsId" width="50">期Id</th>
+				<th field="ModifyUserId" width="50">记录修改者账号</th>
+			</tr>
+		</thead>
+	</table>
+	
+	
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

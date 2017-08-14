@@ -1,0 +1,134 @@
+{{define "page/common_sidebar.html"}}
+	<link rel="stylesheet" href="/static/css/common/common_sidebar.css?test=1.01"/>
+	<link rel="stylesheet" href="/static/css/library/jquery.mCustomScrollbar.min.css">
+	<script type="text/javascript" src="/static/js/library/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="/static/js/common/conmmon_sidebar.js"></script>
+	<div class="sidebar-box">
+		<div class="sidebar-show-btn"></div>
+		<div class="sidebar-show-top">
+			<a href="/"><div class="sidebar-shwo-LOGO"><img src="/static/images/common_sidebar/logo2.png" alt="logo"></div></a>
+			<div class="sidebar-logo">
+			  <a href="/" target="_top">
+			    <img src="/static/images/common_sidebar/logowhite.png" alt="logo">
+			  </a>
+			</div>
+			<!--侧边栏 搜索-->
+			<div class="sidebar-search">
+				<div class="fushow-search ">
+				  <form name="room-search" action="/page/search" method="get" target="_top" class="search-form">
+				    <input type="text" name="kw" placeholder="搜主播" autocomplete="off" class="search-key search-default">
+				    <div class="search-submit-btn">
+				      <input type="buttom" class="search-submit">
+				    </div>
+				  </form>
+				</div>
+			</div>
+		</div>
+		<div class="sidebar-content">
+			<div class="sidebar-content-bigShow">
+				<div class="sidebar-head-nav clearfix">
+				  <a class="sidebar-head-nav-item sidebar-head-nav-item-all" href="/page/lists" data-ename="all" target="_top">全部</a>
+				  <a class="sidebar-head-nav-item sidebar-head-nav-item-cate" href="/page/listsClass" data-ename="cate" target="_top">分类</a>
+				 
+				</div>
+				<div class="sidebar-category" data-data="{{.CategoryList}}">
+				{{range .CategoryList}}
+						<div class="sidebar-category-list-container">
+						<div class="sidebar-list-head">
+						<span class="sidebar-list-head-tit oneCategory" data-ename="jingji">{{.COneName}}</span>
+						</div>	  
+						<div class="sidebar-site-category">
+						<ul class="sidebar-list sidebar-list-1 clearfix twoCategory">     
+						{{range .ArrCategory}}             
+						<li class="sidebar-site-category-item" data-ename="lol">
+					     <a href="{{.TwoCategoryAddress}}" target="_top" title="{{.TwoCategoryName}}">{{.TwoCategoryName}}</a>
+						</li>
+						{{end}}
+						</ul></div></div>
+				{{end}}
+	            </div>
+			</div>
+			<ul class="sidebar-collapse-navList">
+				<a href="/user/my_order" target="_blank"><li><div class="sidebar-collapse-navList-guanzhu"></div><p>关注</p></li></a>
+				<a href="/user/my_gift" target="_blank"><li><div class="sidebar-collapse-navList-lishi"></div><p>赠送</p></li></a>
+				<a href="/page/lists"><li><div class="sidebar-collapse-navList-all"></div><p>全部</p></li></a>
+				<a href="/page/listsClass"><li><div class="sidebar-collapse-navList-fenlei"></div><p>分类</p></li></a>
+				<a href="#"><li><div class="sidebar-collapse-navList-kefu"></div><p>客服</p></li></a>
+			</ul>
+			
+			
+		</div>
+		<!--广告位-->
+		<ul class="sidebar-box-classification-two">
+			
+		</ul>
+		<div class="sidebar-box-footer">
+			<div class="sidebar-collapse-footer">
+				<a href="/user/mine_myInform" target="_blank"><div class="sidebar-collapse-user logion-userImg"><img class="sidebar-user-avatar mCS_img_loaded comm-avatar"></div></a>
+				<div class="sidebar-login-btn sidebar-collapse-logions">登录</div>
+			</div>
+			<!--侧边栏 登录注册-->
+			<div class="sidebar-box-login Scrollbar-topValue">
+				<ul class="sidebar-box-login-listBtn">
+					<li class="sidebar-login-btn">登录</li>
+					<li class="sidebar-register-btn">注册</li>
+					<div class="clearBoth"></div>
+				</ul>
+			</div>
+			
+			<!--
+            	登录状态
+            -->
+            <div class="sidebar-login-boxS">
+	            <div class="sidebar-login-box">
+		            <div class="sidebar-login">
+		            	<a href="/user/mine_myInform"><div class="sidebar-user logion-userImg">
+		            		<img class="sidebar-user-avatar mCS_img_loaded comm-avatar">
+		            		<div class="logion-userImg-degFont">
+		            			升级需要
+		            			<P class="comm-level-number"></P>
+		            			经验
+		            		</div>
+		            	</div></a>
+		            	<a class="sidebar-userinfo-loginout-btn out" href="javascript:;"><i class="sidebar-icon-loginout"></i>退出</a>
+		            </div>
+		            <div class="sidebar-fonts">
+		            	<p id="sidebar-userName" class="comm-nickname"></p>
+		            	<p class="sidebar-user-level sidebar-level comm-level"></p>
+		            </div>
+		            <div class="sidebar-user-content">
+		            	<div class="sidebar-money">
+		            		<span class="sidebar-money-ioc"></span><b class="comm-remain-money">0</b>
+		            		<a  href="/user/recharge" target="_blank"><div class="sidebar-money-btn">点击充值</div></a>
+		            	</div>
+		            	<div class="sidebar-nums">
+		            		<span class="sidebar-nums-ioc"></span><b class="comm-remain-nums">0</b>
+		            		<a href="/user/my_guess" style="color:#898989;" target="_blank"><div class="sidebar-nums-btn">消费记录</div></a>
+		            	</div>
+		            	<ul class="sidebar-btnlist">
+		            		<a href="/user/my_order_list" target="_blank"><li>商城</li></a>
+		            		<a href="/user/my_gift" target="_blank"><li>赠送</li></a>
+		            		<a href="/user/my_order" target="_blank"><li>关注</li></a>
+		            	</ul>
+		            	<div style="clear: both;"></div>
+		            </div>
+		            <a href="/user/mine_myInform?tobeanchor=1" target="_blank"><div class="sidebar-Icome">我要当主播</div></a>
+	            </div>
+            </div>
+			
+			<!--<a href="#"><div class="sidebar-box-btn"></div></a>
+			<div class="sidebar-box-footer-listBg">
+				<ul class="sidebar-box-footer-list">
+					<a href="/help/o3-1" target="blank"><li>直播指导</li></a>
+					<a href="tencent://message/?uin=3323684573&Site=&menu=yes"><li>客服支持</li></a>
+					
+					<a href="/help/problem4-1-3" target="blank"><li>房间举报</li></a>
+					<div class="clearBoth"></div>
+				</ul>
+			</div>-->
+		</div>
+	</div>
+	<section id="loginBox">
+    {{ template "page/common_logins.html"}}
+   </section>
+{{end}}

@@ -1,0 +1,140 @@
+html,body,head,div,title,h2,ul,li,a{
+	padding:0;
+	margin:0;
+	}
+	body{
+		overflow-x:hidden;
+		overflow-y:auto;
+	}
+    .help-top{
+	  height:80px;
+	  line-height:80px;
+	  background:#F5F5F5;
+	  text-align:center;
+	  font-size:24px;
+	  font-family:"Microsoft YaHei";
+	  font-weight:200;
+	  color:#323232;
+	}
+	.help-container{
+	width:980px;
+	min-height:780px;
+	margin:20px auto 30px;
+	font-size:16px;
+	overflow:hidden;
+	font-size:"Microsoft YaHei";
+	color:#323232;
+	}
+	.help-head{
+	  line-height:45px;
+	  font-size:24px;
+	  border-bottom:2px solid #e6e6e6;
+	  font-weight:700;
+	}
+	.help-content{
+	   margin-top:38px;
+	}
+	.help-left{
+	  background-color:#fafafa;
+	  float:left;
+	  text-align:center;
+	  width:225px;
+	}
+	.help-item{
+	  border:1px solid #e6e6e6;
+	  margin-bottom:-1px;
+	}
+	.help-title{
+	  border-bottom:1px solid #e6e6e6;
+	  font-size:18px;
+	  height:40px;
+	  line-height:40px;
+	  color:#323232;
+	  background-color:#F5F5F5;
+	}
+	.help-item-list{
+	  padding:8px 0;
+	}
+	.help-item-list li a{
+	  height:30px;
+	  line-height:30px;
+	  color:#787878;
+	  display:block;
+	  text-decoration:none;
+	}
+	.help-item-list li a:hover{
+	  color:#EC4827;
+	  background-color:#f5f5f5;
+	}
+	.help-item-list li a:active{
+	  color:orange;
+	}
+	.help-right{
+	  margin-left:300px;
+	}
+	.help-right-list li{
+	  list-style-type:none;
+	}
+	.help-right-list li a{
+	  text-decoration:none;
+	  height:44px;
+	  line-height:44px;
+	  display:block;
+	  border-bottom:1px dashed #e6e6e6;
+	  color:#3c3c3c;
+	}
+	.help-right-list li a:hover{
+	  color:#EC4827;
+	}
+	
+	.help-right-title{
+		height:44px;
+		line-height:44px;
+		font-weight:700;
+		font-size:22px;
+		border-bottom:1px solid #e6e6e6;
+	}
+	.help-right-detail{
+		font-size:14px;
+		line-height:24px;	
+		margin-top:20px;	
+	}
+	.help-right-foot{
+		padding:68px 0 45px;
+		text-align:center;
+	}
+	.help-right-foot p{
+		font-size:14px;
+		color:#3c3c3c;
+		height:44px;
+		line-height:44px
+	}
+	.help-right-foot .contact{
+		display:block;
+		width:180px;
+		margin:0 auto;
+		height:40px;
+		line-height:40px;
+		text-align:center;
+		background-color:#f0f0f0;
+		border:1px solid #e6e6e6;
+		border-radius:4px;
+		color:#787878
+	}
+	.help-right-foot .contact:hover{
+		color:#EC4827;
+	}
+	.help-right-detail span,.help-right-detail p{
+		line-height:24px;
+		font-size:14px;	
+	}
+	.help-right-detail a:hover{
+		text-decoration:underline;
+	}
+	.help-right-detail a{
+		color:EC4827;
+		text-decoration:none;
+	}
+	
+	
+	

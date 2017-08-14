@@ -1,0 +1,394 @@
+{{ define "root/category_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >类目管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript" src="/static/js/mine/ajaxfileupload.js"></script>
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	<script type="text/javascript">
+		var utype =null;
+var tid;
+var type;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getCategoryList',
+				fit:true
+			});
+		});
+		
+		function openAddDialog(){
+			type=""
+			jQuery("#form").form("reset");
+      		jQuery("#dlg").dialog("open").dialog("setTitle", "二级类目列表");
+			var row = $('#dg').datagrid('getSelected');
+			jQuery("#typeid").textbox("setText",row.TypeName);
+			jQuery("#typeid").attr("value",row.Id);
+			type="addDialog"
+			tid = row.Id;
+			//请求sitebar列表数据
+			var html ='';
+			$.ajax({
+				type:"post",
+				url:"/root/getTwoCategoryList",
+				data:{}, 
+				dataType:"json",
+				success: function(msg){
+					
+					if(msg.ErrorCode==0){
+						if(msg.Data.length>0){
+							for(var i=0;i<msg.Data.length;i++) {
+								 html += '<label id="'+msg.Data[i].Id+'"><input name="pro" type="checkbox" value="'+msg.Data[i].Id+'" >'+msg.Data[i].TwoCategoryName+' </input> </label>';
+							}	
+						var hot_title = document.getElementById('myproduct');
+						hot_title.innerHTML = html;
+						}	
+			$.ajax({
+				type:"post",
+				url:"/root/getOneTwoCategoryByOneId",
+				data:{
+					Id:tid
+				}, 
+				dataType:"json",
+				success: function(msg){
+					
+					var strs= new Array(); //定义一数组 
+					var str="";
+					if(msg.ErrorCode==0){
+						for (j=0;j<msg.Data.length ;j++ ){ 
+							str+=msg.Data[j].TwoId+","
+						} 
+						strs = str.split(",")
+						for (i=0;i<strs.length ;i++ ){ 
+							var num = strs[i];
+							if(num==""){
+								return
+							}
+							var list = $("#"+num).find("input").attr("checked", true);
+						} 
+					}	
+				},error:function(err){
+					alert("cuowu ");
+				}
+			});
+					}
+
+				},error:function(err){
+					jQuery.messager.show({title:"提示",msg:"as"});
+				}
+			});
+		
+		}
+	function AddOneCategory	(){
+		type=""
+		jQuery("#form").form("reset");
+     	jQuery("#addCategoryOne").dialog("open").dialog("setTitle", "添加一级类目");
+		type="addOne"
+	}
+	function AddTwoCategory	(){
+		type=""
+		jQuery("#form").form("reset");
+     	jQuery("#addCategoryTwo").dialog("open").dialog("setTitle", "添加二级类目");
+		type="addTwo"
+	}
+	
+	function findCategoryTwo(){	
+		type=""
+		jQuery("#form").form("reset");
+     	jQuery("#findCategoryTwo").dialog("open").dialog("setTitle", "删除二级类目");	
+		type="findTwo"
+		var hot_title = document.getElementById('findTwoAll');	
+		$.ajax({
+			type:"post",
+			url:"/root/getTwoCategoryList",
+			data:{}, 
+			dataType:"json",
+			success: function(msg){
+				
+				var html="";
+				if(msg.ErrorCode==0){
+					
+					if(msg.Data.length>0){
+						for(var i=0;i<msg.Data.length;i++) {
+							 html += '<label id="'+msg.Data[i].Id+'"><input name="pro" type="checkbox" value="'+msg.Data[i].Id+'" >'+msg.Data[i].TwoCategoryName+' </input> </label>';
+						}	
+					hot_title.innerHTML = html;
+					}	
+				}
+			}
+		});	
+	}
+	function deleteCategory (){	
+		var row = $('#dg').datagrid('getSelected');
+		tid = row.Id;
+		var msg = "您真的确定要删除吗？请确认！"; 
+		if (confirm(msg)==true){ 
+			reqAjax("/root/categoryDelete",{Id:tid},function(data) {
+				if(data.ErrorCode=="0"){
+					
+					jQuery.messager.show({title:"提示",msg:data.Data.message});
+				}else{
+					jQuery.messager.show({title:"提示",msg:data.ErrorMsg});
+				}
+				jQuery("#dg").datagrid("reload");
+				jQuery("#addCategoryTwo").dialog("close");
+				jQuery("#form").form("reset");
+			});
+
+			return true; 
+		}else{ 
+			return false; 	
+		}
+	}
+		
+	//dialog提交按钮
+	function save(){
+		
+		if(type=="addOne"){
+			var categoryName = $("#categoryName").val()
+			reqAjax("/root/categoryAdd",{CategoryName:categoryName},function(data) {
+				if(data.ErrorCode=="0"){
+					jQuery.messager.show({title:"提示",msg:data.Data.message});
+				}else{
+					jQuery.messager.show({title:"提示",msg:data.ErrorMsg});
+				}
+				jQuery("#dg").datagrid("reload");
+				jQuery("#addCategoryOne").dialog("close");
+				jQuery("#form").form("reset");
+			});
+		}else if(type=="addTwo"){
+			var twoCategoryName = $("#twoCategoryName").val()
+			var twoCategoryImage = $("#twoCategoryImage").val()
+			var twoCategoryAddress = $("#TwoCategoryAddress").val()
+			var timestamp=new Date().getTime(); 
+			
+			if($("#file_upload").val()==""){
+				var name =  $("#file_path").val();
+				var name1 = name.split("/"); 
+				var name2 = name1[name1.length-1];
+				$("#file_path").val(name2);
+			}else{	
+				var name =  $("#file_upload").val();
+				var name1 = name.split("\\"); 
+				var name2 = name1[name1.length-1];
+				$("#file_path").val(timestamp+name2);
+			}
+			reqAjax("/root/categoryTwoAdd",{TwoCategoryName:twoCategoryName,TwoCategoryImage:timestamp+name2,TwoCategoryAddress:twoCategoryAddress},function(data) {
+				if(data.ErrorCode=="0"){
+					
+				$.ajaxFileUpload({  
+					type: "post",  
+					url: "/user/categoryUpload",  
+					secureuri:true,
+					data:{
+						UID:getStorage("Rid"), 
+						Filename:timestamp+name2
+					},
+					fileElementId:"file_upload",
+					dataType: "json",   
+					success: function(msg){
+
+					},
+					error: function(msg){
+						alert("网络环境异常，请稍好再试");
+					}
+				});
+					jQuery.messager.show({title:"提示",msg:data.Data.message});
+				}else{
+					jQuery.messager.show({title:"提示",msg:data.ErrorMsg});
+				}
+				jQuery("#dg").datagrid("reload");
+				jQuery("#addCategoryTwo").dialog("close");
+				jQuery("#form").form("reset");
+			});
+			
+		}else if(type=="addDialog"){
+			var obj=document.getElementsByName('pro');
+			var s='';//2,3,4  
+			for(var i =0;i<obj.length;i++){
+				if(obj[i].checked){
+					s+=obj[i].value+',';
+				}
+			}
+			var id=window.localStorage.getItem('Id');
+			$.ajax({
+					type:"post",
+					url:"/root/categoryTwoAdds",
+					data:{
+						OneId:tid,
+						TwoIdList:s
+					}, 
+					dataType:"json",
+					success: function(msg){
+						if(msg.ErrorCode=="0"){
+							jQuery.messager.show({title:"提示",msg:msg.Data.message});
+						}else{
+								jQuery.messager.show({title:"提示",msg:msg.errMes});
+						}
+			                jQuery("#dg").datagrid("reload");
+			                jQuery("#dlg").dialog("close");
+			                jQuery("#form").form("reset");
+						},error:function(err){
+							alert("错误获取");
+						}
+				});	
+		}else if(type="findTwo"){
+			var msg = "您真的确定要删除吗？请确认！"; 
+			if (confirm(msg)==true){
+				var obj=document.getElementsByName('pro');
+				var s='';//2,3,4  
+				for(var i =0;i<obj.length;i++){
+					if(obj[i].checked){
+						s+=obj[i].value+',';
+					}
+				}
+				$.ajax({
+					type:"post",
+					url:"/root/deleteCategoryTwo",
+					data:{
+						TwoIdList:s
+					}, 
+					dataType:"json",
+					success: function(msg){
+						
+						if(msg.ErrorCode=="0"){
+							jQuery.messager.show({title:"提示",msg:msg.Data.message});
+						}else{
+							jQuery.messager.show({title:"提示",msg:msg.errMes});
+						}
+							window.location.reload();
+						},error:function(err){
+							alert("错误获取");
+						}
+					});
+				return true; 
+			}else{ 
+				return false; 	
+			}
+		}
+	}
+	function cancel(){
+		jQuery("#dg").datagrid("reload");
+		jQuery("#dlg").dialog("close");
+		jQuery("#form").form("reset");
+		jQuery("#addCategoryOne").dialog("close");
+		jQuery("#addCategoryTwo").dialog("close");
+		jQuery("#findCategoryTwo").dialog("close");
+		jQuery("#findCategoryTwo").datagrid("reload");
+		jQuery("#findCategoryTwo").form("reset");
+
+	}
+		
+	
+	</script>
+
+	<table id="dg" style="overflow: hidden;padding:20px 0 0 20px;"
+			class="easyui-datagrid"
+			toolbar="#toolbar" pagination="true" idField="Id" 
+			rownumbers="true" fitColumns="true" singleSelect="true" >
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="Id" width="50" align="center" editor="{type:'validatebox',options:{required:true}}">Id</th>
+				<th field="OneCategoryName" width="50" align="center" editor="{type:'validatebox',options:{required:true}}">一级类目名称</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="javascript:AddOneCategory()" class="easyui-linkbutton" iconCls="icon-add" plain="true" >添加一级类目</a>
+		<a href="javascript:AddTwoCategory()" class="easyui-linkbutton" iconCls="icon-add" plain="true" >添加二级类目</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:deleteCategory()">删除一级类目</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:findCategoryTwo()">删除二级类目</a>
+		<a href="javascript:openAddDialog()" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">设置二级类目</a>
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width: 780px;height:280px;padding: 15px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		     overflow-y="scroll">
+		    <form id="form" method="post" enctype="multipart/form-data" >
+		        <table style="margin: 10px 70px;" cellspacing="15px" >
+					<tr>
+						<td align="left" id= "myproduct" >
+						</td>
+					</tr>
+		        </table>
+		    </form>
+	</div>
+<div id="dlg-buttons">
+    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+</div>
+	<div id="addCategoryOne" class="easyui-dialog" style="width: 780px;height:280px;padding: 15px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+	     overflow-y="scroll">
+	    <form id="form" method="post" enctype="multipart/form-data" >
+	        <table style="margin: 10px 70px;" cellspacing="15px" >
+				<tr>
+				<div>
+					<label for="categoryName" style="margin-left:30%;">一级类目名称:</label>
+					<input type="text" id ="categoryName" name="categoryName" style="margin-top:10%;"></input>
+				</div>	
+				</tr>
+	        </table>
+	    </form>
+	</div>	
+<div id="dlg-buttons">
+    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+</div>
+	<div id="addCategoryTwo" class="easyui-dialog" style="width: 780px;height:280px;padding: 15px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+	     overflow-y="scroll">
+	    <form id="form" method="post" enctype="multipart/form-data" >
+	        <table style="margin: 10px 70px;" cellspacing="15px" >
+				<tr>
+				<div>
+					<label for="twoCategoryName" style="margin-left:30%;">二级类目名称:</label>
+					<input type="text" id ="twoCategoryName" name="twoCategoryName"  style="margin-top:10%;"></input>
+				</div>
+				<div>
+					<label for="twoCategoryImage" style="margin-left:30%;">二级类目图片:</label>
+<!--					<input type="text" id ="twoCategoryImage" name="twoCategoryImage" style="margin-top:5px;"></input>-->	
+					<input type="file" id="file_upload" name="uploadFile" style="margin-top:5px;"/>
+		            <input type="hidden" id="file_path" name="filepath"/>
+				<div>
+				<div>
+					<label for="TwoCategoryAddress" style="margin-left:30%;">类目跳转地址:</label>
+					<input type="text" id ="TwoCategoryAddress" name="TwoCategoryAddress" style="margin-top:5px;"></input><label><span style="color:red;">注意：格式应为/cate/XXX</span></label>
+				<div>
+				</tr>
+	        </table>
+	    </form>
+	</div>	
+		
+<div id="dlg-buttons">
+    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+</div>
+	<div id="findCategoryTwo" class="easyui-dialog" style="width: 780px;height:280px;padding: 15px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+	     overflow-y="scroll">
+	    <form id="form" method="post" enctype="multipart/form-data" >
+	        <table style="margin: 10px 70px;" cellspacing="15px" >
+					<td align="left" id= "findTwoAll" >
+					</td>
+	        </table>
+	    </form>
+	</div>	
+		
+<div id="dlg-buttons">
+    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">删除</a>
+    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+</div>
+	
+	
+
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

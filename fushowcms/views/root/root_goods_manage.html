@@ -1,0 +1,355 @@
+{{ define "root/root_goods_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<script type="text/javascript" src="/static/js/common.js"></script>
+<!--填充body-start-->
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >商品管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript" src="/static/js/mine/ajaxfileupload.js"></script>
+	<script type="text/javascript">
+		var id = getStorage("Rid");
+		var addId = 0;
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../user/getgoodslist',
+				saveUrl: '../user/goodsadd',
+				updateUrl: '../user/goodsup',
+				destroyUrl: '../user/goodsdel',
+				fit:true
+				
+			});
+		});
+		//显示dialog
+	function openUserAddDialog(){
+		addId = 1;
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("open").dialog("setTitle", "新增商品");
+        url="../user/goodsadd";
+        jQuery("#file_upload").attr("name","uploadFile");
+        jQuery("#newImg").attr("src","../../static/images/add.png");
+    }
+		
+	$.ajaxFileUpload({  
+		type: "post",  
+		url: "/upload",  
+		secureuri:true,
+		fileElementId:"file_upload",
+		dataType: "json",   
+		success: function(msg){
+			if(msg.state=="success"){
+                $("#chengePic-big").css("background-image","url(../../static/upload/"+name+")");
+			}else{
+				alert(msg.state);
+			}
+		},
+		 	error: function(XMLHttpRequest, textStatus, errorThrown) {				 
+   		}
+			  
+	});
+	//dialog提交按钮
+	 function save(){
+		// 生成时间戳
+		var timestamp=new Date().getTime(); 
+		// addId 为1时，校验不能为空  修改 0
+		if(addId == 1){
+			if($("#goodsname").val().length == 0){
+			alert("请输入商品名称");
+			return;
+			}
+		//	if($("#goodstype").val().length == 0){
+		//		alert("请输入商品类型");
+		//		return;
+		//	}
+			if($("#goodspirce").val().length == 0){
+				alert("请输入兑换所需金币数");
+				return;
+			}
+			if($("#goodsstock").val().length == 0){
+				alert("请输入库存数量");
+				return;
+			}
+			if($("#salesvolume").val().length == 0){
+				$("#salesvolume").val(0);
+	
+			}
+			
+			if($("#remark").val().length == 0){
+				alert("请输入商品描述");
+				return;
+			}
+		}
+			if($("#goodsname").val().length >20){
+				alert("您的商品名称过长!");
+				return;
+			}
+			/*if($("#goodstype").val().length >20){
+				alert("您的商品类型过长!");
+				return;
+			}*/
+			if($("#goodspirce").val().length >10){
+				alert("兑换所需金币数过多!");
+				return;
+			}
+			if($("#goodsstock").val().length >10){
+				alert("库存数量过多!");
+				return;
+			}
+			if($("#salesvolume").val().length == 0){
+				$("#salesvolume").val(0);
+	
+			}
+			
+			if($("#remark").val().length == 0){
+				alert("请输入商品描述");
+				return;
+			}
+
+		if($("#file_upload").val()==""){
+			var name =  $("#file_path").val();
+			var name1 = name.split("/"); 
+			var name2 = name1[name1.length-1];
+			$("#file_path").val(name2);
+		}else{	
+			var name =  $("#file_upload").val();
+			var name1 = name.split("\\"); 
+			var name2 = name1[name1.length-1];
+			$("#file_path").val(timestamp+name2);
+		}
+			reqAjax(url,$('#form').serialize(),function(result) {
+				if(name2 != ""){
+					$.ajaxFileUpload({  
+						type: "post",  
+						url: "/user/test",  
+						secureuri:true,
+						data:{
+							UID:id, 
+							Filename:timestamp+name2
+						},
+						fileElementId:"file_upload",
+						dataType: "json",   
+						success: function(msg){
+							if(msg.state=="success"){
+	                   		$("#chengePic-big").css("background-image","url(../../static/upload/goods/"+name+")");
+							}
+						},
+						error: function(msg){
+							alert("网络环境异常，请稍好再试");
+						}
+				});
+				}			
+				jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+				jQuery("#dg").datagrid("reload");
+				jQuery("#dlg").dialog("close");
+ 				jQuery("#form").form("reset");
+			});
+		// 	$.ajax({
+		// 		type: "POST",
+		// 		url:url,
+		// 		data:$('#form').serialize(),
+		// 		async: false,
+		// 		error: function(request) {
+		// 			alert("Connection error");
+		// 		},
+		// 		success: function(result) {	
+		// 		if(name2 != ""){
+		// 			$.ajaxFileUpload({  
+		// 				type: "post",  
+		// 				url: "/user/test",  
+		// 				secureuri:true,
+		// 				data:{
+		// 					UID:id, //TODO
+		// 					Filename:timestamp+name2
+		// 				},
+		// 				fileElementId:"file_upload",
+		// 				dataType: "json",   
+		// 				success: function(msg){
+		// 					if(msg.state=="success"){
+	 //                   		$("#chengePic-big").css("background-image","url(../../static/upload/goods/"+name+")");
+		// 					}
+		// 				},
+		// 				error: function(msg){
+		// 					alert("网络环境异常，请稍好再试");
+		// 				}
+				  
+		// 		});
+		// 		}			
+		// 		jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+		// 		jQuery("#dg").datagrid("reload");
+		// 		jQuery("#dlg").dialog("close");
+ 	// 			jQuery("#form").form("reset");
+				
+		// 	}
+		// });
+		addId = 0;	
+    }
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	function getPic() {
+
+	}
+	/*jQuery("#file_upload").fileupload({
+        iframe: true,
+        dataType: 'json',
+        url: "../user/upload",//文件上传地址，当然也可以直接写在input的data-url属性内
+        done: function (e, result) {
+            if(result.result.succ){
+                jQuery("#newImg").attr("src",result.result.path);
+                jQuery("#file_path").val(result.result.path);
+            }else{
+                jQuery("#errMsg").html("文件上传出错");
+            }
+        }
+    });*/
+	 
+
+
+	function dispValue(row){
+		//document.getElementById("id").val(row.Id);
+		jQuery("#id").val(row.Id);
+		jQuery("#goodsname").textbox("setText",row.GoodsName);
+        jQuery("#goodstype").textbox("setText",row.GoodsType);
+		jQuery("#goodsaccount").textbox("setText",row.GoodsAccount);
+        jQuery("#goodspirce").textbox("setText",row.GoodsPirce);	
+        jQuery("#goodsstock").textbox("setText",row.GoodsStock);
+        jQuery("#salesvolume").textbox("setText",row.SalesVolume);
+ 		jQuery("#file_path").val(row.GoodsPic);
+		jQuery("#remark").val(row.GoodsAccount)		
+        jQuery("#newImg").attr("src",row.GoodsPic?row.GoodsPic:"/static/upload/an.png");
+    }
+	function getSelected (){
+		var row = $('#dg').datagrid('getSelected');
+		dispValue(row);
+		jQuery("#dlg").dialog("open").dialog("setTitle", "修改商品");
+ 		url = "../user/goodsup";
+		jQuery("#file_upload").attr("name","uploadFile");
+		jQuery("#file_path").textbox("setText",name);
+	}
+
+	</script>
+
+
+	
+	<table id="dg" style="margin:0 50px 0 50px;height:auto;" class="easyui-datagrid"
+			toolbar="#toolbar" pagination="true" idField="Id" 
+			rownumbers="true" fitColumns="true" singleSelect="true"  >
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true" ></th>-->
+			
+				<th field="GoodsName" width="50" >商品名称</th>
+<!--				<th field="GoodsType" width="50"  editor="{type:'validatebox',options:{required:true,validType:['111	啊','length[0,20]']}}">商品类型</th>-->
+				<th field="GoodsAccount" width="50">商品描述</th>
+				<th field="GoodsPirce" width="50">兑换所需金币数</th>
+				<th field="GoodsStock" width="50">库存数量</th>
+				<th field="GoodsPic" width="50">商品图片</th>
+				<th field="SalesVolume" width="50">销售数量</th>
+				
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+	 	<a href="javascript:openUserAddDialog()" class="easyui-linkbutton" data-options="plain:true"  iconCls="icon-add" plain="true">添加</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+		<a href="#" class="easyui-linkbutton" iconcls="icon-edit" onclick="getSelected()" plain="true">修改</a>
+		
+	</div>
+
+			<div id="dlg" class="easyui-dialog" style="width: 680px;height:630px;padding: 5px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		     overflow-y="scroll">
+		    <form id="form" method="post" enctype="multipart/form-data" >
+		        <table style="margin: 5px 5px;" cellspacing="5px" >
+					<tr>
+		                <td align="right" style="width: 140px;" hidden >Id:</td>
+		                <td align="left">
+		                    <input id="id" name="myuid" hidden >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+
+		            <tr>
+		                <td align="right" style="width: 140px;" >商品名称：</td>
+		                <td align="left">
+		                    <input id="goodsname" name="GoodsName" type="text" class="easyui-textbox" data-options="required:true" 
+		                           style="width: 150px;">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		            <!--<tr>
+		                <td align="right" style="width: 140px;">商品类型：</td>
+		                <td align="left">
+		                    <input id="goodstype" type="text" name="GoodsType" class="easyui-textbox" data-options="required:true" 
+		                           style="width: 150px;"></span>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>-->
+		            <tr>
+		                <td align="right" style="width: 140px;">兑换所需金币数</td>
+		                <td align="left">
+		                    <input id="goodspirce" name="GoodsPirce" type="text" class="easyui-textbox" style="width: 150px;" data-options="required:true">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		            <tr>
+		                <td align="right" style="width: 140px;">库存数量：</td>
+		                <td align="left">
+		                    <input id="goodsstock" type="text" name="GoodsStock" class="easyui-textbox" style="width: 150px;" data-options="required:true">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					<tr>
+		                <td align="right" style="width: 140px;">销售数量：</td>
+		                <td align="left">
+		                    <input id="salesvolume" type="text" name="SalesVolume" class="easyui-textbox" style="width: 150px;" data-options="required:true" missingMessage="默认为0">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		                <td align="right" style="width: 140px;">商品图片：</td>
+		                <td align="left">
+		                    <input type="file" id="file_upload" name="uploadFile"/>
+		                    <input type="hidden" id="file_path" name="filepath"/>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					<tr>
+		                <td valign="top" align="left" style="width: 140px;">&nbsp;</td>
+		                <td align="left">
+		                    <img id="newImg" style="width: 100px;height: 110px;" src="/static/img/default.gif">&nbsp;<span id="errMsg" style="color: red"></span>
+		                </td>
+		                <td align="left">&nbsp;</td>
+           			</tr>
+				
+		            <tr>
+		                <td align="right" style="width: 140px;">商品描述：</td>
+		                <td align="left">
+		                    <textarea rows="10" cols="65" id="remark" name="GoodsAccount" placeholder="请简要描述您的商品"></textarea>
+		                </td>
+		            </tr>
+
+		        </table>
+		    </form>
+		</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+	    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+	</div>
+    
+
+</div>
+{{ template "root/footer.html" }}
+{{end}}
+<!--填充body-end-->
+
+<!--后台右end-->

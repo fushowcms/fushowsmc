@@ -1,0 +1,61 @@
+body,
+li,
+ul,
+p {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+body {
+	font-family: "微软雅黑";
+}
+#iFrame1{
+	background-color: gainsboro;
+	margin-left: 40px;
+	width: 812px;
+}
+#mine-tab-top{
+	width: 812px;
+	height: 130px;
+	margin-top: 3px;
+	margin-left: 3px;
+	margin-bottom: 24px;
+	background-color: white;
+}
+#mine-tab-myInform {
+	width: 812px;
+	height: 760px;
+	margin-left: 3px;
+	background-color: white
+}
+
+#mine-myInform-ul {
+	width: 812px;
+	height: 40px;
+	margin-top: 10px;
+	padding-top: 10px;
+	margin-left: 3px;
+}
+
+#mine-myInform-ul li {
+	float: left;
+	list-style: none;
+	width: 116px;
+	height: 40px;
+	/*margin-left: 5px;*/
+	line-height: 40px;
+	text-align: center;
+	color: #828282;
+	font-size: 12px;
+	
+}
+
+.mine-myInform-Off {
+	display: none;
+}
+
+.mine-myInform-On {
+	display: block;
+}
+

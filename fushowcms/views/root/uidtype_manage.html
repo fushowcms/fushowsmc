@@ -1,0 +1,172 @@
+{{ define "root/uidtype_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >权限管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	<script type="text/javascript">
+		var utype =null;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getuidtypelist',
+				saveUrl: '../root/uidtypeadd',
+				updateUrl: '../root/uidtypeup',
+				fit:true
+			});
+		});
+		
+		function openAddDialog(){
+			jQuery("#form").form("reset");
+      		jQuery("#dlg").dialog("open").dialog("setTitle", "权限列表");
+			var row = $('#dg').datagrid('getSelected');
+			jQuery("#typeid").textbox("setText",row.TypeName);
+			jQuery("#typeid").attr("value",row.Id);
+			var tid = row.Id;
+			//请求sitebar列表数据
+			var html ='';
+			$.ajax({
+				type:"post",
+				url:"/root/getauthoritylist",
+				data:{}, 
+				dataType:"json",
+				success: function(msg){
+					if(msg.data.length>0){
+						for(var i=0;i<msg.data.length;i++) {
+							 html += '<label id="'+msg.data[i].Id+'"><input name="pro" type="checkbox" value="'+msg.data[i].Id+'" >'+msg.data[i].ListName+' </input> </label>';
+						}
+						
+						var hot_title = document.getElementById('myproduct');
+						hot_title.innerHTML = html;
+					}
+				},error:function(err){
+					jQuery.messager.show({title:"提示",msg:"as"});
+				}
+			});
+			
+			$.ajax({
+				type:"post",
+				url:"/root/getmyaulist",
+				data:{
+					TypeId:tid
+				}, 
+				dataType:"json",
+				success: function(msg){
+					
+					var strs= new Array(); //定义一数组 
+					if(msg.state){
+						strs=msg.data.AuthorityListId.split(",");
+						for (i=0;i<strs.length ;i++ ){ 
+							var num = strs[i];
+							if(num==""){
+								return
+							}
+							var list = $("#"+num).find("input").attr("checked", true);
+						} 
+					}
+					alert(msg.state);
+					
+				},error:function(err){
+					alert("cuowu ");
+				}
+			});
+		
+		}
+		
+		
+	//dialog提交按钮
+	function save(){
+		var obj=document.getElementsByName('pro');
+		var s='';//2,3,4  
+		for(var i =0;i<obj.length;i++){
+			if(obj[i].checked){
+				s+=obj[i].value+',';
+			}
+		}
+		var id=window.localStorage.getItem('Id');
+		var tid = jQuery("#typeid").attr("value");
+		$.ajax({
+				type:"post",
+				url:"/root/typeprocessadd",
+				data:{
+					UID:id,
+					list:s,
+					TypeId:tid
+				}, 
+				dataType:"json",
+				success: function(msg){
+					jQuery.messager.show({title:"提示",msg:msg.errMes});
+	                jQuery("#dg").datagrid("reload");
+	                jQuery("#dlg").dialog("close");
+	                jQuery("#form").form("reset");
+				},error:function(err){
+					alert("错误获取");
+				}
+			});			
+	}
+	function cancel(){
+		jQuery("#dg").datagrid("reload");
+		jQuery("#dlg").dialog("close");
+		jQuery("#form").form("reset");
+	}
+		
+	
+	</script>
+
+	<table id="dg" style="overflow: hidden;padding:20px 0 0 20px;"
+			toolbar="#toolbar" pagination="true" idField="Id" 
+			rownumbers="true" fitColumns="true" singleSelect="false" 
+			iconCls="icon-save" rownumbers="true"  pagination="true" fitColumns="false"
+			singleSelect="true" resizeHandle="left" autoRowHeight="true" nowrap="true" striped="true" collapsible="true">
+		<thead>
+			<tr> 
+				<th field="ck" checkbox="true"></th> 	
+				<th field="Id" width="50" align="center" editor="{type:'validatebox',options:{required:true}}">权限Id</th>
+				<th field="TypeName" width="50" align="center" editor="{type:'validatebox',options:{required:true}}">权限名称</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">添加</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a>
+		<a href="javascript:openAddDialog()" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">查看权限设置</a>
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width: 780px;height:280px;padding: 15px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		     overflow-y="scroll">
+		    <form id="form" method="post" enctype="multipart/form-data" >
+		        <table style="margin: 10px 70px;" cellspacing="15px" >
+					<tr>
+						<td align="center">
+ 							<label id="typeid" name="TypeId"  type="text" readonly="true"  class="easyui-textbox" style="width: 150px;"/>
+						</td>
+					</tr>
+					<tr>
+						<td align="left" id= "myproduct" >
+						</td>
+					</tr>
+		        </table>
+		    </form>
+		</div>
+<div id="dlg-buttons">
+    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+</div>
+	
+	
+
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

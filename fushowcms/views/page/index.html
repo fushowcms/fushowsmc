@@ -1,0 +1,265 @@
+{{define "page/index.html"}}
+<!-- 头部文件 -->
+
+<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/page/index.css">
+	<link rel="stylesheet" href="/static/css/common_head.css">
+	<link rel="stylesheet" href="/static/css/common_foot.css"> 
+	<link rel="stylesheet" href="/static/css/page/lists.css"> 
+	{{template "page/common_js.html"}}
+</head>
+
+<body>
+	<!-- header start -->
+	{{template "page/common_head.html"}}
+
+		<!-- 轮播部分开始 -->
+		<div class="index-wrap-container">
+			<div class="index-slider-container">
+				<div class="index-slider-content clearfix">
+					<div id="lunbo-Pic">
+					<!--	<a href="#" class="golivebtn">进入该直播间</a>-->
+					</div>
+					<ul id="lunbo-Btn">
+						{{range .CarouselPic}}
+						<li data-url="{{.PicPath}}">
+							<img src="{{.PicPath}}">
+							<div class=""></div>
+						</li>
+						{{end}}	
+					</ul>
+				</div>
+			</div>
+			<a target="_blank" href="#" class="index-slider-link"></a>
+		</div>
+		<!-- 轮播部分结束 -->
+
+		<!-- 竞技、单机、娱乐开始 -->
+		<div class="bw index-suggestion"></div>
+		<!-- 竞技、单机、娱乐结束 -->
+
+		<!-- 热门开始 -->
+		<div class="bw index-hotlive">
+			<div class="index-block-title">
+				<span class="tit1">今日</span>
+				<span class="dot"></span>
+				<span class="tit2">热门</span>
+				<div class="more">
+					<a href="/page/lists" target="_blank">更多</a>
+				</div>
+			</div>
+			<!--热门直播-->
+			<ul class="figrues-list clearfix host listsShow">
+				{{range .data_stick}}
+				<li class="list-item">
+					<a href="/roomlive/{{.Id}}" target="_blank" data-toggle="panda-monitor" data-paew="shouye-rm-1">
+						{{if .LiveCover}}
+						<div class="pd-thumb" style="background-image:url('{{.LiveCover}}')">
+							{{else}}
+							<div class="pd-thumb" style="background-image:url(../static/images/ui/noPlayimg.png)">
+								{{end}}
+								<div class="pictures">
+									<img class="thumb-img thumb-img-lazy">
+								</div>
+								<div class="thumb-layer"></div>
+								<div class="play-btn"></div>
+							</div>
+							<div class="lists-box-list-font">
+								<h1>{{.RoomAlias}}</h1>
+								<span class="lists-classFont">{{.TwoCategoryName}}</span>
+								<p>{{.NickName}}<span><img src="/static/images/ui/look-ioc.png">{{.LiveNumber}}</span></p>
+							</div>
+					</a>
+				</li>
+				{{end}} 
+				{{range .data_stick_state}}
+				<li class="list-item">
+					<a href="/roomlive/{{.Id}}" target="_blank" data-toggle="panda-monitor" data-paew="shouye-rm-1">
+						{{if .LiveCover}}
+						<div class="pd-thumb" style="background-image:url('{{.LiveCover}}')">
+							{{else}}
+							<div class="pd-thumb" style="background-image:url(../static/images/ui/noPlayimg.png)">
+								{{end}}
+								<div class="pictures">
+									<img class="thumb-img thumb-img-lazy">
+								</div>
+								<div class="thumb-layer"></div>
+								<div class="play-btn"></div>
+								<div class="thumb-title" title="{{.RoomAlias}}">{{.RoomAlias}}</div>
+							</div>
+							<div class="thumb-info">
+								<div class="thumb-list">
+									<span class="thumb-nickname">{{.NickName}}</span>
+									<span class="thumb-number">{{.LiveNumber}}</span>
+								</div>
+								<div class="thumb-bar"></div>
+							</div>
+						</div>	
+					</a>
+				</li>
+				{{end}}
+
+			</ul>
+		</div>
+
+		<!-- 频道板块开始 -->
+		<div class="index-channel">
+			{{range $index,$V:=.Categorydata}}
+			<div class="index-channel-list index-channel-lol  index-channel-lol ">
+				<div class="bw">
+					<div class="index-channel-cnt clearfix">
+						<div class="index-channel-title">
+							<div class="index-channel-name">
+								<a href="{{.TwoCategoryAddress}}" target="_blank">
+									<span class="avt"><i class="avt-bg" style="background-image:url(../static/upload/category/{{.TwoCategoryImage}})"></i></span>
+									<!--<span class="tips tips-color-green"><i class="num">{{.Total}}</i><i class="txt">个直播</i></span>-->
+									<span class="name">{{.TwoCategoryName}}</span>
+								</a>
+							</div>
+							<div class="more">
+								<a href="{{.TwoCategoryAddress}}" target="_blank">更多</a>
+							</div>
+							<div class="index-channel-generalize">
+								<a href="#" class="index-channel-generalize-banner" target="_blank">
+								</a>
+							</div>
+						</div>
+						<ul class="figrues-list figrues-list-line1 clearfix listsShow">
+							{{range .ArCategoryTwo}}
+							<li class="list-item">
+								<a href="/roomlive/{{.Id}}" target="_blank">
+									{{if .LiveCover}}
+									<div class="pd-thumb" style="background-image:url({{.LiveCover}})">
+									{{else}}
+									<div class="pd-thumb" style="background-image:url(../static/images/ui/noPlayimg.png)">
+									{{end}}
+										<div class="pictures">
+											<img class="thumb-img thumb-img-lazy">
+										</div>
+										<div class="thumb-layer"></div>
+										<div class="play-btn"></div>
+									</div>
+									<div class="lists-box-list-font">
+										<h1>{{.RoomAlias}}</h1>
+										<span class="lists-classFont">{{.TwoCategoryName}}</span>
+										<p>{{.NickName}}<span><img src="/static/images/ui/look-ioc.png">{{.LiveNumber}}</span></p>
+									</div>
+								</a>
+							</li>
+							{{end}}
+						</ul>
+					</div>
+				</div>
+			</div>
+			{{end}}
+		</div>
+		<!-- 频道板块结束 -->
+
+		<!-- 二维码板块开始 -->
+		<div class="index-footer-container">
+			<div class="index-footer-picCode clearfix">
+				<div class="index-picCode weixin clearfix">
+					<div class="index-footer-intro index-footer-logo">
+						<i class="footer-logo"></i>
+					</div>
+					<div class="index-footer-intro index-picCode-dis">
+						<span class="index-picCode-title">官方微信Fushow</span>
+						<span class="index-picCode-direction">扫一扫立即关注官方微信</span>
+					</div>
+					<div class="index-footer-intro index-footer-code">
+						<img src="/static/images/pic/ad1d27ac5fde0476348d6b92fd4b158c.png" />
+					</div>
+				</div>
+				<div class="index-picCode weibo clearfix">
+					<div class="index-footer-intro index-footer-logo">
+						<i class="footer-logo"></i>
+					</div>
+					<div class="index-footer-intro index-picCode-dis">
+						<span class="index-picCode-title">Fushow直播官方微博</span>
+						<span class="index-picCode-direction">扫一扫立即关注官方微博</span>
+					</div>
+					<div class="index-footer-intro index-footer-code">
+						<img src="/static/images/pic/8c6d17b46d7ed60694dd57eb54336841.png" />
+					</div>
+				</div>
+				<div class="index-picCode app clearfix">
+					<div class="index-footer-intro index-footer-logo">
+						<i></i>
+					</div>
+					<div class="index-footer-intro index-picCode-dis">
+						<span class="index-picCode-title">Fushow直播手机版</span>
+						<span class="index-picCode-direction">扫一扫立即下载App</span>
+					</div>
+					<div class="index-footer-intro index-footer-code">
+						<img src="/static/images/pic/ad1d27ac5fde0476348d6b92fd4b158c.png"/>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+		<!-- 二维码板块结束 -->
+		<!-- footer start -->
+		<footer id="panda_footer">
+			<div class="footer-text">
+				<p>Copyright ©2016-2017 富秀科技（大连）有限公司 | 备案号：辽ICP备15008199号-1 | 网文号：辽网文XXXXZXXX号 业务QQ：6049774</p>
+				<p>联系地址：辽宁省大连市高兴园区学子街2号3号楼 | 联系电话：400-863-5885</p>
+		
+			</div>
+		</footer>
+		<!-- footer end -->
+					
+
+		<!-- 侧边栏开始 -->
+		<div class="index-lift clearfix">
+			<div class="button gotop-btn">
+				<a href="javascript:;">
+					<span class="icon"></span>
+					<span class="text">回到顶部</span>
+				</a>
+			</div>
+			<div class="button help-btn">
+				<a href="/help/o1-0" target="_blank">
+					<span class="icon"></span>
+					<span class="text">帮助中心</span>
+				</a>
+			</div>
+			<div class="button code-btn">
+				<a href="javascript:;">
+					<div class="code-icon">
+						<span class="icon"></span>
+						<span class="text">扫码关注</span>
+					</div>
+					<div class="code">
+						<img src="/static/images/pic/32a689de807819f6317ecbf709ca7cbc.png">
+					</div>
+				</a>
+			</div>
+			<div class="button service-btn">
+				<a href="tencent://message/?uin=6049774&Site=&menu=yes">
+					<span class="icon"></span>
+					<span class="text">客服支持</span>
+				</a>
+			</div>
+			<div class="button anchor-btn">
+				<a href="/user/mine_myInform?tobeanchor=true" class="add-stars" target="_blank">
+					<div class="breathe">
+						<div class="breathe-bg"></div>
+						<i class="breathe-icon"></i>
+					</div>
+					<span class="icon"></span>
+					<span class="text">我要<br>做主播</span>
+				</a>
+			</div>
+		</div>
+		<!-- 侧边栏结束 -->
+		<script src="/static/js/page/index.js"></script>
+		<script src="/static/js/page/lunbo.js"></script>
+		<script src="/static/js/library/prism-1.5.3-min.js"></script>
+					
+</body>
+
+</html>
+{{end}}

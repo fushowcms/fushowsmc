@@ -1,0 +1,42 @@
+#panda_footer {
+	overflow:hidden;
+	background:#3f3f3f;
+	width:100%;
+	position:relative;
+	text-align:center;
+	padding:30px 0;
+	color:#979797
+}
+#panda_footer .footer-logo {
+	position:relative;
+	top:2px;
+	height:48px;
+	display:inline-block;
+	vertical-align:bottom
+}
+#panda_footer .footer-text {
+	text-align:center;
+	display:inline-block;
+	vertical-align:bottom
+}
+#panda_footer .footer-text p,#panda_footer .footer-text a {
+	font-size:12px;
+	line-height:22px
+}
+#panda_footer .footer-text p {
+	margin:5px 0
+}
+#panda_footer a {
+	color:#979797;
+	-webkit-transition:color ease-out 200ms;
+	transition:color ease-out 200ms
+}
+#panda_footer a:hover {
+	color:#009CFA
+}
+#panda_footer a img {
+	position:relative;
+	top:-2px;
+	margin-right:2px;
+	vertical-align:middle
+}

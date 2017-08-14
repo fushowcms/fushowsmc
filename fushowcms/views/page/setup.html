@@ -1,0 +1,71 @@
+{{define "page/setup.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+    {{template "page/common_meta.html"}}
+    <title>安装</title>
+    <link rel="stylesheet" href="/static/css/common.css" /> 
+    <link rel="stylesheet" type="text/css" href="/static/css/setup.css"/>
+    <script type="text/javascript" src="/static/js/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/static/js/common.js"></script>
+    <script type="text/javascript" src="/static/js/setup.js"></script>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="wrapper-div">
+            <div class="showBox">
+                <div class="showTitle">
+                    FUSHOWCMS基础配置
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">数据库地址：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="dbAddress" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">数据库端口：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="dbPort" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">数据库账号：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="dbAccount" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">数据库密码：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="dbPassword" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">数据库名称：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="dbName" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">数据库类型：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="dbSelect" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">RedisDial：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="redisDial" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">RedisDeal：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="redisDeal" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">RedisPass：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="redisPass" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">RedisKey：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="redisKey" type="text"></div>
+                </div>
+                <div class="inputBox">
+                    <div class="inputBox-title">电话：</div>
+                    <div class="inputBox-input"><input class="conf-input" id="phone" type="text"></div>
+                </div>
+                <div class="setup">设置</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{{end}}

@@ -1,0 +1,391 @@
+{{ define "page/user_login.html" }}
+<!-- 头部文件 -->
+{{ template "page/head.html" }}
+	 <section id="login-Dad">
+            <div class="login">
+                <div class="header">
+                    <div id="login-quit"></div>
+                    <div class="switch" id="switch">
+                        <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">
+                        	    快速登录
+                        </a>
+                        <a class="switch_btn" id="switch_login" href="javascript:void(0);" tabindex="8">
+                          	  快速注册
+                        </a>
+                        <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+                    </div>
+                </div>
+                <div class="web_qr_login" id="web_qr_login" style="display: block;">
+                    <!--登录-->
+                    <div class="web_login" id="web_login">
+                        <div class="login-box">
+                            <div class="login_form">
+                                <form action="#" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                                    <input type="hidden" name="did" value="0" />
+                                    <input type="hidden" name="to" value="log" />
+                                    <div class="uinArea" id="uinArea">
+                                        <label class="input-tips" for="u">
+                                           	 帐号：
+                                        </label>
+                                        <div class="inputOuter" id="uArea">
+                                            <input type="text" id="u" name="username" class="inputstyle" />
+                                        </div>
+                                    </div>
+                                    <div class="pwdArea" id="pwdArea">
+                                        <label class="input-tips" for="p">
+                                         	   密码：
+                                        </label>
+                                        <div class="inputOuter" id="pArea">
+                                            <input type="password" id="p" name="p" class="inputstyle" />
+                                        </div>
+                                    </div>
+                                    <div style="padding-left:55px;margin-top:20px;">
+                                    	<input id="login_btn2" type="button" value="登 录" style="width:150px;float:none;" class="button_blue" onclick="cli()"/>
+                                    	<a class="lose_pass" style="cursor:pointer">忘记密码</a>
+                                    </div>
+									<p id="login_prompt" style="text-align:center;color:#f00;height:16px;"></p>
+									<div><p style="width: 320px;height: 20px;background: url(images/or-line.png) center top no-repeat;"></p></div>
+								    <div style="width:200px; margin:15px auto 30px auto;">
+										<p style="position:relative;left:-30px;font-size: 16px;padding-bottom: 15px;">第三方帐号直接登录：</p>
+										<span id="hzy_fast_login"></span>
+									</div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--登录end-->
+                </div>
+                <!--注册-->
+                <div class="qlogin" id="qlogin" style="display: none; ">
+                    <div class="web_login">
+                        <form name="form2" id="regUser" accept-charset="utf-8" action="http://www.sltv.cn" method="post">
+                            <input type="hidden" name="to" value="reg" />
+                            <input type="hidden" name="did" value="0" />
+                            <ul class="reg_form" id="reg-ul">
+                                <div id="userCue" class="cue">
+                                    快速注册请注意格式
+                                </div>
+                                <li>
+                                   <label for="Phone" class="input-tips2">
+                                        手机：
+                                    </label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="Phone" name="Phone" maxlength="11" class="inputstyle2"/>
+										<input type="button" id="getting" value="获取验证码" style="margin-top:6px">
+										<input type="text" id="phone_check" value="验证码" onclick="this.value=null" maxlength="6" style="display:none;width:80px;height:34px;margin-top:6px;">
+                                    	<input type="button" id="get" value="使用该手机注册" style="margin-top:6px;display:none;">
+                                    </div>
+                                   
+                                </li>
+                                <li>
+                                    <label for="username" class="input-tips2">
+                                        账号：
+                                    </label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="username" name="username" maxlength="16" class="inputstyle2"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="passwd" class="input-tips2">
+                                        密码：
+                                    </label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd" name="passwd" maxlength="16" class="inputstyle2"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="passwd2" class="input-tips2">
+                                        确认：
+                                    </label>
+                                    <div class="inputOuter2">
+                                        <input type="password" id="passwd2" name="" maxlength="16" class="inputstyle2"/>
+                                    </div>
+                                </li>
+                                <li>
+                                    <label for="NickName" class="input-tips2">
+                                        昵称：
+                                    </label>
+                                    <div class="inputOuter2">
+                                        <input type="text" id="NickName" name="NickName" maxlength="10" class="inputstyle2"/>
+                                    </div>
+                                </li>
+                                <li>
+										<label for="aff_id" class="input-tips2">
+	                                        机构：
+                                    </label>
+                                    <div class="inputOuter2">
+		                                    <select id="aff_id" >
+										  		<option value="0" >未选择</option>
+									     	</select>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="inputArea">
+                                        <input type="button" id="reg" style="margin-top:10px;margin-left:0px;" onclick="regs()"
+                                        class="button_blue" value="同意协议并注册" />
+                                        
+                                    </div>
+                                </li>
+                                <div class="cl"></div>
+                            </ul>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+<!-- <script type="text/javascript" src="http://open.51094.com/user/myscript/157ca89018b36a.html" ></script>	 -->
+
+	<script type="text/JavaScript">
+	//确认使用该手机注册按钮点击
+ 	//$("#loginBox").load("/page/login").ready(function(){
+   	$.getScript("/static/js/login.js");
+	//});
+   	$.getScript("/static/js/head.js");
+	$.getScript("/static/js/commonHtml/header.js");
+
+
+		$('#reg-ul li').css('display','none');
+		$('#reg-ul li:first-of-type').css('display','block');
+	   	$('#get').click(function(){
+	   		var code=$("#phone_check").val();
+	   		var phone=$("#Phone").val();
+			
+			reqAjax("/page/isverification",{mobile: phone,code: code},function(msg){
+				if(msg.ErrorCode!=0) {
+					Dialog(msg.ErrorMsg,true,"确定",null,function() {
+						$('.dialog').remove();
+					},null);
+				}else {
+					$('#reg-ul li').css('display','block');
+				}
+			},true);
+	   	});
+	   	$('.lose_pass').click(function() {
+        	window.location.href="/page/ret_password";
+        });
+    </script>
+
+            
+
+<script>
+$(function(){
+	var ID = window.localStorage.getItem("Id");
+	var niCheng = window.localStorage.getItem("nicheng");
+	var userName = window.localStorage.getItem("username");
+	if(ID!=null&&userName!=null&&niCheng!=null){
+		var str = "";
+		str += '<li><a href="/user/mine_myInform"style =" color:orange;">'+userName+'你好</a></li>';
+	    str+='<li style="color:skyblue" class="out">退出登录</li>';
+	    $("#header-Setup-Login").html(str);
+	}else{
+		console.log('尚未登陆');
+	}
+
+});
+		function cli(){
+			//登陆
+			var id = document.getElementById('u').value;
+			var name = document.getElementById('u').value;
+			var pwd = document.getElementById('p').value;
+			
+			if(!name){
+				$('#login_prompt').html('用户名不能为空');
+				return;
+			}
+			if(!pwd){
+				$('#login_prompt').html('密码不能为空');
+				return;
+			}
+
+			$.ajax({
+				type: "post",
+				url: "/page/login",
+				dataType: "json",
+				data: {
+					//uid:id,
+					username: name,
+					password: pwd
+				},
+				success: function(msg, data, xhr) {
+					if (name == msg.UserName) {
+						window.localStorage.setItem("Id", msg.UID);
+						window.localStorage.setItem("username", msg.UserName);
+						window.localStorage.setItem("nicheng", msg.NickName);
+					
+						$("#loginBox").css("display", "none");
+						$("#head-login").css({width:"120",color:"orange"});
+						$("#head-setup").css("display","none");
+						//var helloUser = $("<a>");
+						var str = "";
+						str += '<li><a href="/user/mine_myInform" style="color:orange;">'+msg.UserName+'你好</a></li>';
+						str+='<li style="width:100px;color:skyblue" class="out">退出登录</li>';
+						$("#header-Setup-Login").html(str);
+						window.location.href="/user/mine_myInform";
+						//$("#head-login").html('<a href="#">'+msg.UserName + '你好</a>');
+					}else{
+					    alert("登录失败");
+					}
+				},
+				error: function(msg) {
+					alert("网络环境异常，请稍好再试");
+				}
+			});
+		}
+		
+		function regs() {//注册
+			if ($('#user').val() == "") {
+				$('#user').focus().css({
+					border: "1px solid red",
+					boxShadow: "0 0 2px red"
+				});
+				$('#userCue').html("<font color='red'><b>×用户名不能为空</b></font>");
+				return;
+			}
+	
+			if ($('#username').val().length < 4 || $('#user').val().length > 16) {
+	
+				$('#user').focus().css({
+					border: "1px solid red",
+					boxShadow: "0 0 2px red"
+				});
+				$('#userCue').html("<font color='red'><b>×用户名位4-16字符</b></font>");
+				return;
+			}
+	
+			if ($('#passwd').val().length < pwdmin) {
+				$('#passwd').focus();
+				$('#userCue').html("<font color='red'><b>×密码不能小于" + pwdmin + "位</b></font>");
+				return;
+			}
+			if ($('#passwd2').val() != $('#passwd').val()) {
+				$('#passwd2').focus();
+				$('#userCue').html("<font color='red'><b>×两次密码不一致！</b></font>");
+				return;
+			}
+			
+			if ($('#NickName').val().length == 0) {
+				$('#NickName').focus();
+				$('#userCue').html("<font color='red'><b>×昵称不能为空！</b></font>");
+				return;
+			}
+			
+			if ($('#Phone').val().length < 1) {
+				$('#Phone').focus();
+				$('#userCue').html("<font color='red'><b>×手机号不能为空！</b></font>");
+				return;
+			}
+			if ($('#Phone').val().length != 11) {
+				$('#Phone').focus();
+				$('#userCue').html("<font color='red'><b>×手机号格式不正确！</b></font>");
+				return;
+			}
+
+			var username = document.getElementById('user').value;
+			var pwd = document.getElementById('passwd').value;
+			var nickname = document.getElementById('NickName').value;
+			var phone = document.getElementById('Phone').value;
+			$.ajax({  
+				type: "post",  
+				url: "/page/regist",  
+				dataType: "json",  
+				data: {
+					UserName:username,
+					PassWord:pwd,
+					NickName:nickname,
+					Phone:phone
+				},  
+				success: function(msg){
+						console.log(msg);
+					 if(msg.Id > 0 && msg.UserName != ""){
+						window.localStorage.setItem("Id", msg.UID);
+						window.localStorage.setItem("username", msg.UserName);
+						window.localStorage.setItem("nicheng", msg.NickName);
+						$('.o-login').css('display','block');
+						$('#loginBox').css('display','none');
+						var str = "";
+						str += '<li><a href="/user/mine_myInform" style="color:orange;">'+msg.UserName+'你好</a></li>';
+						str+='<li style="width:100px;color:skyblue" class="out">退出登录</li>';
+						$("#header-Setup-Login").html(str);
+					} if(msg.state=='exist'){
+				        alert("用户已存在");
+				    }if(msg.state=='failuk'){
+				        alert("增加用户失败");
+				    } 	
+				},
+				error: function(msg){
+					alert("网络环境异常，请稍好再试");
+				}	  
+			});
+		}
+
+//点击获取验证码
+	$("#getting").click(function(){
+		    var pho =$("#Phone").val();
+			if(!pho){
+				$("#userCue").html("<font color='red'><b>×手机号不能为空</b></font>");
+				return false;
+			}
+			reg_phone=/^1[34578]\d{9}$/;
+			if(!reg_phone.test(pho)){
+				$("#userCue").html("<font color='red'><b>×手机格式不正确</b></font>");
+				return false;
+			}
+            var btn = $(this);
+            var count = 60;
+			$('#phone_check').css('display','block');
+			$('#get').css('display','block');
+            var resend = setInterval(function(){
+                count--;
+                if (count > 0){
+                    btn.val(count+"秒后可重新获取");
+                   
+                }else {
+                    clearInterval(resend);
+                    btn.val("获取验证码").removeAttr('disabled');
+                    $("#Phone").attr("disabled",false);
+                }
+            }, 1000);
+            btn.attr('disabled',true).css({'cursor':'not-allowed'});
+            
+			reqAjax("/page/byphonereg",{mobile: pho},function(msg){
+				if(msg.ErrorCode!=0) {
+					Dialog(msg.ErrorMsg,true,"确定",null,function() {
+						$('.dialog').remove();
+					},null);
+				}else {
+					Dialog("发送成功",true,"确定",null,function() {
+						$('.dialog').remove();
+					},null);
+            		$("#Phone").attr("disabled",true);
+				}
+			},true); 			          
+        });
+
+
+	</script>
+
+	<script type="text/javascript" >
+		$(document).ready(function() { 
+	
+		});
+		
+		function getPar(par){
+		    //获取当前URL
+		    var local_url = document.location.href; 
+		    //获取要取得的get参数位置
+		    var get = local_url.indexOf(par +"=");
+		    if(get == -1){
+		        return "";   
+		    }   
+		    //截取字符串
+		    var get_par = local_url.slice(par.length + get + 1);    
+		    //判断截取后的字符串是否还有其他get参数
+		    var nextPar = get_par.indexOf("&");
+		    if(nextPar != -1){
+		        get_par = get_par.slice(0, nextPar);
+		    }
+		    return get_par;
+		}
+	</script>
+</html>
+{{ end }}

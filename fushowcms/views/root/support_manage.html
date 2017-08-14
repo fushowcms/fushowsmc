@@ -1,0 +1,88 @@
+{{ define "root/support_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >支持管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getsupportlist',
+				saveUrl: '../root/supportadd',
+				updateUrl: '../root/supportup',
+				destroyUrl: '../root/supportdel',
+				fit:true
+			});
+		});
+	function editState(val,replace){
+		if(val == 0){
+			return "未开奖"
+		}
+		if(val == 1){
+			return "胜"
+		}
+		if(val == 2){
+			return "负"
+		}
+	}
+	function editIsWin(val,replace){
+		if(val){
+			return "胜"
+		}else{
+			return "负"
+		}
+	}
+	</script>
+	<table id="dg" style="padding:20px 0 0 20px; overflow: hidden;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="false" >
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="PeriodsId" width="50" >期数Id</th>
+				<th field="Uid" width="50" >用户ID</th>
+				<th field="ProductName" width="50" >投注项目</th>
+				<th field="IsWin" width="50" formatter="editIsWin">我的支持</th>
+				<th field="SupporNumber" width="50" >投注量</th>
+				<th field="PrizenNmber" width="50" formatter="editState">投注结果</th>
+				<th field="SupporTime" width="50" >投注时间</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar" style="height:32px;">&nbsp;
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">添加</a>-->
+		<!--<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a>-->
+		<div id="tb" style=" float:right; margin:5px 15px 5px 0">
+			<input class="easyui-searchbox" data-options="prompt:'请输入搜索期数id',searcher:doSearch" style="width:250px;margin-top:-4px;"></input>
+		</div>
+	<!-- 	<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a> -->
+
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>-->
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a>-->
+		
+
+	</div>
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+			//alert($(".easyui-searchbox").val());
+		}
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

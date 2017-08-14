@@ -1,0 +1,686 @@
+{{ define "root/period_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >期数管理</h2>
+<div id="mainPanle" region="center">
+	<script src="/static/js/common.js"> </script>
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+
+	<script type="text/javascript">
+	var url,PerId;
+	var encodingchoos;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '/root/getperiodlist',
+				saveUrl: '../root/periodadd',
+				updateUrl: '../root/periodup',
+				destroyUrl: '../root/perioddel',
+				hesuan:		'../root/peraccounting',
+				fit:true
+			});
+		});
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	//赋值
+	function dispValue(row){
+        jQuery("#ateamu").textbox("setText",row.ATeam);
+        jQuery("#bteamu").textbox("setText",row.BTeam);
+    }	
+	//产品结果保存
+	function getsave(){
+		url = "/root/periodendcodingup";
+		webencoding = "";
+		for(i=0;i<encodingchoos.length;i++){
+			var num = i+1;
+			var str = '#productname'+num;
+			var mm = $("input[name="+encodingchoos[i]+"]:checked").val();
+			if(encodingchoos[i]<10){
+				webencoding = webencoding+ "#0"+encodingchoos[i]+">0"+mm;
+			}else{
+				webencoding = webencoding +"#"+encodingchoos[i]+">0"+mm;
+			}
+		}
+		jQuery("#supencoding").textbox("setText",webencoding);
+		reqAjax("/root/periodendcodingup",{SupEncoding:webencoding,PeriodsId:PerId,},function(data) {
+			if(data.ErrorCode){
+				jQuery.messager.show({title:"提示",msg:data.ErrorMsg});
+			}else{
+				jQuery.messager.show({title:"提示",msg:data.Data});
+			}
+			jQuery("#dg").datagrid("reload");
+			jQuery("#win").dialog("close");
+			jQuery("#formup").form("reset");
+		});
+
+		
+	}
+	//点击产品结果编码按钮
+	function getSelected(){
+		var row = $('#dg').datagrid('getSelected');
+		var perid = row.PeriodsId;
+		if (row.SupEncoding != "") {
+			jQuery.messager.show({title:"提示",msg:"结果已存在"});
+			return
+		}
+		dispValue(row);
+		PerId = row.PeriodsId;
+		jQuery("#win").dialog("open");
+		arr=row.ProEncoding.split(","); 
+		encodingchoos = arr;	
+		var html='';
+		var test = 1;
+		for(i in arr){
+			reqAjax("/root/getproduct",{Id:arr[i]},function(msg) {
+				msg.Data.forEach(function(e){
+					name=e.ProductName
+					str = '<div  id="productname'+test+'" value="'+name+'"/>'+e.ProductName+'</br>';
+					test=test+1;
+					for(var i=1;i<11;i++){
+						var state = 'State'+i;
+						if(e[state]==null|| e[state]== undefined || e[state] == ''){
+							break;
+						}else{
+							str+='<input type="radio" name="'+e.Id	+'" value="'+i+'" />'+e[state];
+						}	
+					}
+					html+=str+'</div>';		
+					var hot_title = document.getElementById('proudct');
+					hot_title.innerHTML = html;	
+				});
+			});
+		}
+	}
+	
+	//提交按钮
+	function save(){
+		coffee=document.forms[0].myproduct;
+		var checkedlength = $('#myproduct').find('input[type="checkbox"]:checked').size();
+		if(checkedlength<=0){
+			jQuery.messager.show({title:"提示",msg:"至少勾选一个产品"});
+			jQuery("#dg").datagrid("reload");
+			jQuery("#dlg").dialog("close");
+ 			jQuery("#form").form("reset");
+			return
+		}
+	    txt="";
+	    for (i=0;i<coffee.length; i++){
+	        if (coffee[i].checked){
+				if (txt !="") {
+					txt=txt+","+coffee[i].value;
+				}
+				else{
+					txt=coffee[i].value;
+				}    
+	        }
+	    }
+		$("#proencoding").val(txt);
+		
+ 		//var json = JSON.parse('{' + $('#form').serialize() + '}');  
+		reqAjax(url,$('#form').serialize(),function(ret){
+			if(ret.ErrorCode == 0){
+				jQuery.messager.show({title:"提示",msg:ret.Data});
+				jQuery("#dg").datagrid("reload");
+				jQuery("#dlg").dialog("close");
+ 				jQuery("#form").form("reset");
+				return;
+			}else{
+				jQuery.messager.show({title:"提示",msg:ret.ErrorMsg});
+				jQuery("#dg").datagrid("reload");
+				jQuery("#dlg").dialog("close");
+				jQuery("#form").form("reset");
+			}
+		});	
+    }
+		
+	//添加弹窗
+	function openPerAddDialog(){
+	        jQuery("#form").form("reset");
+	        jQuery("#dlg").dialog("open").dialog("setTitle", "添加期数");
+			
+			reqAjax("/root/getmyproductlist",{},function(msg) {
+				var html='';
+				
+				if(msg.ErrorCode!=0){
+					return;
+				}else{
+					msg.Data.forEach(function(e){
+						
+						num=e.Id;
+						
+						str = '<input type="checkbox"  name="myproduct" value="'+num+'"/>'+e.ProductName+'</br>';
+						for(var i=1;i<11;i++){
+							var state = 'State'+i;
+							if(e[state]==null|| e[state]== undefined || e[state] == ''){
+								break;
+							}else{
+								str+='<span style="margin-left: 40px;width:10px;font-size: 14px">'+e[state]+'</span><input type="text" data-options="required:true,validType:"zxczxc" placeholder="赔率" style="margin-left: 10px;width: 50px; text-align: center;"  name="'+num+'State'+i+'Odds"/><input type="text"  placeholder="热度" style="margin-left: 10px;width: 50px; text-align: center;"  name="'+num+'State'+i+'Hot"/><br/>';	
+							}	
+						}
+						html+=str;		
+					});
+				}
+				var hot_title = document.getElementById('myproduct');
+				hot_title.innerHTML = html;
+			});
+			
+			url = "/root/periodadd"
+	    }
+
+	//修改弹窗初次赋值
+	function dispValues(row){
+		
+			jQuery("#id").val(row.Id);
+	        jQuery("#ateam").textbox("setText",row.ATeam);
+	        jQuery("#bteam").textbox("setText",row.BTeam);
+			jQuery("#startime").textbox("setText",row.StartTime);
+			jQuery("#endtime").textbox("setText",row.EndTime);
+			jQuery("#roomid").textbox("setText",row.RoomId);
+	    }	
+
+	//修改期数
+	function openPerUpdateDialog(){
+        jQuery("#form").form("reset");
+		var row = $('#dg').datagrid('getSelected');
+		pid =row.PeriodsId;
+		Pro =row.ProEncoding;
+		dispValues(row);
+        jQuery("#dlg").dialog("open").dialog("setTitle", "修改期数信息");
+		//产品循环
+		reqAjax("/root/getmyproductlist",{},function(msg) {
+			
+				var html='';
+				var htmls='';
+				if(msg.ErrorCode!=0){
+					return;
+				}else{
+					msg.Data.forEach(function(e){
+					num=e.Id;								
+					str = '<div id="'+num+'"><input type="checkbox" id="myproducts" name="myproduct" value="'+num+'"/>'+e.ProductName+'</br>';									
+					for(var i=1;i<11;i++){
+						var state = 'State'+i;
+						if(e[state]==null|| e[state]== undefined || e[state] == ''){
+							break;
+						}else{
+							str+='<span style="margin-left: 40px;width:10px;font-size: 14px">'+e[state]+'</span><input type="text"  placeholder="赔率"  style="margin-left: 10px;width: 50px; text-align: center;	"id="" name="'+num+'State'+i+'Odds"/><input type="text"  placeholder="热度" id="State'+i+'Hot" style="margin-left: 10px;width: 50px; text-align: center;"  name="'+num+'State'+i+'Hot"/><br/>';	
+						}	
+					}
+					html+=str+"</div>";
+					
+					strs = '<div id="'+num+'"></br>';									
+					for(var i=1;i<11;i++){
+						var state = 'State'+i;
+						if(e[state]==null|| e[state]== undefined || e[state] == ''){
+							break;
+						}else{
+							strs+='<span style="margin-left: 40px;width:10px;font-size: 14px">'+e[state]+'</span><input type="text"  placeholder="支持人数" style="margin-left: 10px;width: 50px; text-align: center;	"id="'+i+'zc" name="State'+i+'Odds" readonly/><input type="text"  placeholder="真实热度" id="'+i+'zs" style="margin-left: 10px;width: 50px; text-align: center;"  name="State'+i+'Hot" readonly/><br/>';	
+						}	
+					}
+					htmls+=strs+"</div>";
+				});
+				}
+				var hot_title = document.getElementById('myproduct');
+				var hot_tis = document.getElementById('myproductss');
+				hot_title.innerHTML = html;
+				hot_tis.innerHTML = htmls;
+			});
+		
+		
+		reqAjax("/root/periodidlist",{PeriodsId:pid,ProEncoding:Pro},function(msg) {
+			if(msg.ErrorCode == 0){
+				msg.Data.list.forEach(function(e){
+					num = e.ProductId;
+					var list = document.getElementById(num).getElementsByTagName("input");
+					var m =1;
+					var f =1;
+					for(var i=0;i<list.length;i++){
+						var num = i%2;						
+						if(i==0){
+							list[0].checked=true;
+							continue;
+						}else if(num==0){	
+							var state = 'State'+ f +'Hot';							
+							list[i].value=e[state];				
+							f++;
+							continue;
+						}else{
+							var odds = 'State'+ m +'Odds';
+							list[i].value=e[odds]							
+							m++;
+							continue;
+						}
+					}
+				});
+				
+				var hot_obj = msg.Data.hotnum;
+				var nums = '';
+				for(i in hot_obj) {
+					nums = hot_obj[i].SupEncoding.split(">")[0].substr(2,hot_obj[i].SupEncoding.split(">")[0].length-1);
+					ab = hot_obj[i].SupEncoding.substr(hot_obj[i].SupEncoding.length-1);
+					
+					if(nums==1&&ab==1) {
+						$('#myproductss').find('#1 #1zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#1 #1zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==1&&ab==2) {
+						$('#myproductss').find('#1 #2zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#1 #2zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==2&&ab==1) {
+						$('#myproductss').find('#2 #1zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#2 #1zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==2&&ab==2){
+						$('#myproductss').find('#2 #2zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#2 #2zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==3&&ab==1) {
+						$('#myproductss').find('#3 #1zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#3 #1zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==3&&ab==2) {
+						$('#myproductss').find('#3 #2zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#3 #2zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==3&&ab==3) {
+						$('#myproductss').find('#3 #3zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#3 #3zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==3&&ab==4) {
+						$('#myproductss').find('#3 #4zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#3 #4zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==4&&ab==1) {
+						$('#myproductss').find('#4 #1zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#4 #1zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==4&&ab==2) {
+						$('#myproductss').find('#4 #2zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#4 #2zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==4&&ab==3) {
+						$('#myproductss').find('#4 #3zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#4 #3zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==4&&ab==4) {
+						$('#myproductss').find('#4 #4zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#4 #4zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==5&&ab==1) {
+						$('#myproductss').find('#5 #1zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#5 #1zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==5&&ab==2) {
+						$('#myproductss').find('#5 #2zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#5 #2zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==5&&ab==3) {
+						$('#myproductss').find('#5 #3zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#5 #3zs').val(hot_obj[i].SupportNumber);
+					}else if(nums==5&&ab==4) {
+						$('#myproductss').find('#5 #4zc').val(hot_obj[i].RowNumber);
+						$('#myproductss').find('#5 #4zs').val(hot_obj[i].SupportNumber);
+					}
+				}
+			}
+		});
+		
+		url = "/root/periodup"
+	}
+	//核算
+	function hesuan() {
+			var all = $('#dg').datagrid('getChecked');
+
+			for(var i=0;i<all.length;i++) {
+				reqAjax("/root/peraccounting",{PeriodsId:all[i].PeriodsId},function(msg) {
+					if(msg.ErrorCode!=0){
+						jQuery.messager.show({title:"提示",msg:msg.ErrorMsg});
+					}else{
+						jQuery.messager.show({title:"提示",msg:msg.Data});
+					}
+					jQuery("#dg").datagrid("reload");
+				});
+			}
+		}
+		/**
+		 * 结构体名称：carousestateState,替换后台返回值
+		 * param：val(替换值)
+		 * @author 徐林->新增
+		 * @Time 2016-11-03
+		 */
+		function carousestateState(val, replace) {
+			if (val == 0) {
+				return "未提交"
+			}else if (val == 1){
+				return "房管提交"
+			}else if (val == 2) {
+				return "总管审核"
+			}
+		}
+
+		/**
+		 * carousestateRoomId,替换后台返回值
+		 * param：val(替换值)
+		 * @author 徐林->新增
+		 * @Time 2016-11-03
+		 
+		function carousestateRoomId(val, replace) {
+			if (val.indexOf("#") == 0) {//表示val是以 #号开头
+				val = val.substring(1,val.length) //去掉#号
+				return val
+			}
+			
+		}*/
+		/**
+		 * 结构体名称：getDetails 查看竞猜收益详情
+		 * @author 徐林->新增
+		 * @Time 2016-11-10
+		 */
+		function getDetails() {
+			var row = $('#dg').datagrid('getSelected'); //获取当前行的数据信息
+			$('#jingcai').empty();
+			//向后台发送获取收益详情请求
+			reqAjax("/root/earningsdetails",{PeriodsId:row.PeriodsId,ProductId:row.ProEncoding},function(msg) {
+				if(msg.ErrorCode!=0){
+					jQuery.messager.show({title:"提示",msg:msg.ErrorMsg});
+					return;
+				}else{
+					jQuery("#details").dialog("open").dialog("setTitle", "本期竞猜收益详情");
+					$('#detailstitle').text(msg.Data.periodId + "期竞猜收益详情");
+					$('#totalearnings').text(msg.Data.peroidtotalearnings);//总收益
+					var s='';
+					for(var i in msg.Data.detaillist){
+							s +='<div style="width:500px; height:auto; margin:10px auto; padding:5px; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius:8px; border:1px solid #999999">';
+							s +='<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:separate; border-spacing:0px 5px;border:1px solid #999999">';
+							s +='<tr style="width:100%;color:red;text-align:center;">';
+							s +='<td width="33%">'+ msg.Data.detaillist[i].ProductName +'</td>';
+							s +='<td width="33%">支持人数</td>';
+							s +='<td width="33%">支持总石榴数:'+ msg.Data.detaillist[i].SupTotalCount +'</td></tr></table>';
+							s +='<table border="0" cellpadding="0" cellspacing="0" width="100%" style="border-collapse:separate; border-spacing:0px 5px; margin-bottom:10px">';
+							if (msg.Data.detaillist[i].State1 != "") {
+								s +='<tr style="width:100%;text-align:center;padding-top:10px">';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State1 +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State1SupmanCount +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State1SuptotalCount +'</td></tr>';
+							}
+							if (msg.Data.detaillist[i].State2 != "") {
+								s +='<tr style="width:100%;text-align:center;padding:10px">';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State2 +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State2SupmanCount +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State2SuptotalCount +'</td>';
+							}
+							if (msg.Data.detaillist[i].State3 != "") {
+								s +='<tr style="width:100%;text-align:center;padding:10px">';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State3 +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State3SupmanCount +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State3SuptotalCount +'</td></tr>';
+							}
+							if (msg.Data.detaillist[i].State4 != "") {
+								s +='<tr style="width:100%;text-align:center;padding:10px">';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State4 +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State4SupmanCount +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State4SuptotalCount +'</td>';
+							}
+							if (msg.Data.detaillist[i].State5 != "") {
+								s +='<tr style="width:100%;text-align:center;padding:10px">';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State5 +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State5SupmanCount +'</td>';
+								s +='<td width="33%" font-color="#666666">'+ msg.Data.detaillist[i].State5SuptotalCount +'</td></tr>';
+							}
+							s +='</table><div style="width:500px; height:20px; line-height:20px; background:#b7d2ff; -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius:8px; border:1px solid #999999;text-align:center">';
+							s +='<span style="margin-right:20px">收益</span><span>'+ msg.Data.detaillist[i].EarningsCount +'</span></div></div>';
+						}
+						$('#jingcai').append(s);	
+				}
+			});
+		}
+		
+		//正在进行排序
+		function periodsing(){
+			var page ='';
+			var rows = '';
+			$("#dg").datagrid({
+		        onBeforeLoad:function(prm){
+		       	page = prm.page;
+				rows = prm.rows;
+      			}	
+			});
+			
+			
+			
+			$.ajax({
+				type:"post",
+				url:"/root/getperiodlist",
+				data:{
+					state:123,
+					page:page,
+					rows:rows,
+				},
+				dataType:"json",
+				success:function(msg){
+					$('#dg').datagrid('loadData',msg.rows);
+				}
+			});
+		}
+		//房管提交排序
+		function periodsnoing(){
+			var page ='';
+			var rows = '';
+			$("#dg").datagrid({
+		        onBeforeLoad:function(prm){
+		       	page = prm.page;
+				rows = prm.rows;
+      			}	
+			});
+			$.ajax({
+				type:"post",
+				url:"/root/getperiodlist",
+				data:{
+					nowdata:123,
+					page:page,
+					rows:rows,
+				},
+				dataType:"json",
+				success:function(msg){
+					$('#dg').datagrid('loadData',msg.rows);
+				}
+			});
+		}
+		
+		function allPeriod(){
+			var page ='';
+			var rows = '';
+			$("#dg").datagrid({
+		        onBeforeLoad:function(prm){
+		       	page = prm.page;
+				rows = prm.rows;
+      			}	
+			});
+			$.ajax({
+				type:"post",
+				url:"/root/getperiodlist",
+				data:{
+					page:page,
+					rows:rows,
+				},
+				dataType:"json",
+				success:function(msg){
+					$('#dg').datagrid('loadData',msg.rows);
+				}
+			});
+		}
+		//搜索加载数据
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		}
+		//删除期数
+		function periodsdel(){
+			var row = $('#dg').datagrid('getSelected');
+			var id = row.Id;
+			reqAjax('/root/perioddel',{id:id},function(ret){
+				if(ret.ErrorCode){
+					jQuery.messager.show({title:"提示",msg:ret.ErrorMsg});
+					$("#dg").datagrid("reload"); 
+					return;
+				}
+				jQuery.messager.show({title:"提示",msg:ret.data});
+				$("#dg").datagrid("reload");
+			});
+			
+			
+		}
+		
+	</script>
+	<table id="dg" style="margin:0 0 0 50px;"
+			toolbar="#toolbar" pagination="true" idField="Id" 
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th>-->
+				<th field="PeriodsId" width="30" align="center">期数ID</th>
+				<th field="RoomId" width="30"  align="center">房间ID</th>
+				<th field="RoomAlias" width="30" align="center">房间名</th>				
+				<th field="StartTime" width="80" align="center">开始时间</th>
+				<th field="EndTime" width="80" align="center">结束时间</th>
+				<th field="ATeam" width="50" align="center">ATeam</th>
+				<th field="BTeam" width="50" align="center">BTeam </th>
+				<th field="ProEncoding" width="50" align="center">产品ID</th>
+				<th field="State" width="30" formatter="carousestateState" align="center">状态</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<div id="tb" class="tbstyle">
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="openPerAddDialog()">添加</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="periodsdel()">删除</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="openPerUpdateDialog()">修改</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="getSelected()">提交支持结果</a>
+			<a href="javascript:hesuan();" class="easyui-linkbutton" iconCls="icon-undo" plain="true">核算</a>
+			<a href="javascript:void(0);" class="easyui-linkbutton" iconCls="icon-redo" plain="true" onclick="getDetails()">收益详情</a>
+			<a href="javascript:periodsing();" class="easyui-linkbutton" iconCls="icon-undo" plain="true">正在进行</a>
+			<a href="javascript:periodsnoing();" class="easyui-linkbutton" iconCls="icon-undo" plain="true">房管提交</a>
+			<a href="javascript:allPeriod();" class="easyui-linkbutton" iconCls="icon-undo" plain="true">全部期数管理</a>
+			<input class="easyui-searchbox" data-options="prompt:'请输入房间Id',searcher:doSearch"   style="width:200px;"></input>
+		</div>
+	</div>
+
+	<!--弹窗-->
+	<div id="dlg" class="easyui-dialog" style="width: 680px;padding: 5px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		     overflow-y="scroll">
+		    <form id="form" method="post" enctype="multipart/form-data" >
+		        <table style="margin: 15px 5px;" cellspacing="5px" >
+					<td align="left"><input id="id" name="myuid" hidden ></td>
+					<tr>
+		                <td align="right" style="width: 140px;">房间Id：</td>
+		                <td align="left">
+		                    <input id="roomid" type="text" name="RoomId" missingMessage="请输入竞猜房间Id如3、7、11号房间-->:#03#_#07#_#11#_" class="easyui-textbox" data-options="required:true" 
+		                           style="width: 150px;"></span>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					<tr>
+		                <td align="right" style="width: 140px;" >开始时间：</td>
+		                <td align="left">
+		                	  <input id="startime" class="easyui-datetimebox" name="StartTime">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+
+		            <tr>
+		                <td align="right" style="width: 140px;" >结束时间：</td>
+		                <td align="left">
+ 							<input id="endtime" class="easyui-datetimebox" name="EndTime" >
+		                   
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		            <tr>
+		                <td align="right" style="width: 140px;">A队名称：</td>
+		                <td align="left">
+		                    <input id="ateam" type="text" name="ATeam" missingMessage="队伍名称如：LGD" class="easyui-textbox" data-options="required:true" 
+		                           style="width: 150px;"></span>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		            <tr>
+		                <td align="right" style="width: 140px;">B队名称：</td>
+		                <td align="left">
+		                    <input id="bteam" name="BTeam" type="text" class="easyui-textbox" missingMessage="队伍名称如：LGD" style="width: 150px;" data-options="required:true">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		           	<tr>
+						<td align="right" style="width: 140px;">产品选择:</td>
+						<td align="left" id= "myproduct"  >
+						<td align="left" id="myproductss">
+						</td>
+					</tr>
+					
+					<tr style="display:none">
+		                <td align="right" style="width: 140px;">产品编码：</td>
+		                <td align="left">
+		                   <input id="proencoding" name="ProEncoding" type="text" clss="easyui-textbox" data-options="required:true" />
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					
+		        </table>
+		    </form>
+		</div>
+<div id="win" title="提交期数支持结果" style="width:500px;height:350px;" class="easyui-dialog" closed="true">  
+    <form style="padding:10px 20px 10px 40px;" id="formup" method="post" enctype="multipart/form-data">  
+        <table style="margin: 15px 5px;" cellspacing="5px" >
+			
+		  	<tr>
+             	<td align="right" style="width: 140px;">A队名称：</td>	
+                <td align="left">
+                    <input id="ateamu" type="text" name="ATeam" missingMessage="队伍名称如：LGD" class="easyui-textbox" data-options="required:true" 
+                           style="width: 150px;"></span>
+                </td>
+                <td align="left">&nbsp;</td>
+		    </tr>
+            <tr>
+                <td align="right" style="width: 140px;">B队名称：</td>
+                <td align="left">
+                    <input id="bteamu" name="BTeam" type="text" class="easyui-textbox" missingMessage="队伍名称如：LGD" style="width: 150px;" data-options="required:true">
+                </td>
+                <td align="left">&nbsp;</td>
+            </tr>
+			<tr style="margin-top:20px;">
+				<td align="right" style="width: 140px;">产品选择：</td>
+			
+					<td align="left" id= "proudct">
+				</td>
+			</tr>
+			<tr hidden>
+             	<td align="right" style="width: 140px;">投注结果：</td>	
+                <td align="left">
+                    <input id="supencoding" type="text" name="SupEncoding"  class="easyui-textbox" data-options="required:true" 
+                           style="width: 150px;"></span>
+                </td>
+                <td align="left">&nbsp;</td>
+		    </tr>		
+		</table>
+        <div style="padding:5px;text-align:center;margin-top:40px;">  
+            <a href="javascript:getsave()" style="margin-right:20px;" class="easyui-linkbutton custombtn" icon="icon-ok" >提交</a>  
+            <a href="javascript:cancel()" style="margin-left:20px;" class="easyui-linkbutton custombtn" icon="icon-cancel">取消</a>  
+        </div>  
+    </form>
+	<!--期详情弹窗 显示产品的热度-->
+	<div id="details" class="easyui-dialog"  closed="true" icon="icon-help" style="min-width:600px;min-height:460px;background: #fafafa;">
+		<span id="detailstitle" style="margin:10px; color:red; display:block; font-size:14px"></span>
+		<div id="jingcai">
+		</div>
+		<div style="width:500px;height:25px;line-height:25px;margin:20px auto; background:#aac5e7; -moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px; border:1px solid #999999;text-align:center">
+			<span style="margin-right:20px">本期总收益</span><span id="totalearnings"></span>
+		</div>
+	</div>
+	<!--弹窗结束-->
+</div> 
+<div id="dlg-buttons">
+	    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+	    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+	</div>
+<!--弹窗-->
+	
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

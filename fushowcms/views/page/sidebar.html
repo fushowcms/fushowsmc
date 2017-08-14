@@ -1,0 +1,94 @@
+{{ define "page/sidebar.html"}}
+       
+	<ul id="mine-Tab-ul">
+		<li>
+			<i class="mine-Tab-liPic" id="myIform"></i>
+			<a href="mine_myInform" class="tabA">我的资料</a>
+		</li>
+		
+		<li>
+			<i class="mine-Tab-liPic" id="myCash"></i>
+			<a href="my_cash" class="tabA">我的资金</a>
+		</li>
+		
+		<li>
+			<i class="mine-Tab-liPic" id="myOrder"></i>
+			<a href="my_order" class="tabA">我的关注</a>
+		</li>
+		
+		<li>
+			<i class="mine-Tab-liPic" id="myIGuss"></i>
+			<a href="my_guess" class="tabA">我的竞猜</a>
+		</li>
+		
+		<li>
+			<i class="mine-Tab-liPic" id="myGift"></i>
+			<a href="my_gift" class="tabA">赠送管理</a>
+		</li>
+		
+	    <li id="beAnchor">
+			<i class="mine-Tab-liPic" ></i>
+			<a  class="tabA">关于主播</a>
+		</li>
+		
+		<li class="anchor-Inform">
+			<i class="mine-Tab-liPic" id="myISet" ></i>
+			<a href="mine_myInform" class="tabA">成为主播</a>
+		</li>
+		
+		
+		<li class="anchor-Inform">
+			<i class="mine-Tab-liPic" id="myISet" ></i>
+			<a href="my_setting" class="tabA">直播设置</a>
+		</li>
+		
+		<li class="anchor-Inform">
+			<i class="mine-Tab-liPic" id="myEarnings" ></i>
+			<a href="my_cash" class="tabA">直播收益</a>
+		</li>
+	
+		<li class="anchor-Inform">
+			<i class="mine-Tab-liPic" id="myHistory" ></i>
+			<a href="my_history" class="tabA">直播记录</a>
+		</li>
+		<li>
+			<i class="mine-Tab-liPic" id="myQiut"></i>
+			<a class="tabA">安全退出</a>
+		</li>
+	</ul>
+	<script>
+		$(function(){
+			//******************关于主播********************//
+			$("#beAnchor").toggle(function() {
+				var Uid = window.localStorage.getItem("Id");
+				if(Uid == null) {
+					alert("您还没有登录")
+				} else {
+					reqAjax("/page/getuser",{UID:Uid},function(msg){
+						if(msg.ErrorCode!=0) {
+							Dialog(msg.ErrorMsg,true,"确定",null,function() {
+								$('.dialog').remove();
+							},null);
+						}else {
+							if(msg.Data.Type == 99) {
+								Dialog("仅主播有该权限",true,"确定",null,function() {
+									$('.dialog').remove();
+								},null);
+							} else {
+								$(".anchor-Inform").show("slow");
+							}
+						}
+					},true);
+				}
+				//alert("123");
+				//	$(".anchor-Inform").css("display","block");
+				//	$(".anchor-Inform").css("transition","5s");
+			}, function() {
+				//	$(".anchor-Inform").css("display","none");
+				//	$(".anchor-Inform").css("transition","2s");
+				$(".anchor-Inform").hide("slow");
+			})
+		})
+	</script>
+
+{{end}}

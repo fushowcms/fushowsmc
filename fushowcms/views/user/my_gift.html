@@ -1,0 +1,74 @@
+{{ define "user/my_gift.html" }}
+<html>
+
+<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/user/personal.css" />
+	<link rel="stylesheet" href="/static/css/user/my_gift.css" />
+	{{template "page/common_js.html"}}
+	<script src="/static/js/user/mine-myGift.js" type="text/javascript"></script>
+	<script src="/static/js/user/zsPages.js"></script>
+</head>
+
+<body>
+	<!-- 导航头 -->
+	{{ template "page/common_head.html" }}
+	<div class="content-Box">
+		<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+		</div>
+		<div id="iFrame1">
+			<div class="iFrame1-title">
+				<ul class="my-gift-nav">
+					<li class="my-gift-nav-click">赠送</li>
+					<li>赠送记录</li>
+					<div style="clear:both"></div>
+				</ul>
+			</div>
+			<div class="mySetting-table-content" style="display:block">
+				<input type="text" onfocus=this.blur() style="border:none;height:0px;background-color:white;">
+				<input type="password" onfocus=this.blur() style="border:none;height:0px;background-color:white;">
+				<div id="mine-myGift-ul">
+					<p>我的余额:<span id="myBlance"></span>金币</p>
+				</div>
+				<div class="my-gift-list">
+					<div class="my-giftList-key">赠送</div>
+					<div class="my-giftList-value"><input type="text" placeholder="请输入接受者ID..." id="resaver" /></div>
+				</div>
+				<div class="my-gift-list">
+					<div class="my-giftList-key">数量</div>
+					<div class="my-giftList-value"><input type="text" placeholder="赠送数量.." id="resaverNum" /></div>
+				</div>
+				<div class="my-gift-list">
+					<div class="my-giftList-key">密码</div>
+					<div class="my-giftList-value"><input type="password" placeholder="密码验证" id="resaverPassword" /></div>
+				</div>
+				<div class="my-gift-list">
+					<div class="my-giftList-key"></div>
+					<div class="my-giftList-value">
+						<div id="mine-myGift-Yes">确定</div>
+					</div>
+				</div>
+			</div>
+			<div class="mySetting-table-content">
+				<table id="transaction_list" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:944px; margin:20px auto; margin-top:0px; text-align: center;color:gray;">
+					<tr style="background-color:#f5f5f5;" height="50">
+						<th>赠送日期</th>
+						<th>赠送人id</th>
+						<th>赠送名字</th>
+						<th>接收人id</th>
+						<th>接收人名字</th>
+						<th>交易数量</th>
+					</tr>
+				</table>
+				<div class="page-component"></div>
+			</div>
+		</div>
+	</div>
+	<div class="begin-box"></div>
+</body>
+
+</html>
+{{ end }}

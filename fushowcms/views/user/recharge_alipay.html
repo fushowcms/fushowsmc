@@ -1,0 +1,16 @@
+{{define "user/recharge_alipay.html"}}
+<html>
+	<head>
+	{{template "page/common_js.html"}}
+	</head>
+	<body>
+	</body>
+	<script>
+		var id = getUrlpramas("UID");
+		var money = getUrlpramas("money");
+    	reqAjax("/user/alipay",{UID:id,money:money},function(data) {
+			document.write(data.Data);
+		});    
+    </script>
+</html>
+{{end}}

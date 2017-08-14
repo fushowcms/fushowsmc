@@ -1,0 +1,24 @@
+{{define "page/login_index.html"}}
+<!-- 头部文件 -->
+<head>
+	{{template "page/common_meta.html"}}
+	<title>石榴联盟直播</title>
+	{{template "page/common_css.html"}}
+	{{template "page/common_js.html"}}
+</head>
+<body>
+	<div class="loginform">
+    {{ template "page/common_logins.html"}}
+	</div>
+	
+</body>
+<script type="text/javascript">
+	$(function(){
+	broadcast();
+	removeStorage("Id");
+	removeStorage("nicheng");
+	removeStorage("from");
+});
+</script>
+</html>
+{{end}}	

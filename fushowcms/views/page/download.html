@@ -1,0 +1,84 @@
+{{ define "page/download.html" }}
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>富秀直播客户端下载</title>
+	<link rel="icon" href="/static/images/favicon.gif" type="image/x-icon">
+	<link rel="stylesheet" href="/static/css/reset.css">
+	<link rel="stylesheet" href="/static/css/download.css">
+</head>
+<body>
+	{{template "page/common_js.html"}}
+	<div id="box">
+	<header >
+	<div class="header-container">
+        <div class="header-logo">
+          <a href="/">
+                <img src="/static/images/pic/b2a97149ec43dfc95eb177508af29f6c.png">
+          </a>
+        </div>
+        <div class="tab-container">
+            <div id="panda_header_index" class="header-tab ">
+                <a href="javascript:;" class="selected">APP下载</a>
+            </div>
+            <div id="panda_header_all_lives" class="header-tab"> 
+                <a href="javascript:;">直播工具</a>
+            </div>
+        </div>
+        <div class="header-tool-user-info">
+            <a class="tool-user-info-login" href="/" target="_blank">返回首页</a>			
+      	</div>
+	</div>
+	</header>
+	<!--图片部分开始-->
+	<div id="container">
+		<div id="tools">
+			<div id="left-block" >
+				<div class="img0"></div>
+				<div class="img1"></div>
+				<div class="img2"></div>
+				<div class="img3"></div>
+				<div class="down1">
+					<div class="word">iPhone版</div>
+					<div class="tips iphonepic"></div>
+					<p>扫一扫&nbsp;下载到手机</p>
+				</div>
+				<div class="down2">
+					<div class="word">Android版</div>
+					<div class="tips androidpic"></div>
+					<p>扫一扫&nbsp;下载到手机</p>
+				</div>
+				<div class="img6"></div>
+			</div>
+			<div id="right-block" style="display: none;">
+				<div class="img"></div>
+				<div class="down3">
+					<div class="words">直播助手OBS</div>
+					<div class="download">下载到电脑</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--图片部分结束-->
+	</div>
+	<script type="text/javascript">
+		$('.tab-container div a').click(function() {
+			$('.tab-container div a').removeClass('selected');
+			$(this).addClass('selected');
+		})
+		$("#panda_header_index").click(function() {
+			$('#right-block').css('display','none');
+			$('#left-block').css('display','block');
+		})
+		$("#panda_header_all_lives").click(function() {
+			$('#left-block').css('display','none');
+			$('#right-block').css('display','block');
+		})
+		$('.download').click(function() {
+			window.open("http://www.obsapp.net/");
+		})
+	</script>
+</body>
+</html>
+{{end}}

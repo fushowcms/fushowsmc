@@ -1,0 +1,143 @@
+body{font-family: "微软雅黑";}
+body,tr,td,ul,li,p{padding: 0; margin: 0; list-style: none;}
+.recharge-title{ width:980px ; height: 42px;margin-bottom: 15px;}
+.title{font-size: 24px; font-weight: bold; 
+             float: left; line-height: 42px;
+             color: gray;}   
+                                       
+.recharge-Inform{ width:127px ; height: 35px;
+             float: left;
+             margin-left: 20px;
+             line-height: 42px;}            
+.recharge-Inform span{ float: left;
+             font-size:14px ;}     
+.recharge-Inform span:nth-child(2){
+          color:#1dd388 ;
+          font-size:18px ;
+          font-weight: bold;}
+
+.recharge-Box{width:914px ; height: 506px;
+             padding:32px ;
+             background: white}
+
+.nameS,.contentS{ float: left; 
+             }
+ .nameS{ width: 147px; 
+             padding: 20px 5px; 
+
+             text-align: right;}  
+ .contentS{width: 747px;
+             padding: 20px 5px; 
+
+             }  
+ 
+ .line1, .line2, .line3, .line4{width:914px ;}
+ .line1{height:61px;   }            
+ .line2{height:123px; }  
+ .line3{height:71px;  }  
+ .line4{height:100px;  }  
+
+.recharge-Ul li{ float: left;
+             width:82px ; height: 47px;
+             background: #f0f0f0;
+             border-radius:3px ;
+             margin-right: 10px;
+             line-height: 47px;
+             text-align: center;
+             border: 1px solid white;
+             color: gray;}
+.recharge-Mchoice:after{
+           content: "元";
+}
+             
+.recharge-Ul li:nth-child(6){width: 185px;
+             height: 49px;
+             position: relative;}       
+/*.recharge-Ul li:before{
+           content: "";
+           width:82px ; height: 47px;
+}             */
+                   
+#recharge-btn{width:166px; height:33px ;
+             padding: 7px 7px 7px 12px;
+             background: #f0f0f0;
+             border-radius:3px ;
+             border-style: none;
+             color: gray;}    
+#recharge-btn:hover{background: white;}
+                  
+.recharge-inputBox span{ float: right;
+              position: absolute;
+              right: 0;color: gray;
+              top: 3px;}
+.recharge-Ul li:hover{background: white;
+              border: 1px solid #E84C3D;}
+
+
+ 
+.recharge-money,.recharge-moneyName{
+            font-size: 24px;
+            font-weight: bold;
+            color:#1dd388 ;
+}
+
+.recharge-Pay li{ width:136px ;  height:56px ;
+               padding:2px ;
+
+               float: left;border-radius: 3px;
+               margin-right: 10px;}
+
+.recharge-Pay li:nth-child(1){ 
+				background-image: url(../../images/Play/charge-channel.png);
+                background-repeat: no-repeat;
+			    background-position: -140px 0px;
+}
+.recharge-Pay li:nth-child(2){ background-image: url(../../images/Play/charge-channel.png);
+               background-repeat: no-repeat;}
+
+.recharge-queren{width:180px ;  height:45px ;
+                background: #E84C3D;
+                border-radius:3px ;
+                margin-left: 157px;
+                margin-top: 20px;
+                color: white;
+                text-align: center;line-height: 45px;}
+ 
+/*.recharge-Mchoice{
+     width:84px ;  height:49px ;
+     border: 2px solid #0EC87C;
+     background-image: url();
+     position: absolute;
+     left: 0;top: 0;
+}             */
+.recharge-Informdiv { width:978px; height: 80px;
+         margin-left: auto;
+         margin-right: auto;
+          margin-top: 10px;}      
+
+.recharge-Box1{width: 978px; height: 612px;
+                      margin-left: auto;
+                      margin-right: auto;
+                      margin-top: 5px;
+                      background: white;
+                      overflow: hidden;}        
+
+.recharge-Box1 p{ font-size: 30px;
+         text-align: center;
+         margin-top: 40px;}    
+
+#qrcode{ width:264px ; height:264px ;
+         margin: auto;
+         margin-top: 40px;}
+
+.recharge-KindsName{font-size:28px; 
+          font-weight: bold;
+          line-height: 50px;        }
+.needDad{ color: gray; font-size:28px; 
+          font-weight: bold;
+          line-height: 50px;}
+.shaoma {width:260px ; height:80px ;
+         margin:auto ; margin-top: 40px;
+         background-image:url(/static/images/recharge/2722b9c144b8ea2cb48e1afe72f08046.png);}      
+
+/*.uNeedPay{ color:##1dd388;} */                                           

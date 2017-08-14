@@ -1,0 +1,297 @@
+{{ define "root/carousel_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+
+
+<style>
+	.datagrid-view{overflow-x:auto;}
+	
+	.mtd {
+		width: 140px;
+		font-size: 16px;
+	}
+	#video {
+		background: #4F4F4F;
+	}
+	#img {
+		background: #9D9D9D;
+	}
+</style>
+	<h2 >轮播图管理</h2>
+<div id="mainPanle" region="center">
+	<script type="text/javascript">
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../page/getIndexCarPicList',
+				saveUrl: '../root/carpicadd',
+				updateUrl: '../root/carpicup',
+				destroyUrl: '../root/carpicdel',
+				fit:true
+			});
+		});
+		//显示dialog
+		function openUserAddDialog(){
+	        jQuery("#form").form("reset");
+	        jQuery("#dlg").dialog("open").dialog("setTitle", "轮播图添加");
+	        url="../root/carpicadd";
+	        jQuery("#file_upload").attr("name","uploadFile");
+	        jQuery("#newImg").attr("src","../../static/images/add.png");
+			document.getElementById("addr").style.display = 'none';
+	    }
+			
+		//dialog提交按钮
+		 function saves(){
+	        jQuery("#form").form("submit", {				
+	            url:url, 
+				
+	            onSubmit: function (param) { 
+	                return true;
+	            },
+	            success: function (result) {   //result返回为String类型，需用eval函数处理为Object型对象再判断
+				
+	                result = JSON.parse(result);
+	                jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+	                jQuery("#dg").datagrid("reload");
+	                jQuery("#dlg").dialog("close");
+	                jQuery("#form").form("reset");
+	            },error:function(s){
+					alert("添加失败");
+				}
+	        });
+	    }
+		
+		//dialog取消按钮
+	    function cancel(){
+	        jQuery("#form").form("reset");
+	        jQuery("#dlg").dialog("close");
+	    }
+		
+		function formatOperate(value, row, index){
+	        var del = "<a href='#' onclick='javascript:del("+row.Id+")'>删除</a>";
+	        var update = "<a href='#' onclick='javascript:openUpdateDlg("+index+")'>修改</a>";
+			
+	        return del + "&nbsp;" + update;
+	    }	
+		
+		function dispValue(row){
+			if (row.CarouselType == 1) {
+				selectvideo(1);
+				$("#carouseltype").val(1);				
+			}else if (row.CarouselType == 3) {
+				selectvideo(3);
+				$("#carouseltype").val(3);
+			}else if (row.CarouselType == 2){
+				selectvideo(2);
+				$("#carouseltype").val(2);
+			}
+			
+			//jQuery("#idss").textbox("setText",row.Id);
+			$("#idss").val(row.Id)
+			
+			jQuery("#picname").textbox("setText",row.PicName);
+			jQuery("#state").textbox("setText",row.State);
+			jQuery("#state").textbox("setText",row.State);
+			jQuery("#videolivepage").textbox("setText",row.VideoLivePage);
+			if (row.State == 1) {
+				$("#state1").click();
+			}else if (row.State == 2) {
+				$("#state2").click();
+			}
+
+			//alert(document.getElementsByName('state').value);
+			//jQuery("#liveroom").textbox("setText",)
+			/*jQuery("#carouseltype").textbox("setText",row.CarouselType);
+	        jQuery("#picpath").textbox("setText",row.PicPath);
+	        jQuery("#picname").textbox("setText",row.PicName);
+	        jQuery("#starttime").textbox("setText",row.StartTime);
+			jQuery("#endtime").textbox("setText",row.EndTime);
+			jQuery("#state").textbox("setText",row.State);*/
+			
+	    }
+		function getSelected(){
+			
+			var row = $('#dg').datagrid('getSelected');
+			dispValue(row);
+			jQuery("#liveroom").textbox("setText",row.Id)
+			//$("#_easyui_textbox_input1").val(row.Id);
+			jQuery("#dlg").dialog("open").dialog("setTitle", "修改轮播图");
+	 		url = "../root/carpicup";
+			jQuery("#picpath").attr("name","uploadFile");
+		}
+		function openUpdateDlg(index){
+			
+	        var row = jQuery("#dg").datagrid('getData').rows[index];
+	        dispValue(row);
+	        jQuery("#dlg").dialog("open").dialog("setTitle", "修改轮播图");
+	        url = "../root/carpicup";
+			var filepath = "/static/images/"+row.GiftPicture
+	        jQuery("#picpath").attr("name",filepath);
+			jQuery("#file_path").textbox("setText",filepath);
+	    }
+	
+		/**
+		 * 结构体名称：carousetype,替换后台返回值
+		 * param：val(替换值)
+		 * @author 徐林->新增
+		 * @Time 2016-11-1
+		 */
+		function carousetype(val, replace) {
+			if (val == 1) {
+				return "视频"
+			}else {
+				return "图片"
+			}
+		}
+		
+		/**
+		 * 结构体名称：carousestate,替换后台返回值
+		 * param：val(替换值)
+		 * @author 徐林->新增
+		 * @Time 2016-11-1
+		 */
+		function carousestate(val, replace) {
+			if (val == 1) {
+				return "显示中"
+			}else {
+				return "未显示"
+			}
+		}
+
+		function selectvideo(vals) {//选中视频
+		
+			if (vals == 1) {//video
+				document.getElementById("video").checked = true;
+				document.getElementById("video").style.backgroundColor = '#4F4F4F';
+				document.getElementById("img").style.backgroundColor = '#9D9D9D';
+				document.getElementById("liveroomid").style.display = 'table-row';
+				document.getElementById("limitid").style.display = 'none';
+				//document.getElementById("juhetable").style.display = 'none';//聚合地址
+				document.getElementById("carouseltype").value = "1";
+				document.getElementById("addr").style.display = 'none';
+			}else if(vals == 2){
+				document.getElementById("juhe").checked=true;
+				document.getElementById("addr").style.display = 'none';
+				//document.getElementById("juhetable").style.display = 'table-row';//聚合地址
+				document.getElementById("limitid").style.display = 'none';
+				document.getElementById("liveroomid").style.display = 'none';
+				document.getElementById("carouseltype").value = "2";
+			}else if(vals == 3){//pic
+				document.getElementById("video").checked = false;
+				document.getElementById("limitid").style.display = 'table-row'
+				document.getElementById("video").style.backgroundColor = '#9D9D9D';
+				document.getElementById("img").style.backgroundColor = '#4F4F4F';
+				document.getElementById("liveroomid").style.display = 'none';
+				//document.getElementById("juhetable").style.display = 'none';//聚合地址
+				document.getElementById("carouseltype").value = "3";
+				$('#addr').css('display','table-row');
+			}
+		}
+		
+		function selectimg() {//选中图片
+			document.getElementById("video").checked = false;
+			document.getElementById("video").style.backgroundColor = '#9D9D9D';
+			document.getElementById("img").style.backgroundColor = '#4F4F4F';
+			document.getElementById("picid").style.display = 'table-row';
+			document.getElementById("carouseltype").val("0");
+		}
+
+	</script>
+
+
+	
+	<table id="dg"  style="margin:0 0 0 50px; width:1580px; height:500px" class="easyui-datagrid"
+			toolbar="#toolbar" pagination="true" idField="Id" checkbox="true"
+			rownumbers="true" fitColumns="true" singleSelect="false" >
+		<thead>
+			<tr> 
+				<th field="ck" checkbox="true" ></th>
+				<th field="CarouselType" width="50" formatter="carousetype">轮播类型</th>
+				<th field="PicPath" width="50"  >图片地址</th>
+				<th field="VideoLivePage" width="80" >轮播地址</th>
+				<th field="PicName" width="50" >轮播名字</th>
+				<th field="StartTime" width="50" >创建时间</th>
+<!--				<th field="EndTime" width="50" editor="type:'validatebox',options:{required:true}} ">开始时间</th>-->
+				<th field="State" width="50" formatter="carousestate">显示状态</th>	
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+	 	<a href="javascript:openUserAddDialog()" class="easyui-linkbutton" data-options="plain:true"  iconCls="icon-add" plain="true">添加</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" onclick="getSelected()" plain="true">修改</a>
+		<!--<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a>-->
+	</div>
+
+	<!-- 弹窗 -->
+	<div id="dlg" class="easyui-dialog" style="width: 600px;height:500px;" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+	     overflow-y="scroll">
+	    <form id="form" method="post" enctype="multipart/form-data">			
+	        <table style="margin: 5px 5px;" cellspacing="8px">
+	            <tr>
+					<input id="idss" name="Idss" hidden >
+	                <td class="mtd" align="right" >轮播类型：</td>
+	                <td align="left">
+						<input type="button" id="video" style="width: 74px; height: 30px; color: white" value="视频" oncheck= "true" onclick="selectvideo(1)"/>
+						<input type="button" id="img" style="width: 74px; height: 30px; color: white" value="图片" onclick="selectvideo(3)"/>					
+						<input type="text" id="ids" name="Ids" style="display:none" value=""/>							
+						<input type="text" id="carouseltype" name="CarouselType" style="display:none" value="1"/>
+	                </td>
+	            </tr>
+				<tr id="liveroomid">
+	                <td class="mtd" align="right">直播房间：</td>
+	                <td align="left">
+	                    <input id="liveroom" type="text" name="LiveRoom" class="easyui-textbox" data-options="required:true" 
+	                           style="width: 150px;"/>
+	                </td>
+	            </tr>
+	            <tr id="picid">
+	                <td class="mtd" align="right">轮播图片(1000*620)：</td>
+	                <td align="left">
+	                    <input id="picpath" type="file" name="uploadFile" style="width: 150px;" />
+	                </td>
+	            </tr>
+				<tr id="limitid" style="display:none">
+	                <td class="mtd" align="right">缩略图片(200*100)：</td>
+	                <td align="left">
+	                    <input id="limit" type="file" name="limit" style="width: 150px;" />
+	                </td>
+	            </tr>
+	            <tr>				
+	                <td class="mtd" align="right">轮播名称：</td>
+	                <td align="left">
+	                    <input id="picname" name="PicName" type="text" class="easyui-textbox" style="width: 150px;" data-options="required:true">
+	                </td>
+	            </tr>
+				<tr id="addr">		
+	                <td class="mtd" align="right">轮播地址：</td>
+	                <td align="left">
+	                    <input id="videolivepage" name="VideoLivePage" type="text" class="easyui-textbox" style="width: 150px;" data-options="required:true">
+	                </td>
+	            </tr>
+				<tr>
+	                <td class="mtd" align="right">显示状态：</td>
+	                <td align="left">
+	                    <label><input id="state1" name="State" type="radio" value="1" checked="flase"/>显示 </label>
+						<label><input id="state2" name="State" type="radio" value="2" checked="true"/>不显示 </label>
+	                </td>
+	            </tr>
+	        </table>
+	    </form>
+	</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:saves()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+	    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+	</div>
+    
+</div>
+{{ template "root/footer.html" }}
+{{end}}
+<!--填充body-end-->
+
+<!--后台右end-->

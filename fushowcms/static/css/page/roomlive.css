@@ -1,0 +1,255 @@
+.right_area{min-width: 950px;position: absolute;left:260px;right:0;top:0;/*bottom:0;*/}
+
+/*房间信息区域*/
+.room-head-box{height:90px;margin-bottom:10px;position: relative;background:#fff;}
+.room-head-info .room-head-info-cover{width: 70px;height: 70px;position: absolute;top: 10px;left:10px; padding: 3px; background-color: #e1f4ff;border-radius: 50%;overflow: hidden;}
+.room-head-info .room-head-info-cover img{width:70px;height:70px;border:none;border-radius: 50%;}
+.room-head-info-title{display: inline-block; font-weight: 400; position:absolute;font-size:22px;top: 20px;left: 100px;word-break: keep-all;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;color: #333;}
+.room-head-info-detail{position: absolute;left: 100px;bottom: 22px;}
+.room-head-info-detail .viewnum{margin-left:25px;padding-left:22px;background:url("/static/images/chat/viewnum.png") no-repeat  center left;}
+.room-head-info-detail .hotnum{margin-left:25px;padding-left:18px;background:url("/static/images/chat/hotnum.png") no-repeat  center left;}
+.room-head-info-detail .lei{margin-left:25px;padding-left:17px;background:url("/static/images/chat/lei.png") no-repeat  center left;}
+.room-head-info-hostname{margin-right:40px;font-size: 16px;color: #7d7d7d;}
+#favicon{width:70px;height:70px;float:left;}
+.order-area{position:absolute;right:18px;top:16px;height:32px;line-height:32px;text-align:center;border-radius: 4px;overflow: hidden;}
+.ordernum{background:#009cfa;float:left;min-width: 36px;color:#fff;height:32px;line-height:32px;text-align:center;padding:0 5px;}
+.order{background:#009cfa;float:left;width:60px;height:32px;line-height:32px;text-align:center;color:#fff;cursor: pointer;}
+.ordernum:after{    content: "";display: block;position: absolute;top: 8px;right:59px;width: 1px; height: 16px;background-color: #fff;-ms-filter: progid:DXImageTransform.Microsoft.Alpha(Opacity=50);filter: alpha(opacity=50);opacity: .5;}
+.orderstate{background:#a0a0a0;color:white;}
+.ordernumstate{background:#ececec;color:#979797;}
+.order-areastate{background:#fff;}
+/*视频区域*/
+.video-Box{position: absolute;margin-right:320px;bottom: 0;left: 0;right: 0;top: 0;}
+#room-video {position: absolute;width: 100%;overflow: hidden;top: 100px;bottom: 78px;}
+#room-video-controller{position: absolute;width: 100%;bottom: 48px;height:40px;background:rgba(0,0,0,0.7);-webkit-transition: height 200ms ease-out;transition: height 200ms ease-out;}
+#room-video-controller > *{position: absolute;}
+.room-video-tips{display: block;position: absolute;width: 200px;font-size: 16px;height: 40px;line-height: 40px;top: 0; bottom: 0;left: 0;right: 0;margin: auto;background: rgba(255,255,255,0.8);border-radius: 5px;border: 1px solid #FFF;text-align: center;background:rgba(0,0,0,0.3);color:#fff}
+.nosound{width:30px;height:30px;margin:4px 10px;background:url('/static/images/chat/voice.png') no-repeat 0 0; background-size: contain;cursor: pointer;}
+.nosound.off{background:url('/static/images/chat/notice.png') no-repeat 0 -16px;background-position-y: 0px;background-size: contain;}
+.danmubtn{background:url('/static/images/chat/danmu_on.png') no-repeat;width:83px;height:24px;margin:4px 10px;top:3px;right:44px;color:#999;padding:0 5px;line-height:22px;cursor: pointer;border-radius: 3px;}
+.danmubtn.off{background:url('/static/images/chat/danmu_off.png') no-repeat;color:#fff;}
+.fullbtnarea{padding:0 5px;height:22px;top:4px;right:-5px;}
+/*.fullscreenbtn{background:#e8983e;color:#fff;line-height:22px;cursor: pointer;display:block;padding:0 5px;border-radius: 3px;}*/
+.fullscreenbtn{background:url(/static/images/chat/full.png) no-repeat;display:block;padding:0 5px;cursor: pointer;height:30px;width: 30px;background-size: contain;}
+.unfullscreenbtn{background:url(/static/images/chat/unfull.png) no-repeat;display:none;padding:0 5px;cursor: pointer;height:30px;width: 30px;background-size: contain;}
+#danmu{width: 100%;height: 100%;position: absolute;left: 0;top: 0;overflow: hidden;}
+.danmuM {font-size: 18px;font-weight: bold;color: white;position: absolute;right: 30px;top: 20px;vertical-align: middle;text-shadow: 2px 2px 2px #000;}
+.danmuM_self{border:1px solid red;}
+.prism-player{height: 100% !important;}
+#livestop{width:600px;height:300px;position: absolute;top:0;bottom:0;left:0;right:0;margin:auto;text-align:center;}
+#livestop p{color:#fff;font-size: 16px;display: table-row;}
+#livestop .btnarea{display: table-row;}
+#livestop .btnarea button{background:#009cfa;border: none;width: 130px;height: 46px;font-size: 18px;margin: 16px;color: #fff;border-radius: 5px;cursor: pointer;}
+
+/*排行榜区域*/
+.room-ranklist{top:35px;width:100%;border: 1px solid #e6e6e6;border-bottom:1px solid #bbb;background:#fff;z-index:10;}
+.room-ranklist-hd .tab{width:50%;height:36px;float:left;font-size: 14px;background:#e6e6e6;position: relative;cursor: pointer;text-align: center;line-height: 36px;-webkit-transition: color 200ms ease-out,background 200ms ease-out;transition: color 200ms ease-out,background 200ms ease-out;}
+.room-ranklist-hd .tab.active{color:#009cfa;background:#fff;}
+.room-ranklist-hd:after{clear: both;content: " ";display: block;height: 0;overflow: hidden;}
+.room-ranklist-content{height:124px;overflow: hidden;}
+.room-ranklist-content .user-level{width:72px;height:24px;top:88px;left: 0;right: 0;position: absolute;margin:2px auto;}
+.room-rank-user{display:none;font-size:12px;}
+.room-rank-user.active{display:block;}
+.room-rank-li-top3{height: 124px;padding:0 20px;border-bottom:1px solid #e6e6e6;}
+.room-rank-li-top3 .user-top3{float:left;width:33.33%;height: 100%;position:relative;}
+.room-rank-li-top3 .user-top3 .user-avater{position:absolute;top:4px;margin:auto;left:0;right:0;width:65px;height:65px;z-index:10;background:url("/static/images/chat/top_rank1.png") no-repeat;}
+.room-rank-li-top3 .user-top3 .user-avater-img{width:60px;height:60px;margin: 6px auto;display: block;}
+.room-rank-li-top3 .user-top3.rank-2 .user-avater{background:url("/static/images/chat/top_rank2.png") no-repeat;}
+.room-rank-li-top3 .user-top3.rank-3 .user-avater{background:url("/static/images/chat/top_rank3.png") no-repeat;}
+.room-rank-li-top3 .user-top3 .user-nickname{position: absolute;width: 100%;top: 72px;text-align:center;color:#009cfa;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;}
+.room-rank-li{margin:2px 20px;height:25px;line-height: 25px;}
+.room-rank-li .room-rank-order{width:16px;height:16px;background:#e5e5e5;color:#a3a3a3;text-align:center;line-height:16px;border-radius:16px;margin: 5px;    vertical-align: top;}
+.room-rank-li .room-rank-user-level{width:72px;height:25px;margin-right:10px;}
+.room-rank-li .room-rank-user-nickname{vertical-align: top;}
+
+/*聊天区域*/
+#room-chat-Box{width: 310px;height: 100%;background: #fff;position: absolute;right: 0;top: 0;}
+#room-chat-Box > *{box-sizing: border-box;position:absolute;}
+#room-chat-notic{width: 100%;min-height: 35px;line-height: 35px;background: #f5f5f5;position: absolute;right: 0;top: 0;font-size: 14px;color: #999;z-index: 80;overflow: hidden;white-space:nowrap;text-overflow: ellipsis;padding:0 10px;border: 1px solid #eee;box-sizing: border-box;}
+#room-chat-notic.hover{white-space:normal;}
+#room-chat-notic em{padding-left:15px;font-style:normal;background:url('/static/images/chat/gonggao.png') no-repeat center left;font-weight: bold;color: #666;}
+.chat-MessageBox1{  list-style: none;width: 100%;margin:196px 0 0;overflow: auto;padding:0;border: 1px solid #dcdcdc;}
+#message11{top:0;left:0;bottom:109px;padding:0 22px;background: #f2f2f2;}
+.chat-msg{padding:2px 0;font-size: 12px;line-height: 200%;vertical-align: baseline;}
+.chat-uname{color:#ff0861;font-size:14px;vertical-align: middle;cursor: pointer;}
+.chat-content{word-break: break-all;word-wrap: break-word;vertical-align: middle;}
+.chat-tags-mobile{width:10px;height:17px;vertical-align: middle;margin-right:10px;background:url('/static/images/chat/chatico.png') no-repeat 0 -80px;}
+.chat-tags-anchor{width:38px;height:17px;vertical-align: middle;margin-right:5px;background:url('/static/images/chat/chatico.png') no-repeat 0 -27px;}
+.chat-tags-anchor.anchor-2 {background:url('/static/images/chat/chatico.png') no-repeat 0 0;}
+.chat-tags-level{width:72px;height:24px;margin-right:5px;vertical-align: middle;}
+.chat-usercard{position:absolute;display:none;width:280px;height:90px;background:#fff;border:1px solid #eee;border-radius:4px;left:10px;top:0;bottom:0;margin:auto;font-size:12px;}
+.chat-usercard > div{position:absolute;}
+.chat-usercard-close{right:10px;top:10;}
+.chat-usercard-avatar{width:70px;height:70px;border-radius:100%;top: -10px;left: 10px;text-align:center;background:#fff;}
+.chat-usercard-avatar img{width:60px;height:60px;border-radius:100%;margin:5px;}
+.chat-usercard-nickname{top: 10px;left: 90px;}
+.chat-usercard-level{top: 33px;left: 90px;}
+.chat-usercard-button{bottom: 5px;left: 10px;}
+.chat-usercard-button i{width:60px;height:20px;border:1px solid #ccc;line-height:20px;text-align:center;cursor: pointer;margin-right:5px;}
+.chat-usercard-show{display:block; box-shadow: 0px 0px 5px 1px #009CFA;}
+#room-chat-sebdMessage{width: 100%;height: 109px;background: #fff;margin-top: 0px;border: 1px solid #eee;bottom:0}
+#room-chat-sebdMessage-btn{    width: 100%;height: 42px;padding: 11px;background: #fff;box-sizing: border-box; position: relative;}
+#room-chat-sebdMessage-btn .dialogmsg{position: absolute;bottom: 8px;padding: 5px 10px;background: #fff8d3;border: 1px solid #f00;left: 53px;}
+.comment{width: 680px;margin: 20px auto;position: relative;}
+#room-chat-sebdMessage-btn-Pic{margin:0;padding: 0;position: relative;}
+#room-chat-sebdMessage-btn-Pic li{width: 20px;height: 20px;float: left;margin-left: 10px;background-image: url(/static/images/chat/beb43c44ba807acb0677a62821c625bf.png);background-position: 0 -20px; cursor: pointer;}
+#room-chat-input{width: 222px;height: 38px;border: 1px solid #e6e6e6;background: #f2f2f2;padding: 8px 9px;float: left;margin-left: 10px;box-sizing: border-box;}
+#room-chat-send{width: 64px;height: 38px;float: left;background: #009cfa;font-size: 14px;line-height: 38px;text-align: center;color: white;font-weight: bolder; cursor: pointer;}
+#facebox{}
+.qqFace{background: #fff;padding: 2px;border: 1px #dfe6f6 solid;}
+.qqFace table td img{cursor: pointer;border: 1px #fff solid; width:20px;}
+.chatmsg{margin:2px 5px;}
+
+/*竞猜送礼*/
+.divstyle{font-size:22px;color:#FB9800}
+.bothsides .bothsides-1,.bothsides .bothsides-2{width: 180px;color: #fff;font-size: 16px}         	
+#guessing-box{background:#fff;border-radius: 2px;border: 1px solid #C8C8C8;display:none;position: absolute;left: 5px;bottom: 10px;margin: auto;padding: 5px;z-index: 120;}
+#room-video-bottom{position: absolute;bottom: 0;width: 100%;height: 48px;border: 1px solid #C8C8C8;box-sizing: border-box;}
+#guess{float:left;width: 98px;height: 32px;line-height:32px;cursor: pointer;background: url('/static/images/chat/guessing.png') no-repeat;margin:7px 0 0 20px;color:#fff;text-align: center;border-radius:5px;display: none;}
+.gift-Btn{width: 220px;height: 115px;background: white;position: absolute;left: -108px;top: -115px;z-index: 100px;display: none;}
+.giftBtn-Pic > img{width:36px;height:36px; cursor: pointer;}
+#room-video-bottom-ul{float:right;margin-right:14px;position: relative;}
+#room-video-bottom-ul li{float: left; width: 36px;height: 36px;position: relative;margin: 6px 0 0 10px;}
+#guess-kinds-1,#guess-kinds-2,#guess-kinds-Finalyes,#guess-kinds-Success{width:360px;min-height:220px;background:url('/static/images/chat/guess_bg2.png');display: none;position: relative;}
+#guess-kinds-1{background:url('/static/images/chat/guess_bg1.png')}
+#guess-kinds-1-Btn{width:360px;height:40px;line-height:40px;color:#fff;background:#2A0B00;text-align:center;position: absolute;bottom: 0px;font-size:16px;cursor: pointer;}
+#guess-kinds-2-back{cursor:pointer;color:#fff;text-align:right;padding:15px 15px 5px 0;font-size: 14px}
+#guess-kinds-Success-back{cursor:pointer;color:#fff;padding:15px 15px 5px 0;font-size: 14px;position: absolute;right: 0;}
+#guess-kinds-li{display:table;margin-left: 10px;}
+#guess-kinds-txt{font-size:16px;color:#fff;padding-left:30px;padding-bottom:10px}
+#guess-kinds-li .row{display:table-row;height: 26px;line-height: 26px;cursor: pointer;}
+#guess-kinds-li .row i{display:table-cell;padding: 0 5px;color:#fff}
+#guess-kinds-li .row .dot{display:inline-block;width:10px;height:10px;padding:0;background:url('/static/images/chat/dot_hover.png') no-repeat;}
+#guess-kinds-li .row.hover i{color:#ff0861;}
+#guess-kinds-li .row.hover .dot{background:url('/static/images/chat/dot_hover.png') no-repeat 0 -10px;}
+.guessinput{background:#2b0a01;position: absolute;height: 35px;width: 100%;bottom: 0;}
+.guessinputbox{margin-right:55px;}
+#guess-kinds-2-Num{padding:0;margin:2px;height: 30px;border:1px solid #ab806a;border-right:none;width: 100%;box-sizing: border-box;}
+#guess-kinds-2-yes{cursor:pointer;background:#672807;color:#fff;width:51px;border:1px solid #69362a;float:right;position: absolute;right: 0;top: 0;margin: 2px;height: 30px;line-height: 30px;text-align: center;box-sizing: border-box;}
+#guess-kinds-Finalyes p{font-size:16px;color:#fff;text-align:center;padding-top:80px;}
+#guess-kinds-Success p{font-size:16px;color:#fff;text-align:center;padding-top:80px;}
+.guesscomfirm{cursor:pointer;position:absolute;bottom:0;width:100%;background:#2b0a01;padding:2px;box-sizing:border-box;}
+#guess-kinds-Finalyes-yes,#guess-kinds-Success-yes{width:50%;height:30px;line-height:30px;color:#fff;text-align:center;float:left;background:#672807;box-sizing:border-box;}
+#guess-kinds-Finalyes-no,#guess-kinds-Success-no{width:50%;height:30px;line-height:30px;color:#fff;text-align:center;float:right;box-sizing:border-box;border:1px solid #672807;}
+.giftcard{display:none;position: absolute;right: -140px;bottom: 30px;width: 342px;z-index: 5;padding-bottom:10px;}
+.giftBtn-Pic-Cur .giftcard{display:block;}
+.giftPic_gif{width:80px;height:80px;}
+.giftcard_con{background:#fff;height:80px;padding:10px;border: 1px solid #ccc;}
+.giftcard_img{float: left;width: 80px;height: 80px;background: deepskyblue;}
+.giftcard_text{float: left;width:230px;margin-left:10px;line-height: 22px;height: 100%;position: relative;}
+.giftcard .giftname{font-size: 16px;}
+.giftcard .giftprice{color: #009cfa;margin-left: 10px;}
+.giftcard .describe{color: #999;}
+.giftcard .giftnumbtn{position: absolute;bottom: 0;left: 0;width: 100%;}
+.giftcard .giftnumbtn > *{margin-right:5px; cursor: pointer;border-radius: 4px;}
+.giftcard .giftnumbtn .i_color{background: #fff;border:1px solid #aaa;color: #aaa;padding:0 2px;cursor: pointer;}
+.giftcard .giftnumbtn .i_color:hover{color:#009cfa;border:1px solid #009cfa;}
+.giftcard .giftnumbtn .numinput{width: 34px;height: 24px;padding: 0 2px;box-sizing: border-box; cursor: default;border:1px solid #aaa;}
+.giftcard .giftnumbtn .batchbtn{height:24px;border: 1px solid #009cfa;background: #009cfa;color: #fff;}
+#recharge{float: right;width: 68px;height: 26px;cursor: pointer;background: url('/static/images/chat/recharge.png') no-repeat;margin:11px 0 0 20px;color: #fff;text-align: center;border-radius: 5px;}
+.bothsides{text-align:center;}
+.bothsides i{color:#dc0e54;line-height:35px;}
+.bothsides i.vs{margin:0 10px;color:#fff;}
+.Gusse-choices11{text-align: center;}
+.Gusse-choices11 li{cursor: pointer;height: 40px;display: inline-block;line-height: 40px;padding: 0px 12px;border-radius: 5px;margin: 10px;background:url('/static/images/chat/alpha_bg.png');color: #fff;padding:0 20px;}
+
+/*举报分享下载 addby 刘晗*/
+.room-report-shall-download{margin-left: 8px;font-size: 12px;line-height: 22px;}
+/***********Head中举报分享等*************/
+#room-head-lists{ list-style: none;position:absolute;right: 150px;bottom:10px;}
+#room-head-lists li{ float:left;padding: 0 16px ;line-height: 28px;color: #8c8c8c; position:relative; background:url('/static/images/chat/arrow_down.png') no-repeat center right}
+#room-head-lists li.hover .showblock{display:block}
+#room-head-shallSon{color:#009cfa;background-position:-80px}
+#room-head-appSon{background-position:-138px}
+#room-head-shallSon.hover{color:#8c8c8c;background-position:-62px;display:block;}
+#room-head-appSon.hover{color:#8c8c8c;background-position:-122px;display:block;}
+#room-head-lists2 li:nth-child(1){width: 80px; height: 28px; padding: 0;line-height: 28px; border: #00a0ff 1px solid;text-align: center;}
+#room-head-lists2 li:nth-child(2){ width: 80px; height: 28px; padding: 0;border: #00a0ff 1px solid;text-align: center;}
+
+/***********Head中举报分享等图标*************/  
+ #report{background-image: url(../images/23f2fc7709652c39eb74c1e8206e0745.png);background-repeat: no-repeat;background-position: -28px 0px;height: 18px;width: 17px; }	                                  
+ #shall{background-image: url(../images/23f2fc7709652c39eb74c1e8206e0745.png);background-position: -62px 0px;background-repeat: no-repeat;height: 18px;width: 18px;}
+ #download{background-image: url(../images/23f2fc7709652c39eb74c1e8206e0745.png);           background-position: -122px 0px;background-repeat: no-repeat;height: 18px;width: 16px;}
+
+/***********Head中举报分享子Div*************/  
+ #room-head-shallSon{padding: 10px;position: absolute;left: 0; top: 35px;z-index: 90;border: 1px solid darkgray;border-radius: 5px;display: none;background: white;}           
+ #room-head-shallSon-ul li{  line-height: 40px;text-align: center;}                                                  
+ #room-head-shallSon-ul li:nth-child(2){border-top:1px solid darkgrey ;border-bottom:1px solid darkgrey ;} 
+ #sina,#qq,#weChat{ width: 20px; height: 20px;  float: left;margin: 10px 0 0 15px;}
+ #sina{background-image:url(../images/Play/a51b0d2a91305917ef954281bbbd9ad0.png) ;background-position: -2px -2px ;} 
+ #qq{background-image:url(../images/Play/a51b0d2a91305917ef954281bbbd9ad0.png) ;background-position: -26px -2px ;} 
+#weChat{margin-top: 5px;/*background-image:url(../images/Play/a51b0d2a91305917ef954281bbbd9ad0.png) ;*/background-position: -50px -2px ;} 
+ 
+/***********下载APP子Div*************/
+#room-head-appSon{padding: 15px;border:  1px solid darkgray;border-radius:5px ;position: absolute;left:0 ; top: 35px;z-index: 90;background: white;display: none;}   
+#codeico{position: absolute;z-index:9999999; left:50%;margin-left:-16px;top:50%;margin-top:-26px;width:32px; height:32px;background:url(/static/images/fxlogo.png) no-repeat;background-size:100% 100%;}
+
+
+/**************全屏发送弹幕*******************/
+.Fullscreen-Barrage{ height:24px; left:100px; right: 145px; top:3px; display:none;}
+.Fullscreen-Barrage input{ width: calc(100% - 80px) !important; height:24px !important; border: none; float:left; padding:0px 0 0 5px !important; border-radius: 3px 0 0 3px; margin:5px 0 0 0px !important;  box-sizing: content-box  !important;}
+.Fullscreen-Barrage-btn{cursor: pointer; width:60px !important; height:24px !important;     margin-top: 5px;float:left; text-align:center; background-color:#009cfa; color:#fff; line-height:24px !important; border-radius:0px 3px 3px 0px;}
+
+/**************全屏样式*******************/
+html:-webkit-full-screen  .sidebar-box{display:none;}
+html:-webkit-full-screen  #room-chat-Box{display:none;}
+html:-webkit-full-screen  .right_area{left: 0 !important;     bottom: 0 !important;}
+html:-webkit-full-screen  .video-Box{width:100%;margin-right:0; height: 100%;}
+html:-webkit-full-screen  .room-head-box{display:none;}
+html:-webkit-full-screen  #room-video{top:0;bottom:0; height: 100% !important;}
+html:-webkit-full-screen  #room-video-bottom{display:none;}
+html:-webkit-full-screen  #room-video-controller{bottom:0;height:30px;overflow:hidden;position: absolute !important;}
+html:-webkit-full-screen .fullscreenbtn{display:none;}
+html:-webkit-full-screen .unfullscreenbtn{display:block;}
+html:-webkit-full-screen .Fullscreen-Barrage{display:block}
+html:-webkit-full-screen .room-video-Bigbox{ height: 100%;}
+html:-webkit-full-screen .roomlive-content-font{ display: none;}
+
+html:-moz-full-screen  .sidebar-box{display:none;}
+html:-moz-full-screen  #room-chat-Box{display:none;}
+html:-moz-full-screen  .right_area{left: 0 !important; height: 100%;}
+html:-moz-full-screen  .video-Box{width:100%;margin-right:0; height: 100%;}
+html:-moz-full-screen  .room-head-box{display:none;}
+html:-moz-full-screen  #room-video{top:0;bottom:0; height: 100% !important;}
+html:-moz-full-screen  #room-video-bottom{display:none;}
+html:-moz-full-screen  #room-video-controller{bottom:0;height:30px;overflow:hidden;position: absolute !important;}
+html:-moz-full-screen .fullscreenbtn{display:none;}
+html:-moz-full-screen .unfullscreenbtn{display:block;}
+html:-moz-full-screen .Fullscreen-Barrage{display:block}
+html:-moz-full-screen .room-video-Bigbox{ height: 100%}
+html:-moz-full-screen .roomlive-content-font{ display: none;}
+
+html:-ms-fullscreen{height:100%;width:100%;}
+html:-ms-fullscreen #danmu{height:100%;width:100%;}
+html:-ms-fullscreen  .sidebar-box{display:none;}
+html:-ms-fullscreen  #room-chat-Box{display:none;}
+html:-ms-fullscreen  .right_area{left: 0 !important; height: 100%;}
+html:-ms-fullscreen  .video-Box{width:100%;margin-right:0; height: 100%;}
+html:-ms-fullscreen  .room-head-box{display:none;}
+html:-ms-fullscreen  #room-video{top:0;bottom:0; height: 100% !important;}
+html:-ms-fullscreen  #room-video-bottom{display:none;}
+html:-ms-fullscreen  #room-video-controller{bottom:0;height:30px;overflow:hidden; position: absolute !important;}
+html:-ms-fullscreen .fullscreenbtn{display:none;}
+html:-ms-fullscreen .unfullscreenbtn{display:block;}
+html:-ms-fullscreen .Fullscreen-Barrage{display:block}
+html:-ms-fullscreen .room-video-Bigbox{ height: 100%}
+html:-ms-fullscreen .roomlive-content-font{ display: none;}
+
+.liwuImg{ width:100px; height:100px; position:absolute; bottom:-45px; left:-110px;}
+
+
+/*直播页面添加样式*/
+.room-video-Bigbox{ position:absolute; width: 100%;}
+#room-video{ top: 0px !important; bottom: 0px !important; position: relative !important;}
+#room-video-controller{ bottom:0px; position: relative !important;}
+#room-video-bottom{ bottom:0px; position: relative !important;}
+.video-Box,.room-video-Bigbox{ position: relative !important;}
+#room-chat-Box{ position: fixed !important;}
+
+.order-area{ top: 43px;}
+.room-head-info-detail{ bottom: 15px;}
+.room-head-info-hostname{ margin-top: -3px;}
+.room-detail-head{ margin-top: 10px;   border-bottom: 1px solid #cecece;}
+.room-detail-head h3{float: left;position: relative;bottom: -1px;padding: 0 2px;height: 45px;line-height: 45px;font-size: 24px;font-weight: 900;border-bottom: 2px solid #009cfa;}
+.roomlive-content-font{ width: 100%;}
+.roomlive-content-font-min{ padding: 20px 0px;}

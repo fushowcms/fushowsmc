@@ -1,0 +1,156 @@
+{{ define "root/website.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+<!--<link rel="stylesheet" type="text/css" href="/static/css/commonCss/website000.css">-->
+<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+<script type="text/javascript" src="/static/js/common.js?version=1.1"></script>
+<script type="text/javascript" src="/static/js/mine/ajaxfileupload.js"></script>
+<script src="/static/js/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+<div id="mainPanle" region="center" style="overflow: hidden;padding:20px 0 0 20px">
+	<form enctype="multipart/form-data">
+		<div class="website_all">
+			<div class="website_title website_border"><label style="font-size:16px;">网站基本信息设置 </label></div>
+			<div class="website_com website_border"><label>网站名称：</label><input id="title" type="text" name="title" /></div>
+			<div class="website_com website_border" name="logo"><label>网站LOGO：</label>
+	    		<div id="u8535" class="ax_default placeholder" data-logo="">
+		        	<img id="u8535_img" style="width:180px;height:60px;" class="imglogo" src="/static/images/pic/b2a97149ec43dfc95eb177508af29f6c.png"/>
+					<input type="file" name="uploadFile" id="web_logo" onclick="weblogo()" accept="image/jpg,image/jpeg,image/png"/>
+		        <!-- Unnamed () -->
+	    		</div>
+	
+			    <!-- Unnamed (矩形) -->
+			    <div id="u8537" class="ax_default _一级标题">
+			    	<div id="u8537_div" class=""></div>
+				        <!-- Unnamed () -->
+				        <div id="u8538" class="text">
+				       		<p><span>建议尺寸 180 * 60 (像素)</span></p>
+				     	</div>
+				   	</div>
+				</div>
+	
+			    <div class="website_com website_border" name="icon"><label>地址栏图标：</label>
+			    	<div id="u8541" class="ax_default placeholder" data-icon="">
+				        <img id="u8541_img" class="imgicon"  style="width:180px;height:60px;" src="/static/images/pic/b2a97149ec43dfc95eb177508af29f6c.png"/>
+						<input type="file" class="picicon" name="uploadFile" id="web_icon" onclick="webicon()" accept="image/jpg,image/jpeg,image/png" />
+				        <!-- Unnamed () -->
+				        <p><span>建议尺寸 32*32 (像素)点击制作ICO。如果无法正常显示新上传图标，清空浏览器缓存后访问。</span></p>
+			     	</div>
+			    </div>
+
+
+				
+				<div class="website_com website_border"><label>网站地址：</label>
+					<input id="url" type="text" name="url" /><p><span>建议填写检测到的网址：http://tv.fushow.cn/</span></p>
+				</div>
+			
+				<div class="website_com website_border"><label>网站关键字：</label><input id="keywords" type="text" name="keywords" />
+					<p><span>多个关键词请用竖线|隔开，建议3到4个关键词。</span></p>
+				</div>
+			
+				<div class="website_com website_border">
+					<label>网站描述：</label>
+					<textarea id="descrip" cols="50" rows="15" style="width:300px;" name="descrip"></textarea>
+				</div>  
+			
+				<input id="Submit1" type="submit" value="保存" /> 
+		</div>
+</form>
+</div>
+<script type="text/javascript">
+		var $submit1 = $('#Submit1');
+		var $title = $('#title');
+		var $keywords = $('#keywords');
+		var $descrip = $('#descrip');
+		var $logo = $('#u8535_img');
+		var $icon = $('#u8541_img');
+		var $url = $('#url');
+		$(function(){
+			reqAjax("/root/getsite",{},function(msg){
+				console.log(msg);
+				if(msg.ErrorCode!=0) {
+					// alert(msg.ErrorMsg);
+				}else {
+					$title.val(msg.Data.Title);
+					$url.val(msg.Data.URL);
+					$keywords.val(msg.Data.Keywords);
+					$descrip.val(msg.Data.Descrip);
+					$logo.attr("src","/static/upload/"+msg.Data.Logo);
+					$icon.attr("src","/static/upload/"+msg.Data.Icon);
+					$("#u8535").data("logo",msg.Data.Logo)
+					$("#u8541").data("icon",msg.Data.Icon)
+				}
+			},true);
+			
+			$submit1.on("click",function(){
+				
+				var title = $title.val();
+				var keywords = $keywords.val();
+				var descrip = $descrip.val();
+				
+				var logo = $("#u8535").data("logo")
+				var icon = $("#u8541").data("icon")
+				var url = $url.val();
+				reqAjax("/root/setsite",{title:title,keywords:keywords,descrip:descrip,name:name,logo:logo,icon:icon,url:url},function(msg){		
+					if(msg.ErrorCode!=0) {
+						// alert(msg.ErrorMsg);
+					}else {
+						alert("保存成功");
+						$title.val(msg.Data.Title);
+						$url.val(msg.Data.URL);
+						$keywords.val(msg.Data.Keywords);
+						$descrip.val(msg.Data.Descrip);
+						$logo.val(msg.Data.Logo);
+						$icon.val(msg.Data.Icon);
+					}
+				},true);
+			})
+			
+		});
+		function weblogo(){
+			$("#web_logo").unbind().change(function(){
+				
+				$.ajaxFileUpload({  
+					type: "post",  
+					url: "/upload",  
+					secureuri:true,
+					fileElementId:"web_logo",
+					dataType: "json",   
+					success: function(msg){
+						$("#u8535_img").attr("src","/static/upload/"+msg.imgNmae)
+						$("#u8535").data("logo",msg.imgNmae)
+					},
+					 	error: function(XMLHttpRequest, textStatus, errorThrown) {				 
+			   		}
+						  
+				});
+			});
+		}
+		
+		function webicon(){
+			$("#web_icon").unbind().change(function(){
+				
+				$.ajaxFileUpload({  
+					type: "post",  
+					url: "/upload",  
+					secureuri:true,
+					fileElementId:"web_icon",
+					dataType: "json",   
+					success: function(msg){
+						$("#u8541_img").attr("src","/static/upload/"+msg.imgNmae)
+						$("#u8541").data("icon",msg.imgNmae)
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {				 
+			   		}	  
+				});
+			});
+		}
+	</script>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

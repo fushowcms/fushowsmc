@@ -1,0 +1,33 @@
+{{ define "root/money_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >资金池管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getroomlist',
+				saveUrl: '../root/roomadd',
+				updateUrl: '../root/roomup',
+				destroyUrl: '../root/roomdel',
+				fit:true
+			});
+		});
+	</script>
+
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

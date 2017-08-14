@@ -1,0 +1,509 @@
+body,li,ul{padding: 0;margin: 0;}
+.room-head-box{width:100%; height: 90px; background: yellow;}
+.room-head-info {
+  position: relative;
+  height: 90px;
+  border: 1px solid #ebebeb;
+  background-color: #fff;
+}
+
+.room-head-info .room-head-info-title {
+  padding: 14px 120px 0 94px;
+  font-size: 24px;
+  word-break: keep-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: #323232;
+}
+
+.room-head-info .room-head-info-detail {
+  position: absolute;
+  left: 94px;
+  bottom: 15px;
+  bottom: 13px\9;
+  font-family: tahoma;
+}
+.clearfix {
+  zoom: 1;
+}
+
+.room-head-tool .room-head-tool-report {
+  float: left;
+  position: relative;
+  margin-right: 21px;
+  padding: 10px 0 6px 0;
+  cursor: pointer;
+  color: #8c8c8c;
+}
+
+.room-head-info .room-head-info-detail .room-head-info-playing {
+  color: #00a0ff;
+}
+
+/*********************户外直播**********************/
+.room-head-info .room-head-info-detail .room-head-info-cate {
+  margin-left: 16px;
+  color: #333;
+  height: 14px;
+  line-height: 14px;
+  padding-left: 20px;
+  position: relative;
+}
+.room-head-info .room-head-info-detail .room-head-info-playing:before {
+  background-position: -24px 0;
+}
+.room-head-info .room-head-info-detail .room-head-info-cate:before {
+  content: '';
+  width: 16px;
+  height: 12px;
+  background: url("http://i8.pdim.gs/696515e9ef5e53256546b09597a27006.png") 0 0 no-repeat;
+  overflow: hidden;
+  margin-right: 4px;
+  position: absolute;
+  left: 0;
+  top: 2px;
+  top: 0\9;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/***********头像*************/
+.room-head-info .room-head-info-cover {
+  background-size:cover;
+  position: absolute;
+  top: 9px;
+  left: 9px;
+
+}
+#favicon{
+	  width: 70px;
+  height: 70px;
+  overflow:hiden;
+  float:left;
+}
+/***********H标签*************/
+.room-head-info .room-head-info-title {
+						  padding: 14px 120px 0 94px;
+						  font-size: 24px;
+						  word-break: keep-all;
+						  white-space: nowrap;
+						  text-overflow: ellipsis;
+						  overflow: hidden;
+						  color: #323232;
+						  position: relative;
+						text-align:left;
+						}
+						
+/***********Head中举报分享等*************/
+#room-head-lists{ list-style: none;
+                              margin-left: 800px;}
+#room-head-lists li,#room-head-lists2 li{ float:left;
+                                  padding: 0 16px ;
+                                  line-height: 28px;                                  
+                                 color: #8c8c8c; }
+#room-head-lists2 li:nth-child(1){width: 80px; height: 28px; 
+                                                      padding: 0;
+                                                      line-height: 28px; 
+                                                      border: #00a0ff 1px solid;
+                                                      text-align: center;}
+#room-head-lists2 li:nth-child(2){ width: 80px; height: 28px; 
+                                                       padding: 0;
+                                                      border: #00a0ff 1px solid;
+                                                      text-align: center;}
+/***********Head中举报分享等图标*************/  
+  #report,#shall,#download{
+/*  	       width: 13px; height: 18px; */
+  	       float: left; 
+  	       }   
+ #report{
+	background-image: url(../images/23f2fc7709652c39eb74c1e8206e0745.png);
+    background-repeat: no-repeat;
+    background-position: -28px 0px;
+    height: 18px;
+    width: 17px; 
+	}	                                  
+ #shall{
+	background-image: url(../images/23f2fc7709652c39eb74c1e8206e0745.png);
+    background-position: -62px 0px;
+	background-repeat: no-repeat;
+    height: 18px;
+    width: 18px;
+	}
+ #download{
+	background-image: url(../images/23f2fc7709652c39eb74c1e8206e0745.png);           
+	background-position: -122px 0px;
+	background-repeat: no-repeat;
+    height: 18px;
+    width: 16px;
+	}
+
+ .jiantou{
+ 	  	       width: 12px; height: 12px; 
+  	          float: right; margin-top: 7px;
+  	          background-position:0 3px; 
+  	          background-repeat: no-repeat;
+  	          background-image:url(../images/Play/5854b075eca4eee322fdc6be34b53f50.png) ; } 
+  	                                                             
+/***********Head中举报分享子Div*************/  
+ #room-head-shallSon{ width: 173px; height: 215px; 
+                                        padding: 10px;
+                                       position: absolute;
+                                       left: 870px; top: 90px;
+                                       z-index: 90;
+                                       border: 1px solid darkgray;
+                                       border-radius: 5px;
+                                       display: none;
+                                       background: white;}                                         
+ #room-head-shallSon-ul li{ height: 40px; line-height: 40px;
+                                               text-align: center;}                                                  
+ #room-head-shallSon-ul li:nth-child(2){border-top:1px solid darkgrey ;
+                                                                   border-bottom:1px solid darkgrey ;} 
+ #sina,#qq,#weChat{ width: 20px; height: 20px; 
+                                     float: left;
+                                     margin: 10px 0 0 15px;}
+ #sina{background-image:url(../images/Play/a51b0d2a91305917ef954281bbbd9ad0.png) ;
+            background-position: -2px -2px ;} 
+ #qq{background-image:url(../images/Play/a51b0d2a91305917ef954281bbbd9ad0.png) ;
+            background-position: -26px -2px ;} 
+#weChat{background-image:url(../images/Play/a51b0d2a91305917ef954281bbbd9ad0.png) ;
+            background-position: -50px -2px ;} 
+ 
+/***********下载APP子Div*************/
+#room-head-appSon{ width: 152px; height: 177px; 
+                                      padding: 15px;
+                                      border:  1px solid darkgray;
+                                      border-radius:5px ;
+                                      position: absolute;
+                                      left:980px ; top: 90px;
+                                      z-index: 90;
+                                      background: white;
+                                      display: none;}   
+/*******************Video*********************/ 
+ #room-video{width: 100%;
+                        margin-top: 10px;
+                        background: yellow; 
+                        overflow: hidden;
+                        position: relative;}
+#room-video-bottom{width: 100%; height: 70px;
+                                    border: 1px solid #C8C8C8;}
+/*******************VideoBottom 送礼物*********************/ 
+#guess,#guess2{ float: right; width: 100px; height:36px ;
+               background: #E84C3D;
+               text-align: center;
+               margin-top: 18px;
+               /*margin-left:900px; */line-height: 36px;
+               color: white;border-radius: 5px;
+               font-size:16px ;
+               font-weight: bold;}               
+#guess2{margin-left: 20px;}                  
+.gift-Btn{ width: 220px; height:115px ;
+                background: white;
+                position: absolute;
+                left: -108px; top: -115px;
+                z-index: 100px;
+                display: none;}               
+ .gif-Box{width: 105px; height: 105px; 
+              margin:5px;
+              float: left;
+              background-image:url(../images/Play/gif0.gif) ;}              
+               
+               
+               
+#room-video-bottom-ul{float: right; margin-right: 20px;
+                                   position: relative;}
+#room-video-bottom-ul li{ width: 36px; height: 36px; 
+                                             background: deepskyblue;
+                                             margin:17px 0  0 10px;
+                                             float: left;}
+#room-video-bottom-ul li:nth-child(1){background-image:url(../images/Play/t0123e6fd93fae1c67e.png) ;}
+#room-video-bottom-ul li:nth-child(2){background-image:url(../images/Play/t012f8ff901d7ef25cc.png);}
+#room-video-bottom-ul li:nth-child(3){background-image: url(../images/Play/t01b6efcfda88600394.png);}
+#room-video-bottom-ul li:nth-child(4){background-image: url(../images/Play/t01d24f912fac1142fe.png);}
+#room-video-bottom-ul li:nth-child(5){background-image: url(../images/Play/t0123e6fd93fae1c67e.png);}
+
+
+/*#room-video-bottom-ul li:nth-child(1):hover:before{
+	                                      content: "";
+	                                      width: 191px; height:105px ;
+	                                      position: absolute;
+	                                      left: -72px; top: -105px;
+	                                      background: red;}
+
+#room-video-bottom-ul li:nth-child(2):hover:before{
+	                                      content: "";
+	                                      width: 191px; height:105px ;
+	                                      position: absolute;
+	                                      left: -36px; top: -105px;
+	                                      background: yellow;}*/
+/*******************投注*********************/ 
+#guess-kinds-1,#guess-kinds-2,#guess-kinds-Finalyes{ width: 450px; height: 250px; background: white;
+                            border-radius:5px ; border: 1px solid #C8C8C8;
+                            position: absolute;
+                            top:200px  ;
+                            left: 420px;
+                            padding: 20px 10px;
+                            z-index: 120;
+                            }
+#guess-kinds-1,#guess-kinds-2,#guess-kinds-Finalyes{display: none;}                            
+#guess-kinds-1 p{font-size: 20px; 
+                                     color: #00A0FF;
+                                     line-height: 40px;
+                                     text-align: center;
+                                     font-weight: bold;}
+.choices{width: 428px; height: 90px; 
+               background: pink;}
+/*.name :before{content: ;
+                      width: 20px;
+                      height: 20px;
+                      margin-top: 5px;
+                      position: absolute;
+                      left: 0;top: 0;
+                      background: yellow;}*/
+
+
+
+
+
+#guess-kinds-1-ul li{ width: 120px; height: 60px; 
+                                    border: 1px solid #C8C8C8;
+                                    margin-left: 15px;
+                                    float: left;
+                                    margin-top: 30px;
+                                    font-size: 16px;
+                                    text-align: center;
+                                    line-height: 60px;
+                                    border-radius:5px ; }   
+#guess-kinds-1-ul li:hover{border: 1px solid #00A0FF;}                                        
+ #guess-kinds-1-ul li:nth-child(1){margin-left: 20px;
+            background-image: url(../images/Play/7Z70GZWB%OI534YO{QJ@ZAF.png);}                                                                
+ #guess-kinds-1-Btn{height: 34px; background: #00A0FF;
+         color: white; font-weight: bold;
+         text-align: center;
+         font-size: 16px; line-height: 34px; 
+         margin-left: 0;
+         margin-top: -8px;
+		 cursor:pointer;
+		}
+#guess-kinds-li{
+			width:388px ;
+			height: 100px; 
+			padding: 0 5px;
+			line-height: 20px;
+			font-weight: bold;
+			font-size: 16px;
+			color:#A8A7A8;
+		}
+/**************选择1***************/   
+#guess-kinds-2-ul li{width: 60px; height: 60px;
+                                  border: 1px solid #C8C8C8;
+                                  float:left;
+                                  margin-left:50px;}
+ #guess-k  inds-2-ul li:nth-child(2){ width: 120px; height: 45px;
+                                  margin-top: 12px;
+                                  font-size: 22px;
+                                  line-height: 45px;
+                                  text-align: center;
+                                  border: none;
+                                  background: #00A0FF;
+                                  color: white;
+                                  font-weight: bold;}    
+/**************投注项目列表***************/ 
+.detail_list{
+	width:388px;margin-left:26px;margin-top:5px;padding:5px;border:1px dashed #000;cursor:pointer;background: #10b3c5;border: 1px solid #cccccc;color: #FFF;
+}  		
+.detail_list_crruent{
+	background: #01606b;
+    
+	color: #fff;
+}  
+ #Player1{background-image: url(../images/Play/u=3444159021,1698619942&fm=21&gp=0.jpg);
+ 	                background-position: 100%; padding: 0;}
+#Player2{ background-image:url(../images/Play/u=3599123849,3131063710&fm=21&gp=0.jpg); 
+                   padding: 0;
+                   background-size: 100%;}
+ 
+ .guess-kinds-2-select{margin-top: 10px;}                 
+#guess-kinds-2-ul li:nth-child(4){width: 16px; height: 16px;
+                                     border: 1px solid #C8C8C8;
+                                     border-radius:8px ;}   
+#guess-kinds-2-ul li:nth-child(6){width: 16px; height: 16px;
+                                     border: 1px solid #C8C8C8;
+                                     border-radius:8px ;}  
+#guess-kinds-2-ul li:nth-child(5){ height: 16px; border: none;
+                                     margin-left: 0;
+                                     margin: 10px 150px 0 5px;}
+#guess-kinds-2-ul li:nth-child(7){ height: 16px;border: none;
+                                     margin: 10px 0 0 5px;}
+                                     
+ /*******************赔率和进度条*********************/                                    
+ #guess-kinds-2 p{ display: block;  float: left;  margin-left: 40px;}
+  #guess-kinds-2 p:nth-child(2){margin-left: 100px;}
+ .guess-kinds-2-tutiao{ width: 180px; height: 20px; background: red;
+                            float: left; margin-top: 10px;
+                            margin-left: 30px;} 
+                            
+  #guess-kinds-2-Num{ width:320px ; height: 40px;
+                            border: 1px solid #00A0FF;
+                            float: left;
+                            margin-top: 20px;
+                            margin-left: 30px;}   
+                            
+  #guess-kinds-2-yes{width:70px ; height: 40px; 
+                            background: #00A0FF; float: left;
+                            margin-top: 20px; 
+                            color: white;
+                            font-size: 16px;
+                            font-weight: bold;
+                            line-height: 40px;
+                            text-align: center;}                                                  
+ /*******************投注确认页面*********************/                            
+  #guess-kinds-Finalyes p{ text-align: center; font-size: 20px;
+                            color:#00A0FF;}
+#guess-kinds-Finalyes-yes,#guess-kinds-Finalyes-no{ width:100px ; height: 40px;
+                            background: #00A0FF;
+                            border: 2px solid #00A0FF;
+                            text-align: center;line-height: 40px;
+                            color: white;font-size: 20px; font-weight: bold;
+                            float: left;
+                            margin:50px 0  0 80px;}
+#guess-kinds-Finalyes-yes:hover{border: 2px solid #8C8C8C;}                            
+#guess-kinds-Finalyes-no:hover{border:2px solid #8C8C8C;}                                                                                                                    
+/*******************ChatBox*********************/ 
+#room-chat-Box{width: 310px; height: 100%; background: #fff;
+                             float: right;
+                             position:absolute;
+                             right: 0;
+                             top: 0;
+                             border-left:1px solid #c8c8c8 ;}
+#room-chat-notic{width: 100%; height: 100px; background:#f5f5f5;
+                              position:absolute;right: 0;top: 0; z-index: 80;
+                              overflow: hidden; padding: 10px;
+                              border: 1px solid  #c8c8c8;
+                              transition: 1s;}  
+#room-chat-notic strong {display:inline;}                              
+#room-chat-notic p{color: #787878;}                              
+                                                  
+/*****************chatTab******************/
+.tabOn{ color: #E84C3D; background: white; font-weight: bolder;}
+.tabOff{color: #999; background: #f0f0f5; font-weight: bolder;}
+#room-chat-tab{ width: 310px; height:115px ;
+	                          position:absolute;right: 0;top:39px; z-index: 80;
+	                          overflow: hidden;
+	                          border-top:#E84C3D solid 2px ;
+	                          border-left: 1px solid #c8c8c8;
+	                          border-bottom: 1px solid #c8c8c8;
+	                          border-left: 1px solid #c8c8c8;
+	                          transition: 1s;}
+#room-chat-tab:hover{height:311px ; }    
+                      
+#room-chat-tab-head{width: 310px; height:31px ; background: yellow;
+                                     transition:2s;}
+#room-chat-tab-head li{float: left;
+                                        width: 155px; height:31px ;
+                                        text-align: center;
+                                        line-height: 31px;}
+/*#room-chat-tab-weekRanking{ width: 310px; height:115px ;
+                                                    overflow: hidden;}  */   
+                                                    
+/********************右聊天*********************/                          
+.chat-MessageBox1{list-style: none;
+               width: 100%; height:100%;
+               margin-left: 0px; 
+               margin-top:105px; 
+               overflow: auto;}   
+.chat-MessageBox1 i{line-height: 25px;}               
+                                                          
+.chat-Message-content{width: 290px; height:25px;
+               line-height: 32px;
+               overflow: hidden;
+	             }                                             
+.chat-MessagePic{ width: 20px; height:17px;
+              float:left;
+              margin-top: 8px;
+              margin-left: 8px;
+              background-image: url(../images/Play/VIPNum.png);
+         			background-position: 28px 0;}                                                  
+.chat-UserName{color: #E84C3D;
+        			font-weight: bold;float:left;
+        			margin-left: 2px;}                                                    
+.chat-Message{color: gray;}                                                   
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+                                                    
+/********************Ranking*********************/ 
+#room-chat-tab-weekRanking li div, #room-chat-tab-finalRanking li div{width: 18px; height:21px ; 
+                       
+                       float: left;
+                       margin: 4px 12px 0 12px;} 
+.weekRanking1,.weekRanking2,.weekRanking3{
+	       background-image: url(../images/Play/f9d5ac818049c5c1df332e23a88e34f0.png);}  
+.weekRanking1{ background-position:0 -28px ;}       
+.weekRanking2{ background-position:-50px -28px ;}  
+.weekRanking3{ background-position: -50px -28px;}                                  
+.tab-list-on{display: block;}   
+.tab-list-off{display: none;}                                                                            
+#room-chat-tab-weekRanking li,#room-chat-tab-finalRanking li{width: 310px; height:28px ;  line-height: 28px;}
+#room-chat-tab-weekRanking li:nth-child(odd){background: #f7f7f7;}
+#room-chat-tab-finalRanking li:nth-child(odd){background: #f7f7f7;}
+#room-chat-tab-weekRanking li:nth-child(even){background: white;}
+#room-chat-tab-finalRanking li:nth-child(even){background:white;}
+/*****************chatSend******************/
+#room-chat-sebdMessage{width: 100%; height:109px ; background: #f0f0f5;
+              margin-top: 0px;
+              border: 1px solid #c8c8c8;}
+#room-chat-sebdMessage-btn{width: 100%; height:42px ; 
+                                                     padding: 11px; background: #f0f0f5;}
+#room-chat-input{width: 236px; height:52px ; 
+                               border: 1px solid #e6e6e6;
+                               padding: 8px 9px; float: left;
+                               margin-left: 10px;}
+#room-chat-send{width: 60px; height:52px ; 
+                               float: left;
+                                background: #E84C3D;
+                                font-size: 14px;
+                                line-height: 52px;
+                               text-align: center;color: white;
+                               font-weight: bolder;}
+/*****************chatSendBUTTONS******************/
+#room-chat-sebdMessage-btn-Pic li{width: 20px; height:20px ; 
+                   float: left; margin-left:10px ;
+	                 background-image:url(../images/Play/beb43c44ba807acb0677a62821c625bf.png) ;
+}                 
+#room-chat-sebdMessage-btn-Pic li:nth-child(1){
+	                 background-position: 0 -20px ;}
+#room-chat-sebdMessage-btn-Pic li:nth-child(2){
+	                 background-position: 0 -20px ;}
+#room-chat-sebdMessage-btn-Pic li:nth-child(3){
+	                 background-position: -100px -20px;}
+#room-chat-sebdMessage-btn-Pic li:nth-child(4){
+	                 background-position: -141px -20px;}
+#room-chat-sebdMessage-btn-Pic li:nth-child(5){
+	                 width:17px ;
+	                 background-position: -203px -20px;}
+/*****************动态创建的li******************/
+.messageUl{ width: 310px; height: 280px; 
+                       background: orange;}
+.messageList{ width: 310px; height: 28px; background: yellow; 
+                         border-bottom:1px solid red ;
+                         }
+
+
+
+
+
+
+                                                    

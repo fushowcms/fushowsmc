@@ -1,0 +1,25 @@
+{{ define "page/header.html" }}
+	 <header>
+	 	<div class="header_w" style="margin: 0 auto; ">
+			<a href="/">
+			<img style="float:left;line-height:80px;" src="/static/images/logo_black.png"/>
+			</a>
+		 	<ul id="header-Btns">
+		 		<li id="indexShouye" >
+		 			<a href="/">首页</a>
+		 		</li>
+		 		<li id="listZhibo" class="li-clickOff">
+		 			<a href="/page/lists" class="a-clickOn">直播</a>
+		 		</li>
+		 	</ul>
+		 	<div class="Search-css">
+			 	<input type="text" id="header-Search" placeholder="房间" value="" />
+			 	<div id="header-serch-Btn">搜索</div>
+		 	</div>
+	        <ul id="header-Setup-Login">
+	        	<li id="head-login">登录</li>
+	        	<li id="head-setup">注册</li>
+	        </ul>
+        </div>
+	 </header>
+{{end}}

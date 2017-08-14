@@ -1,0 +1,91 @@
+{{ define "root/sidebar.html" }}
+<!--左start-->
+<div class="admin_left">
+	<div class="sidebar_logo"><a href="/"><img src="/static/images/manage/logo.png"></a></div>
+	<div id="sidenav_list" class="sidenav_list"></div>
+	<div class="loginout" id="back">
+		<i>退出</i>
+	</div>					
+</div>
+<script type="text/javascript" src="/static/js/common.js?version=1.1"></script>
+<link rel="stylesheet" href="/static/css/library/jquery.mCustomScrollbar.min.css">
+<script type="text/javascript" src="/static/js/library/jquery.mCustomScrollbar.concat.min.js"></script>
+<script>
+	var url=window.location.href;
+	var loc = url.lastIndexOf("\/"); 
+	var file = url.substring(loc-5);
+	var id = getStorage("Rid");
+	reqAjax("/root/getsidebar",{UID:id},function(msg){
+		console.log(msg);
+		if(msg.ErrorCode!=0) {
+			alert(msg.ErrorMsg);
+		}else {
+			var str = "";
+			var str2="";
+			var num="";
+            for (var i in msg.Data.list) {
+                if(msg.Data.list[i].Menus == 0 && msg.Data.list[i].SecondDir == 0){//遍历一级菜单
+                	//判断当前选中样式
+	                if(file == msg.Data.list[i].Address){
+						str += '<div class="navli active" data-id="' + msg.Data.list[i].Id + '"><div class="firstnav"><a href="' + msg.Data.list[i].Address + '">' + msg.Data.list[i].ListName + '</a></div></div>';
+						$("#sidenav_list").html(str);
+						$('#logoname').append('>>' + msg.Data.list[i].ListName);
+					}else{
+						str += '<div class="navli"  data-id="' + msg.Data.list[i].Id + '"><div class="firstnav"><a href="' + msg.Data.list[i].Address + '">' + msg.Data.list[i].ListName + '</a></div></div>';
+						$("#sidenav_list").html(str);
+					}
+	            }else if(msg.Data.list[i].Menus==1){
+					//含有二级分类的选项卡
+					str += '<div class="navli" data-id="' + msg.Data.list[i].Id + '"><div class="firstnav"><i>' + msg.Data.list[i].ListName + '</i></div><ul class="secondnav" style="display:none;">';
+					for (var j in msg.Data.list) {
+						if(msg.Data.list[j].Menus == 0 && msg.Data.list[i].Id == msg.Data.list[j].SecondDir){//遍历当前分类下的子分类
+							if(file == msg.Data.list[j].Address){
+								str += '<li data-id="' + msg.Data.list[j].Id + '" class="active"><a href="'+ msg.Data.list[j].Address +'">'+msg.Data.list[j].ListName+'</a></li>';
+								$('#logoname').append('>>' + msg.Data.list[i].ListName + '>>' + msg.Data.list[j].ListName);
+							}else{
+								str += '<li data-id="' + msg.Data.list[j].Id + '"><a href="'+ msg.Data.list[j].Address +'">'+msg.Data.list[j].ListName+'</a></li>';
+							}
+						}
+					}
+					str += '</ul></div>';
+					$("#sidenav_list").html(str);
+				}
+            }
+		}
+		$("#sidenav_list").find('.secondnav li.active').parent().css('display','block').siblings('.firstnav').addClass('hover');
+
+		var sidebarTF=true;
+
+		$('body').find('.firstnav').click(function(){
+			if($(this).siblings('.secondnav').css('display') == 'none'){
+				$(this).addClass('hover');
+				$(this).siblings('.secondnav').stop(true,true).slideDown('slow');
+			}else{
+				
+				$(this).removeClass('hover');
+				$(this).siblings('.secondnav').stop(true,true).slideUp('slow');
+			}
+		});
+
+		$('#sidenav_list').mCustomScrollbar({
+				autoHideScrollbar:true,
+				scrollbarPosition:"outside"
+		});	
+
+	},true);			
+	$("#back").click(function(){
+		var uid = getStorage("Rid");
+		if(confirm("是否退出？")){
+			reqAjax("/user/unlogin",{UID:uid},function(msg){
+				if(msg.ErrorCode==0){
+					localStorage.clear();
+					window.location.href='/page/loginrootmyadmin';
+				}else{
+					alert(msg.ErrorMsg);
+				}
+			},true);
+		}
+	});			
+</script>
+<!--左end-->
+{{end}}

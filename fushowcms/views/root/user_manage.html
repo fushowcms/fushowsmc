@@ -1,0 +1,209 @@
+{{ define "root/user_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+	.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >用户管理</h2>
+<div id="mainPanle" region="center">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	
+	
+	<script type="text/javascript">
+		var utype =null;
+		var uleve =null
+		var typeList = {};
+	//加载权限表
+			$.ajax({
+				type:"post",
+				url:"/root/getuidtypelist",
+				data:{
+					page:1,
+					rows:50,
+				}, 
+				dataType:"json",
+				async: true,
+				success: function(msg){
+					
+					console.log(msg);
+					if (msg.total<=0){
+						return;
+					}
+					var str =' <option value="0" >未选择</option>';		
+					for (var i=0;i<msg.rows.length;i++){
+						str+='<option value="'+msg.rows[i].Id+'">'+msg.rows[i].TypeName+'</option>';
+						typeList[msg.rows[i].Id] = msg.rows[i].TypeName;
+					}
+					var hot_title = document.getElementById('mytype');
+					hot_title.innerHTML = str;
+				},error:function(err){
+					
+				}
+			});
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/userorderbylevelADsc',
+				saveUrl: '../root/rootuseradd',
+				updateUrl: '../root/userup',
+				destroyUrl: '../root/userdel',
+				fit:true
+			});
+			
+			
+			
+		});
+		function usertype(val) {
+			var a ;
+			$.each(typeList,function(key,values){       
+				 if(val == parseInt(key)){
+					a =  values;
+				}
+			 }); 
+			return a;
+		}
+		function userlevel(val) {
+			if(val<=99){return "白板"}
+			if(val>=100&&val<200){return "青铜5"}
+			if(val>=200&&val<300){return "青铜4"}
+			if(val>=300&&val<500){return "青铜3"}
+			if(val>=500&&val<800){return "青铜2"}
+			if(val>=800&&val<1000){return "青铜1"}
+			if(val>=1000&&val<2000){return "白银5"}
+			if(val>=2000&&val<3000){return "白银4"}
+			if(val>=3000&&val<5000){return "白银3"}
+			if(val>=5000&&val<8000){return "白银2"}
+			if(val>=8000&&val<10000){return "白银1"}
+			if(val>=10000&&val<20000){return "黄金5"}
+			if(val>=20000&&val<30000){return "黄金4"}
+			if(val>=30000&&val<50000){return "黄金3"}
+			if(val>=50000&&val<80000){return "黄金2"}
+			if(val>=80000&&val<100000){return "黄金1"}
+			if(val>=100000&&val<200000){return "铂金5"}
+			if(val>=200000&&val<300000){return "铂金4"}
+			if(val>=300000&&val<500000){return "铂金3"}
+			if(val>=500000&&val<800000){return "铂金2"}
+			if(val>=800000&&val<1000000){return "铂金1"}
+			if(val>=1000000&&val<2000000){return "钻石5"}
+			if(val>=2000000&&val<3000000){return "钻石4"}
+			if(val>=3000000&&val<5000000){return "钻石3"}
+			if(val>=5000000&&val<8000000){return "钻石2"}
+			if(val>=8000000&&val<10000000){return "钻石1"}
+			if(val>=10000000&&val<20000000){return "大师"}
+			if(val>=20000000){return "王者"}
+		} 
+		
+		
+		//筛选  权限
+		function mytype(s){
+			
+			
+			if(s==0){
+				utype = -1;
+				return;
+			}else{
+				utype = s;
+			}
+			reqAjax("../root/userorderbysearch",{Leve:uleve,Type:utype},function(msg){
+					//加载数据
+					$('#dg').datagrid('loadData',msg.rows);
+			},true);						
+		}
+		//筛选  等级
+		function leve(s){
+			
+			if(s==0){
+				uleve = -1;
+				return;
+			}else{
+				uleve = s;
+			}
+
+			
+			reqAjax("../root/userorderbysearch",{Leve:uleve,Type:utype},function(msg){
+				//if(msg.ErrorCode!=0) {
+				//	alert(msg.ErrorMsg);
+				//}else {
+					//console.log(msg);  
+					//if(msg.Data.total<=0){
+					//	alert("没有更多信息");
+					//	return;
+					//}
+					//加载数据
+					$('#dg').datagrid('loadData',msg.rows);
+			//	}
+			},true);
+		}
+		
+	</script>
+
+
+
+	
+	<table id="dg" style="padding:20px 0 0 20px;"
+			toolbar="#toolbar" pagination="true" idField="Id" 
+			rownumbers="true" fitColumns="true"  
+			iconCls="icon-save" rownumbers="true"  
+			singleSelect="true" nowrap="true" striped="false">
+		<thead>
+			<tr> 
+				<th field="ck" checkbox="true"></th> 
+			    <th field="Id" width="50" align="center">用户ID</th>
+				<th field="UserName" width="50" align="center">用户名</th>
+				<th field="NickName" width="50" align="center">姓名</th>
+				<th field="Phone" width="50" align="center">手机号</th>
+				<th field="Type" width="50" align="center" formatter="usertype" sortable="true">类型</th>
+				<th field="Balance" width="50" align="center">余额</th>
+				<th field="PomegranateNum" width="50" align="center">金币</th>
+				<th field="Integral" width="50" align="center" formatter="userlevel" sortable="true" id="Integral">等级</th>
+				<th field="Remark" width="50" align="center">备注</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar" style="height: 36px;">&nbsp;
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">添加</a>-->
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a>-->
+		<div id="tb" style="float:right">
+			<select  name=sel id="mytype" style="width:100px" onchange="mytype(this.options[this.options.selectedIndex].value)">  	
+			    <option value="0" >未选择</option>
+				<option value="1" >普通用户</option>
+				<option value="1" >主播</option>
+				<option value="1" >房管</option>
+				<option value="1" >主管</option>
+				<option value="1" >联盟管理员</option>
+				<option value="1" >管理员</option>
+	    	</select>
+			<select  name=sel id="myleve" style="width:100px" onchange="leve(this.options[this.options.selectedIndex].value)">  	
+			    <option value="0" >未选择</option>
+				<option value="8">白板</option>
+				<option value="1">青铜</option>
+				<option value="2">白银</option>
+				<option value="3">黄金</option>
+				<option value="4">白金</option>
+				<option value="5">钻石</option>
+				<option value="6">超凡大师</option>
+				<option value="7">最强王者</option>
+	    	</select>
+			<input class="easyui-searchbox" data-options="prompt:'请输入用户名',searcher:doSearch" style="width:200px"></input>
+		</div>	
+	</div>
+
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('loadData',{total:0,rows:[]});
+			$('#dg').datagrid('load',{inputid: value})
+		}
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

@@ -1,0 +1,43 @@
+{{ define "root/full_channel_broadcasting.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+
+<style>
+	.panel{
+		overflow-x:scroll;
+	}
+</style>
+<h2>全频道广播</h2>
+<div id="mainPanle" region="center">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+	
+	<script type="text/javascript">
+	var id = localStorage.getItem("Id");
+		$(document).ready(function(){
+			$("#send").click(function(){
+	  			var content = $("#content").val();
+				reqAjax("../root/addBroadcastRedis",{UID: id,Content : content},function(result) {
+					jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+				});	  			
+			});
+		});	
+	</script>
+	<p style="margin-top:50px;">超链接文本示例：<span style="color:#999;">&lt;a&nbsp;href=&quot;http://tv.fushow.cn/&quot;&nbsp;target=&quot;_blank&quot;&gt;富秀科技官网&lt;/a&gt;</span></p>
+	<div style="width:450px;">
+		<textarea id="content" name="content" type="text"    style="resize: none;width:450px; height:250px; padding:5px; margin-bottom:10px; font-size:16px;"></textarea>
+		<input type="button" id="send" name="send" value="发送" style="float:right; width:150px; height:30px; background-color:#4c5961; color:#fff; border:none; font-size:16px;"></input>
+	</div>
+</div>	
+	
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

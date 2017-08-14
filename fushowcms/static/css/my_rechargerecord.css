@@ -1,0 +1,47 @@
+.clearBoth{ clear:both;}
+.lists-big-box{ float:right; margin-right:10px; margin-bottom:30px;}
+.lists-big-box .lists-box{ margin-top:30px;}
+.lists-big-box .lists-box:first-child{margin-top:0px;}
+.lists-box{ box-shadow:1px 1px 1px #d5d5d5; width:100%; background-color:#fff; padding-bottom:0.3%;}
+.lists-box-title{ width:100%; border-bottom:2px solid #dcdcdc; height:48px; line-height:48px; font-size:15px; padding:0px 10px; padding-left:50px; position:relative;}
+.lists-box-title p{ width:100%; position:relative;}
+
+
+.lists-title-ioc{ width:35px; position:absolute; left:-40px;}
+.lists-ioc-hot{ top:13px;}
+.lists-ioc-video{ top:6px;}
+
+.lists-box-list{ width:100.5%; padding:0px 0.5%; margin-left:-0.5%; margin-bottom:0.5%;}
+.lists-box-list li{ width:24.3%; float:left;  margin-left:0.65%; margin-top:0.7%; overflow: hidden;}
+.lists-box-list li:hover .list-mask{opacity:1;}
+.lists-box-list li:hover .list-mask-img{opacity:1; width:50px; margin-top:-25px; margin-left:-25px;}
+.lists-box-list li:hover .lists-box-list-font b{margin-right:-32px;}
+.lists-box-list-img{ width:100%; position:relative; overflow:hidden;}
+.lists-box-list-img img{ width:100%;}
+.lists-box-list-font{ padding:1%; background-color:#f2f2f2;}
+.lists-box-list-font h1{ font-size:16px; color:#000; font-weight:500;}
+.lists-box-list-font b{ float:right; font-size:14px; font-weight:500; color:#df0050; margin-right:0px; transition:all 0.1s; -webkit-transition:all 0.1s;}
+.lists-box-list-font p{ font-size:14px; color:#8b8b8b; margin-top:5px; margin-bottom:5px;}
+.lists-box-list-font span{ float:right;}
+@media(max-width:1330px){
+	.lists-box-list{ width:100.5%; padding:0px 0.5%; margin-left:-0.5%; margin-bottom:0.5%;}
+	.lists-box-list li{ width:32%; float:left; margin-left:1.1%; margin-top:1.1%;}
+	.lists-box-list-img{ width:100%;}
+	.lists-box-list-img img{ width:100%;}
+}
+
+.lists-box-list li:hover{ box-shadow:0px 0px 1px 2px #df0050;}
+
+.list-mask{ background-color:rgba(0,0,0,.2);position:absolute; width:100%; height:100%; left:0; top:0; opacity: 0; transition:all 0.5s; -webkit-transition:all 0.5s;}
+.list-mask-img{opacity:0; position:absolute; top:50%; bottom:50%; left:50%; right:50%; width:100px; margin-top:-50px; margin-left:-50px; transition:all 0.5s; -webkit-transition:all 0.5s;}
+.list-mask-img img{ width:100%;}
+
+
+
+.removediv td{ height:50px;}
+
+/*个人中心充值记录样式*/
+#rechargerecord_list th{ font-weight:400;}
+.rechargerecord_list_title{background: #f5f5f5;}
+.rechargerecord_list_title th{ font-weight:bold !important;font-size: 14px;}
+#recharge img {display: inline-block;margin-left: 25px;float: right;margin-top: 22px;}

@@ -1,0 +1,159 @@
+{{ define "root/root_index.html"}}
+{{ template "root/head.html" }}
+
+<!DOCTYPE html>
+<script type="text/javascript" src="/static/js/common.js?version=1.1"></script>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		
+		<script type="text/javascript">
+			$(function(){
+				//1平台收益
+				reqAjax("/root/getwebearning",{},function(msg){
+					$("#AllNumber").html(msg.Data.AllBalance);//平台
+					$("#GiftNumber").html(msg.Data.GiftNumber);//礼物金额
+					$("#PeriodsNumber").html(msg.Data.PeriodsNumber);//期数金额
+					$("#GoodsNumber").html(msg.Data.GoodsNumber);//商品金额
+					$("#OtherNumber").html(msg.Data.OtherNumber);//其他金额					
+				},true);
+				//3平台数据getwebinfo
+				reqAjax("/root/getwebinfo",{},function(msg){
+					$("#UidNumber").html(msg.Data.UidNumber);//用户总数
+					$("#RecNumber").html(msg.Data.RecNumber);//总充值金额
+					$("#SetAllNumber").html(msg.Data.SetAllNumber);//总体现金额
+					$("#WithNumber").html(msg.Data.WithNumber);//待审核提现数
+					$("#AuditNumber").html(msg.Data.AuditNumber);//待申请认证数
+					$("#ClreanNumer").html(msg.Data.ClreanNumer);//待结算竞猜数
+				},true);
+				//2平台运营信息
+				reqAjax("/root/regnumber",{},function(msg){
+					$("#RegNumber").html(msg.Data.RegNumber);//注册数
+					$("#LoginNumber").html(msg.Data.LoginNumber);//登陆数
+					$("#RecordsNumber").html(msg.Data.RecordsNumber);//充值数
+					$("#CoastAllNumber").html(msg.Data.CoastAllNumber);//消费总额
+					$("#SupportNumber").html(msg.Data.SupportNumber);//竞猜总额
+					$("#ApplyNumber").html(msg.Data.ApplyNumber);//体现总额
+				},true);
+			});
+		//非空处理
+		function notNull(ss){
+			if(ss==null||ss== undefined || ss==""){
+				return "0"
+			}else{
+				return ss
+			}
+		}
+			//1平台收益情况
+			function earnings(){
+				var start = document.getElementById("startdate").value;
+				var end = document.getElementById("enddate").value;
+				if (end<start){
+					alert("结束时间应大于开始时间");
+				}
+				var today=new Date();
+				if(start>today){
+					alert("开始时间不能大于今天");
+				}else if (start== null||start== undefined||start==""||end== null||end== undefined||end==""){
+					alert("时间不能为空");
+				}
+				reqAjax("/root/getwebearning",{startDate:start,endDate:end},function(msg){
+					$("#AllNumber").html(msg.Data.AllBalance);//平台
+					$("#GiftNumber").html(msg.Data.GiftNumber);//礼物金额
+					$("#PeriodsNumber").html(msg.Data.PeriodsNumber);//期数金额
+					$("#GoodsNumber").html(msg.Data.GoodsNumber);//商品金额
+					$("#OtherNumber").html(msg.Data.OtherNumber);//其他金额	
+				},true);
+			}
+			//2平台运营信息
+			function regnumber(){
+				var start = document.getElementById("regstart").value;
+				var end = document.getElementById("regend").value;
+				if (end<start){
+					alert("结束时间应大于开始时间");
+				}
+				var today=new Date();
+				if(start>today){
+					alert("开始时间不能大于今天");
+				}else if (start== null||start== undefined||start==""||end== null||end== undefined||end==""){
+					alert("时间不能为空");
+				}
+				
+				reqAjax("/root/regnumber",{startDate:start,endDate:end},function(msg){
+					$("#RegNumber").html(msg.Data.RegNumber);//注册数
+					$("#LoginNumber").html(msg.Data.LoginNumber);//登陆数
+					$("#RecordsNumber").html(msg.Data.RecordsNumber);//充值数
+					$("#CoastAllNumber").html(msg.Data.CoastAllNumber);//消费总额
+					$("#SupportNumber").html(msg.Data.SupportNumber);//竞猜总额
+					$("#ApplyNumber").html(msg.Data.ApplyNumber);//体现总额
+				},true);	
+			}
+		</script>
+	</head>
+	<body>
+		<div style="height: auto;padding: 50px;">
+			<form>
+				<!--1平台收益-->
+				<table id="myGuess" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:100%; margin:20px auto; text-align: center;color:gray;">
+					
+					<tbody>
+						<tr >
+						
+						开始时间:<input type="date" id="startdate"/>
+						结束时间:<input type="date" id="enddate" />
+						<input onclick="earnings()" type="button" style="height: auto;width: 60px;margin-left: 20px; " value="查询"  />
+						</tr>
+						<tr style="color:gray;background: #f5f5f5;" height="50">
+							<th>平台收益总额</th>
+							<th>礼物收益</th>
+							<th>竞猜收益</th>
+							<th>商品收益</th>
+							<th>其他收益</th>
+						</tr>
+						<tr><td id="AllNumber"></td><td id="GiftNumber"></td><td id="PeriodsNumber"></td><td id="GoodsNumber"></td><td id="OtherNumber"></td></tr>
+					</tbody>
+				</table>
+			</form>
+			
+			<!--2平台运营-->
+			<table id="myGuess" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:100%; margin:20px auto; text-align: center;color:gray;">
+				<tbody>
+					<tr >
+						
+						开始时间:<input type="date" id="regstart"/>
+						结束时间:<input type="date" id="regend" />
+						<input onclick="regnumber()" type="button" style="height: auto;width: 60px;margin-left: 20px; " value="查询"  />
+					</tr>
+					<tr style="color:gray;background: #f5f5f5;" height="50">
+						<th>注册数</th>
+						<th>登陆数</th>
+						<th>充值数(元)</th>
+						<th>消费总额</th>
+						<th>竞猜总额</th>
+						<th>提现总额</th>
+					</tr>
+					<tr><td id="RegNumber"></td><td id="LoginNumber"></td><td id="RecordsNumber"></td><td id="CoastAllNumber"></td><td id="SupportNumber"></td><td id="ApplyNumber"></td></tr>
+					</tbody>
+			</table>
+			<!--运营总数据-->
+			<table id="myGuess" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:100%; margin:20px auto; text-align: center;color:gray;">
+				<tbody>
+					<tr style="color:gray;background: #f5f5f5;" height="50">
+						<th>用户数</th>
+						<th>总充值</th>
+						<th>总体现数</th>
+						<th>待审核体现</th>
+						<th>待认证数</th>
+						<th>待结算数</th>
+					</tr>
+					<tr><td id="UidNumber"></td><td id="RecNumber"></td><td id="SetAllNumber"></td><td id="WithNumber"></td><td id="AuditNumber"></td><td id="ClreanNumer"></td></tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
+
+
+
+{{end}}

@@ -1,0 +1,61 @@
+body,
+ul,
+li {
+	margin: 0px;
+	padding: 0px;
+}
+
+#mine-myCashBox {
+	width: 70%;
+	height: 800px;
+	padding: 20px 120px 40px 80px;
+	display: block;
+}
+
+#mine-myCash-ul li {
+	list-style: none;
+	float: left;
+	line-height: 40px;
+	text-align: center;
+	width: 70px;
+	height: 40px;
+	margin-right: 30px;
+}
+
+#mine-myCash-ul li:nth-child(1) {
+	color: deepskyblue;
+	font-weight: bold;
+}
+
+#mine-myCash-ul li:nth-child(2) {
+	width: 30px;
+	height: 30px;
+	margin-right: 2px;
+	margin-top: 5px;
+	background-image: url(../../images/like.png);
+	background-size: 100%;
+	background-repeat: no-repeat;
+}
+
+ul {
+	overflow: hidden;
+}
+
+#mine-myCash-table {
+	width: 100%;
+	text-align: center;
+}
+
+#mine-myCash-table td {
+	height: 25px;
+}
+
+#table-head {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+}
+
+#mine-myCash-table tr:nth-child(odd) {
+	background: #f3f3f3;
+}

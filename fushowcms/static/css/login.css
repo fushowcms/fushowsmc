@@ -1,0 +1,38 @@
+/************
+登陆注册 样式 11月8日
+*************/
+
+.logins-alert-bg{ position:fixed; width:100%; height:100%; background-color:rgba(0,0,0,.5); z-index:999;}
+.logins-alert-wrap{display: table; position: absolute; width: 100%; height: 100%;}
+.logins-alert-inner-wrap{display: table-cell;vertical-align: middle;text-align: center;}
+.logins-alert-inner-wrap-body{background:#fefefe; height:auto; width: 380px; position: relative; display: inline-block; border:2px solid #009CFA; border-radius: 10px;}
+.logins-alert-inner-wrap-close{position: absolute;width: 17px;height: 17px;top: 16px;right: 16px;cursor: pointer;background:url('/static/images/ui/colse-ioc.png') no-repeat; }
+.logins-alert-inner-wrap-title{}
+.logins-alert-inner-tabs{display: inline-block;padding:10px 20px;font-size: 18px;cursor: pointer;}
+.tabs-active{color:#009CFA;}
+.logins-alert-inner-wrap-body .third-box{}
+.logins-alert-inner-wrap-body .third-box-title{font-size: 16px;color: #898989;}
+.logins-alert-inner-wrap-body .third-box-body{text-align: center;}
+.logins-alert-inner-wrap-body .third-box-item{display: inline-block;width: 74px;height: 74px;margin: 10px;cursor: pointer;}
+.logins-alert-inner-wrap-body .third-box-item-qq{background: url('/static/images/ui/third-1.png') no-repeat;}
+.logins-alert-inner-wrap-body .third-box-item-wechat{background: url('/static/images/ui/third-2.png') no-repeat;}
+.logins-alert-inner-wrap-body .third-box-item-weibo{background: url('/static/images/ui/third-3.png') no-repeat;}
+.lose-password{float:right;font-size:14px;cursor:pointer;}
+.logins-form-box{ width:336px; margin:0 auto; margin-top:20px;}
+.logins-form-box input{ width:334px; height:38px; border:1px solid #a9a9a9; margin-bottom:6px; font-size:16px; padding:0px 5px;}
+.logins-form-feedback{ font-size:16px; color:#009CFA; height:25px; line-height:25px;}
+.logins-form-submit{ width:336px; height:40px; background-color:#009cfa; color:#fff; text-align:center; line-height:40px; font-size:18px; margin-top:23px;cursor:pointer;}
+.logins-form-verify input{ width:161px !important;float:left;}
+.logins-form-verify-btn{ width:141px; float:left; margin-left:12px; font-size:16px; color:#fff; text-align:center; height:38px; line-height:38px; background-color:#009cfa;cursor:pointer;}
+.code-img{ width:141px; float:left; margin-left:12px; font-size:16px; color:#fff; text-align:center; height:38px; line-height:38px;cursor:pointer;}
+.regists-form-submit{width:336px; height:40px; background-color:#009cfa; color:#fff; text-align:center; line-height:40px; font-size:18px; margin-top:23px;cursor:pointer;}
+.logins-agree-box{ width:100%; margin-top:5px; text-align: left;}
+.logins-agree-box img{float:left; margin-right:5px; margin-top:3px; cursor: pointer;}
+.logins-agree-box p{color:#a9a9a9; font-size:16px;}
+.lose-form-verify-btn{width:141px; float:left; margin-left:12px; font-size:16px; color:#fff; text-align:center; height:38px; line-height:38px; background-color:#009CFA;cursor:pointer;}
+.lose-form-submit{width:336px; height:40px; background-color:#009CFA; color:#fff; text-align:center; line-height:40px; font-size:18px; margin:20px 0;cursor:pointer;}
+
+.reg-form-submit{width: 334px;background:#009CFA;color:#fff;text-align:center;line-height:40px;font-size:18px;margin:20px 0;cursor:pointer;}
+
+
+

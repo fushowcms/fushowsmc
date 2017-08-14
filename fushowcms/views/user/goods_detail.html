@@ -1,0 +1,216 @@
+{{ define "user/goods_detail.html"}}
+<html>
+<head>
+	<title>石榴联盟直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/user/personal.css"/>
+	
+	{{template "page/common_js.html"}}
+
+</head>
+
+<body>
+	{{ template "page/common_head.html" }}
+		<div class="content-Box">
+			<div class="mine-Tab-btn">
+				{{ template "user/sidebar.html"}}
+			</div>
+		    <div id="iFrame1">
+			
+			</div>
+		</div>
+		<!--details-pc-->
+		<div id="details-pc" class="hidden-xs container mt15">
+			<div class="fl bigImg">
+				<img id="goodsPic" src="images/img19.png" style="display:block" class="img-responsive aligncenter">
+			</div>
+			<div class="fr des" style="margin-left: 2%;">
+				<h1><span id="goodsNameAccount"></span></h1>
+				<p>商品名称:<span id="goodsName"></span></p>
+				<p>商品描述:<span id="goodsAccount"></span></p>
+				<p>单价:<span class="price" id="goodsPirce"></span><span>石榴籽</span></p>
+				<p>数量:
+					<img id="img_jian" src="../static/images/goods/jian1.png" style="width: 30px;" />
+					<input id="num" class="tb-text" value="1" maxlength="8" title="请输入购买量" style="width: 40px;">
+					<img src="../static/images/goods/add.png" style="width: 30px;" id="img_add" />
+					<span id="emStock" class="tb-hidden"></span>
+					<span class="mui-amount-unit">件</span>
+				</p>
+				<p>总价:<span id="goodsTotal"></span><span>石榴籽</span></p>
+				<p>收件人姓名:<input id="receiver" type="text" maxlength="10"></p>
+				<p>联系方式:<input id="tel" type="text" maxlength="20"></p>
+				<p>收货地址:<input id="address" type="text" maxlength="50"></p>
+				<p><input id="num" type="button"  value="购买" onclick="return CheckForm();"></p>
+			</div>
+		</div>
+</body>
+<script>
+		var PgoodsPirce;
+		//提交按钮
+		function CheckForm(){
+		  if(confirm("确认要购买吗？")==true){
+			var a = localStorage.getItem("Id");
+			if(localStorage.getItem("Id")==null){
+				alert("请登录后购买!");
+				return
+			}
+			if($("#receiver").val().length == 0){
+				alert("收件人不能为空");
+				return
+			}
+			
+			if($("#tel").val().length == 0){
+				alert("联系方式不能为空");
+				return	
+			}else{
+				var tel = "^1(3[0-9]|4[57]|5[0-35-9]|7[01678]|8[0-9])\\d{8}$";
+				if(!($("#tel").val()).match(tel)){
+					alert("手机号格式不正确!");
+					return
+				}
+			}
+			
+			if($("#address").val().length == 0){
+				alert("收货地址不能为空");
+				return
+			}
+			if($("#num").val()<=0) {
+				alert("商品数量必须大于0");
+				return
+			}
+			var goodsTotal = PgoodsPirce * parseInt($("#num").val());
+			
+			reqAjax("/user/orderadd",{
+					GoodsId:goodsId,
+					OrderID:goodsId,	//订单编号
+					GoodsName:$("#goodsName").html(),	//商品名称
+					GoodsNum:$("#num").val(),		//商品数量
+					GoodsPirce:PgoodsPirce,	//商品价格
+					GoodsTotal:goodsTotal,	//商品总价
+					Receiver:$("#receiver").val(),	//收货人
+					Address:$("#address").val(),	//收货地址
+					Tel:$("#tel").val(),	//收货人电话	
+					GoodsAccount:$("#goodsAccount").html(),//商品详情
+					GoodsPic:$("#goodsPic").attr("src"),//商品图片
+					UID:localStorage.getItem("Id")
+			},
+				function(msg){
+					if (msg.ErrorCode!=0){
+						alertShow(".product-btn","兑换商品",msg.ErrorMsg)
+					}else{
+						
+						if(msg.ErrorCode == "00"){
+							alertShow(".product-btn","兑换商品",msg.Data);
+							$('.alert-OK').on("click",function(){
+								window.location.href='my_order_list';
+							});
+						}
+				}
+			});
+			
+			}else{
+		    	return false;
+				}
+		}; 
+		/*var gid = localStorage.getItem("goodsDetailId");
+		var goodsId;
+		$.ajax({  
+				type: "post",  
+				url: "/user/getgoodsById",  
+				dataType: "json",  
+				data: {
+					Id:gid
+				},  
+				success: function(data){
+					goodsId = data.goods.Id
+					PgoodsPirce = data.goods.GoodsPirce;
+					$("#goodsPic").attr("src", data.goods.GoodsPic);
+					$("#goodsDetail").attr("src", data.goods.GoodsDetail);
+					$("#goodsNameAccount").html(data.goods.GoodsName+"&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"+data.goods.GoodsAccount);
+					$("#goodsName").html(data.goods.GoodsName);
+					$("#goodsAccount").html(data.goods.GoodsAccount);
+					$("#goodsPirce").html(data.goods.GoodsPirce);
+					$("#emStock").html(data.goods.GoodsStock);
+					$("#goodsTotal").html(data.goods.GoodsPirce);
+				}  
+				});*/
+
+
+
+			$("#img_add").click(function() {
+				var num = $("#num").val();
+				var j_EmStock = $("#emStock").html();
+				J_EmStock = parseInt(j_EmStock);
+				num = parseInt(num);
+				num += 1;
+				if(num < j_EmStock) {
+					$("#num").val(num);
+					$("#goodsTotal").html(parseInt($("#goodsPirce").html())*num);
+					$("#img_jian").attr("src", "../static/images/goods/jian.png");
+				}
+				if(num == j_EmStock) {
+					$("#num").val(num);
+					$("#goodsTotal").html(parseInt($("#goodsPirce").html())*num);
+					$("#img_add").attr("src", "../static/images/goods/add1.png");
+				}
+				if(num > j_EmStock) {
+					$("#img_add").attr("src", "../static/images/goods/add1.png");
+				}
+			});
+			$("#img_jian").click(function() {
+
+				var num = $("#num").val();
+				var j_EmStock = $("#emStock").html();
+				J_EmStock = parseInt(j_EmStock);
+				num = parseInt(num);
+				num -= 1;
+				if(num < j_EmStock) {
+					if(num == 1) {
+						$("#num").val(1);
+						$("#goodsTotal").html(parseInt($("#goodsPirce").html())*num);
+						$("#img_jian").attr("src", "../static/images/goods/jian1.png");
+					} else {
+						$("#num").val(num);
+						$("#goodsTotal").html(parseInt($("#goodsPirce").html())*num);
+						$("#img_add").attr("src", "../static/images/goods/add.png");
+					}
+				}
+				if(num >= j_EmStock) {
+					$("#num").val(num);
+					$("#goodsTotal").html(parseInt($("#goodsPirce").html())*num);
+					$("#img_add").attr("src", "../static/images/goods/add1.png");
+				}
+				if(num < 1) {
+					$("#num").val(1);
+					$("#goodsTotal").html(parseInt($("#goodsPirce").html())*1);
+				}
+			});
+
+			$("#num").keyup(function() {
+				//		    alert("keyup")
+				var num = $("#num").val();
+				var j_EmStock = $("#emStock").html();
+				J_EmStock = parseInt(j_EmStock);
+				num = parseInt(num);
+				$("#goodsTotal").html(parseInt($("#goodsPirce").html())*num);
+				if(num >= j_EmStock) {
+					$("#img_add").attr("src", "../static/images/goods/add1.png");
+					$("#img_jian").attr("src", "../static/images/goods/jian.png");
+				}
+				if(j_EmStock < 1) {
+					$("#img_jian").attr("src", "../static/images/goods/jian1.png");
+					$("#img_add").attr("src", "../static/images/goods/add.png");
+				}
+				if(num < j_EmStock) {
+					$("#img_jian").attr("src", "../static/images/goods/jian.png");
+					$("#img_add").attr("src", "../static/images/goods/add.png");
+				}
+				if(num < 1) {
+					$("#img_jian").attr("src", "../static/images/goods/jian1.png");
+					$("#img_add").attr("src", "../static/images/goods/add.png");
+				}
+			});
+</script>
+</html>
+{{end}}
+		

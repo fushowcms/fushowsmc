@@ -1,0 +1,107 @@
+{{ define "user/my_history.html" }}
+{{ template "user/index_head.html" }}
+{{ template "user/header.html" }}
+	    <div class="content-Box">
+	    	<div class="mine-title" >
+	    		<h1>个人中心</h1>
+	    		<div>
+	    			<a href="/" id="returnIndex">返回首页>></a>
+	    		</div>
+	    	</div>
+	    	<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+			</div>
+	    	<div id="iFrame1 " style=" width:818px; height: 800px;background:ghostwhite; float: right;  margin-left: 20px;">
+			<div id="mine-liveHistotyBox">
+			
+			<ul id="mine-liveHistotyBox-Nam">
+				<li class="History-1">直播时间</li>
+				<li class="History-2">直播时长</li>
+			</ul>
+			
+			<!--<ul class="liveHistoty-content">
+				<li class="liveHistoty-content-T">2016/02/07 10:30——2016/02/07 10:30</li>
+				<li class="liveHistoty-content-S">20分钟</li>
+			</ul>		
+			<ul class="liveHistoty-content">
+				<li class="liveHistoty-content-T">2016/02/07 10:30——2016/02/07 10:30</li>
+				<li class="liveHistoty-content-S">20分钟</li>
+			</ul>	
+			<ul class="liveHistoty-content">
+				<li class="liveHistoty-content-T">2016/02/07 10:30——2016/02/07 10:30</li>
+				<li class="liveHistoty-content-S">20分钟</li>
+			</ul>	
+			<ul class="liveHistoty-content">
+				<li class="liveHistoty-content-T">2016/02/07 10:30——2016/02/07 10:30</li>
+				<li class="liveHistoty-content-S">20分钟</li>
+			</ul>				
+           </ul>
+		   -->
+        </div>   
+		    
+			</div>
+			
+			</div>
+	        <div class="loginBox"></div>
+	    </div>
+	</body>
+		<script>
+			$("#indexShouye").hover(
+			function () {
+			     $("#indexShouye").css("background"," #e84c3d");
+			     $("#indexShouye a").css("color","white");
+			},
+			function () {
+			     $("#indexShouye").css("background"," white");
+			     $("#indexShouye a").css("color","#e84c3d");
+			}
+			);
+		</script>
+	<script>
+
+		//$.getScript("/static/js/mine/mine&Tab.js");
+		//$.getScript("/static/js/commonHtml/header.js");
+		$(function() {  
+				var url = "/root/getAnchorRoomTimeList";  
+				$.ajax({  
+					type: "post",  
+					url: url,  
+					dataType: "json",  
+					data: {
+						UID:1
+					},  
+					success: function(msg){
+						var html='';
+						if(msg.message){
+							return;
+						}else{
+							msg.data.forEach(function(e){
+								var srartTime = new Date(e.StartTime);
+								var endTime = new Date(e.EndTime);
+								var s = (endTime.getTime()-srartTime.getTime());
+								str = '<ul class="liveHistoty-content"><li class="liveHistoty-content-T">'+formatDate(srartTime)+'——'+formatDate(endTime)+'</li><li class="liveHistoty-content-S">'+parseInt(s/1000/60)+'分钟</li></ul>';
+								html+=str;
+							});
+							var hot_title = document.getElementById('mine-liveHistotyBox');
+							hot_title.innerHTML += html;
+						}
+
+					}  
+				});  
+			}); 
+			
+			
+			function formatDate(now) { 
+				var year=now.getFullYear(); 
+				var month=now.getMonth()+1; 
+				var date=now.getDate(); 
+				var hour=now.getHours(); 
+				var minute=now.getMinutes(); 
+				var second=now.getSeconds(); 
+				return year+"-"+month+"-"+date+" "+hour+":"+minute+":"+second; 
+			} 
+	</script>
+</html>
+{{ end }}
+
+

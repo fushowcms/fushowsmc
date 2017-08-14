@@ -1,0 +1,35 @@
+{{ define "user/my_order.html" }}
+<html>
+
+<head>
+	{{template "page/common_meta.html"}}
+	<title>石榴联盟直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/user/personal.css" />
+	<link rel="stylesheet" href="/static/css/user/my_order.css" />
+	{{template "page/common_js.html"}}
+	<script src="/static/js/user/my_order.js"></script>
+	<script src="/static/js/user/gzPages.js"></script>
+</head>
+
+<body>
+	<!-- 导航头 -->
+	{{ template "page/common_head.html" }}
+
+	<div class="content-Box">
+		<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+		</div>
+		<div id="iFrame1">
+			<div class="iFrame1-title">
+				<p>我的关注</p>
+			</div>
+			<ul class="myOrder-lists" id="myOrder-lists-show"></ul>
+			<div style="clear:both;"></div>
+			<div class="page-component"></div>
+		</div>
+	</div>
+</body>
+
+</html>
+{{ end }}

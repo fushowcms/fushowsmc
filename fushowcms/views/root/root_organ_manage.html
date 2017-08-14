@@ -1,0 +1,109 @@
+{{ define "root/root_organ_manage.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<script type="text/javascript" src="/static/js/common.js"></script>
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >管理员联盟管理</h2>
+
+
+	<div>
+		<lable style="font-size: 18px;">联盟名称：</lable>
+		<select id="organ" style="font-size: 18px;width: 110px;">  
+		</select>  
+	</div>
+	<div>
+		<span style="font-size: 18px;">绑定用户数:</span>
+		<span id="count" style="font-size: 18px;"></span><span style="font-size: 18px;">名</span>
+	</div>
+	<div>
+		<span style="font-size: 18px;">用户总充值:</span>
+		<span id="total" style="font-size: 18px;"></span><span style="font-size: 18px;">元</span>
+	</div>
+
+
+<div id="mainPanle" region="center" style="top: 200px;">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript">
+		$(function(){ 
+			reqAjax("../root/findOrgan",{},function(result) {
+			$.each(result.rows, function(key,val){ 				
+				$("#organ").append(" <option value ="+val.Id+">"+val.OrganName+"</option>");
+			});
+			findOrganManageByOrganId(result.rows[0].Id);
+			sumOrganManageByOrganId(result.rows[0].Id);
+		});
+ 				$("#organ").change(function(){ 
+						//$("#organ").change(function(){ 
+					    //alert(this.value);
+						findOrganManageByOrganId(this.value);
+						sumOrganManageByOrganId(this.value);
+				  });
+
+				});
+ 		function findOrganManageByOrganId(OrganId){
+			$('#dg').edatagrid({
+					fitColumns: true,
+					pagination: true,
+					url: '../root/findOrganManageByOrganId',
+					fit:true,
+					onLoadSuccess:function(data){
+
+					}	,
+					queryParams:{  
+				        OrganId:OrganId,  
+					},
+					
+				});
+		}
+		
+		function sumOrganManageByOrganId(OrganId){
+			reqAjax("../root/sumOrganManageByOrganId",{OrganId:OrganId},function(result) {
+				$("#total").text(result.Data.total)
+				$("#count").text(result.Data.count)
+			});
+		}
+		
+	</script>
+
+	
+	<table id="dg" style="overflow: hidden;padding:20px 0 0 20px;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="UserId" width="50" align="center" >用户id</th>
+				<th field="NickName" width="50" align="center" >用户名称</th>
+				<th field="RechargeNum" width="50" align="center"  >充值金额</th>
+<!--				<th field="RechargeMethod" width="50" align="center">充值方式</th>-->
+
+			</tr>
+		</thead>
+	</table>
+<!--	<div id="toolbar">
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入联盟名称',searcher:doSearch" style="width:200px"></input>
+		</div>	
+	</div>-->
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		}
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

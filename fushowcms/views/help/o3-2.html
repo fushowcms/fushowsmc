@@ -1,0 +1,32 @@
+{{define "help/o3-2.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{template "page/common_meta.html"}}
+	<title>帮助中心-富秀</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/help_content.css"/>
+	{{template "page/common_js.html"}}
+</head>
+<body>
+	{{template "page/common_head.html"}}
+	<div class="help-container">
+	    <div class="help-head">
+		 <h2>常见问题</h2>
+	    </div>
+		<div class="help-content">
+		  {{template "help/left.html"}}
+		  <div class="help-right">
+		    <ul class="help-right-list">
+			  <li><a href="problem3-2-1" target="_blank">辅助工具-此刻直播</a></li>
+			</ul>			
+		  </div>
+		</div>
+	</div>
+	<!--
+	footer太高。
+	-->
+ </body>
+</html>
+
+{{end}}

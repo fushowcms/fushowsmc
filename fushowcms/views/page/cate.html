@@ -1,0 +1,33 @@
+{{define "page/cate.html"}}
+<!DOCTYPE html>
+<html>
+	<!-- 头部文件 -->
+	<head>
+		{{template "page/common_meta.html"}}
+		<title>石榴联盟直播</title>
+		{{template "page/common_css.html"}}
+		<link rel="stylesheet" href="/static/css/cate.css" /> 
+		<link rel="stylesheet" href="/static/css/lists.css" /> 
+		{{template "page/common_js.html"}}
+		<script src="../../static/js/cate.js"></script>
+		<script src="../../static/js/jpages/categoryPages.js"></script>
+	</head>
+
+	<body>
+		{{ template "page/common_sidebar.html" .}}
+		<div class="lists-big-box">
+			<div class="lists-box">
+				<div class="lists-box-title">
+					<p class="pClass"><b class="lists-title-ioc lists-ioc-video"></b></p>
+				</div>
+				<ul class="lists-box-list listsShow">
+					<!--数据-->
+					<div id="list_type"></div>
+					<div class="clearBoth"></div>
+				</ul>
+			</div>
+				<div class="page-component"></div>
+		</div>
+	</body>
+</html>
+{{end}}

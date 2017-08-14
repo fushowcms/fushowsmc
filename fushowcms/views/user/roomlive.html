@@ -1,0 +1,52 @@
+{{define "user/roomlive.html"}}
+{{ template "user/room_head.html" }}
+
+{{template "page/wrap.html"}}
+		<div class="right_area" style="margin-left:250px">
+		<div class="video-Box">
+				{{template "user/video_Title.html"}}
+		        {{template "user/video_content.html"}}
+		</div>
+				{{template "user/video_chat.html"}}
+		</div>
+		<div class="moneyBox"></div>
+
+		<script type="text/javascript" src="/static/js/Gusse/jquery.flipster.js" ></script>
+		<!--/********chat*********/-->
+
+		<script>
+			$.getScript("/static/js/commonHtml/header.js");
+			//$.getScript("js/sendDanmu2.js");
+			$.getScript("/static/js/room/video.js");
+			$.getScript("/static/js/Danmu.js");
+			$.getScript("/static/js/room/qqFace.js");
+		    $.getScript("/static/js/Gusse/lunboG.js");
+		    $.getScript("/static/js/room/roomGift.js");
+		     	 
+				
+			$(function(){
+				room_adaptation();
+			});
+	                        
+		    $(window).resize(function(){
+				room_adaptation();
+			});	
+				
+				    
+		    function room_adaptation(){
+				//视频区域屏幕自适应
+				var winWidth = $(window).width();
+				var winHeight = $(window).height();
+				var videochatWidth = $('.right_area').width();
+				var chatWidth = $('#room-chat-Box').width();
+				$('.video-Box').width(videochatWidth - chatWidth);
+				$('#room-video').height(winHeight - 100 - 70);
+				
+				//聊天区域屏幕自适应
+				$('#message11').height(winHeight - 100 - 117);
+				$('#J_prismPlayer').height(winHeight - 100 - 70);
+			}
+		     
+		</script>
+	</body>
+{{end}}

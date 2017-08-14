@@ -1,0 +1,196 @@
+{{define "user/video_chat.html"}}
+		<div id="room-chat-Box">
+			<div id="room-chat-notic">
+				<p><strong>直播公告:</strong> <span id="liveAnnouncement"></span></p>
+			</div>
+			<div id="room-chat-tab" style="display:none">
+				<ul id="room-chat-tab-head">
+					<li class="tabOn">周榜</li>
+					<li class="tabOff">总榜</li>
+				</ul>
+
+				<ul id="room-chat-tab-weekRanking" class="tab-list-on">
+					<li>
+						<div class="weekRanking1"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking2"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking3"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking4"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking5"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking6"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking7"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking8"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking9"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking10"></div>排行第一名</li>
+				</ul>
+				<ul id="room-chat-tab-finalRanking" class="tab-list-off">
+					<li>
+						<div class="weekRanking1"></div>排dasdsdsa</li>
+					<li>
+						<div class="weekRanking2"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking3"></div>排sadasdasd</li>
+					<li>
+						<div class="weekRanking4"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking5"></div>排asdasdsad</li>
+					<li>
+						<div class="weekRanking6"></div>排行sadasd</li>
+					<li>
+						<div class="weekRanking7"></div>排行第一名</li>
+					<li>
+						<div class="weekRanking8"></div>排行asdsad</li>
+					<li>
+						<div class="weekRanking10"></div>排行第一名</li>
+				</ul>
+			</div>
+
+			<ul class="chat-MessageBox1" id="message11">
+
+			</ul>
+
+			<!--<ul id="messageUl">
+            </ul>-->
+			<!--################chatSend################-->
+			<div id="room-chat-sebdMessage">
+				<div id="room-chat-sebdMessage-btn">
+					<ul id="room-chat-sebdMessage-btn-Pic">
+						<!--            			<li></li>-->
+						<li class="emoj">
+							<!--################表情包################-->
+
+							<div class="comment">
+								<div class="com_form">
+									<textarea class="input" id="saytext" name="saytext" style="display: none;"></textarea>
+									<!--  <p><span class="emotion"></span><input type="button" class="sub_btn" value="提交"></p> -->
+								</div>
+							</div>
+							<!--################表情包################-->
+						</li>
+					</ul>
+				</div>
+				<input type="text" id="room-chat-input" placeholder="请输入聊天内容" />
+				<div id="room-chat-send">发送</div>
+			</div>
+
+		</div>
+	</body>
+<!--	<script src='js/jquery-1.7.2.min.js'></script>-->
+	<script src="/static/js/fushowim.js"></script>
+	<script>
+		//<![CDATA[
+		$(document).ready(function() {
+
+			$("#connect_clientId").val("example-" + (Math.floor(Math.random() * 100000)));
+			if(!window.WebSocket) {
+				$("#connect").html("\
+        <h1>Get a new Web Browser!</h1>\
+        <p>\
+        Your browser does not support WebSockets. This example will not work properly.<br>\
+        Please use a Web Browser with WebSockets support (WebKit or Google Chrome).\
+        </p>\
+    ");
+			} else {
+				var client, destination;
+				
+				$(document).ready(function() {
+					var host = "114.55.134.4";
+					var port = "61623";
+					var clientId = "example"+ (Math.floor(Math.random() * 100000));
+					var user = "admin";
+					var password = "www.fushow.cn";
+					destination = "1";
+					client = new Messaging.Client(host, Number(port), clientId);
+
+					client.onConnect = onConnect;
+
+					client.onMessageArrived = onMessageArrived;
+					client.onConnectionLost = onConnectionLost;
+
+					client.connect({
+						userName: user,
+						password: password,
+						onSuccess: onConnect,
+						onFailure: onFailure
+					});
+					return false;
+				});
+
+				// the client is notified when it is connected to the server.
+				var onConnect = function(frame) {
+					debug("欢迎进入房间");
+					$('#connect').fadeOut({
+						duration: 'fast'
+					});
+					$('#connected').fadeIn();
+					client.subscribe(destination);
+				};
+
+				// this allows to display debug logs directly on the web page
+				var debug = function(str) {
+					$("#debug").append(document.createTextNode(str + "\n"));
+				};
+
+				$('#disconnect').click(function() {
+					client.disconnect();
+					$('#connected').fadeOut({
+						duration: 'fast'
+					});
+					$('#connect').fadeIn();
+					$("#message11").html("")
+					return false;
+				});
+					
+				$('#room-chat-send').click(function() {
+					var uName = window.localStorage.getItem("nicheng");
+					var text = "<p><span class='chat-UserName' style='float:none'>"+uName + ":</span>" + $('#room-chat-input').val() +"</p>";
+					if(text) {
+						message = new Messaging.Message(text);
+						message.destinationName = destination;
+						client.send(message);
+						$('#room-chat-input').val("");
+			       };
+			       var oDanmu = $("<span class='danmuM'>");
+			       var rTop= Math.random()*650;
+			       oDanmu.css("top",rTop);
+			       oDanmu.animate({right:"1360px"},10000,function(){
+	  	                   if(oDanmu.css("right")=="1340px"){
+	  	    	           oDanmu.detach();
+	  	                 };
+	                });
+	               oDanmu.html(text);
+	               $("#danmu").append(oDanmu);
+	                
+					return false;
+				});
+
+				function onFailure(failure) {
+					debug("failure");
+					debug(failure.errorMessage);
+				}
+
+				function onMessageArrived(message) {
+					
+					
+					$("#message11").append('<li>'+message.payloadString+'</li>');
+				}
+
+				function onConnectionLost(responseObject) {
+					if(responseObject.errorCode !== 0) {
+						debug(client.clientId + ": " + responseObject.errorCode + "\n");
+					}
+				}
+			}
+		});
+		//]]>
+	</script>
+
+{{end}}

@@ -1,0 +1,149 @@
+{{ define "page/loginrootmyadmin.html" }}
+{{ template "page/head.html" }}
+    <script type="text/javascript" src="/static/js/jquery-1.9.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/login.js"></script>
+	<link rel="stylesheet" href="/static/css/common.css" />
+	<script type="text/javascript" src="/static/js/common.js?version=1.1"></script>
+	<style>
+		#imgcode{
+			width:272px;
+			height:30px;
+		}
+		#imgcode-div,#imgcode-input{
+			width: 85px;
+			height: 28px;
+		}
+		#imgcode-img{
+			width:30%;
+			margin-left:15px;
+		}
+		#imgcode-img img{
+			width:100%;
+		    margin-left: 10px;
+		}
+		.input-tipsimg{
+			float: left;
+		    width: 60px;
+		    font-size: 14px;
+		    line-height: 28px;
+		    font-family: "Hiragino Sans GB", "Microsoft Yahei";
+ 		    margin-left: -10px;
+		}
+	</style>
+<body>
+	 <section id="login-Dad">
+            <div class="login">
+                <div class="header">
+                    <div id="login-quit"></div>
+                    <div class="switch" id="switch">
+                        <a class="switch_btn_focus" id="switch_qlogin" href="javascript:void(0);" tabindex="7">
+                        	快速登录
+                        </a>
+                       
+                        <div class="switch_bottom" id="switch_bottom" style="position: absolute; width: 64px; left: 0px;"></div>
+                    </div>
+                </div>
+                <div class="web_qr_login" id="web_qr_login" style="display: block;">
+                    <!--登录-->
+                    <div class="web_login" id="web_login">
+                        <div class="login-box">
+                            <div class="login_form">
+                                <form action="#" name="loginform" accept-charset="utf-8" id="login_form" class="loginForm" method="post">
+                                    <input type="hidden" name="did" value="0" />
+                                    <input type="hidden" name="to" value="log" />
+                                    <div class="uinArea" id="uinArea">
+                                        <label class="input-tips" for="u">
+                                           	 帐号：
+                                        </label>
+                                        <div class="inputOuter" id="uArea">
+                                            <input type="text" id="u" name="username" class="inputstyle" />
+                                        </div>
+                                    </div>
+                                    <div class="pwdArea" id="pwdArea">
+                                        <label class="input-tips" for="p">
+                                         	   密码：
+                                        </label>
+                                        <div class="inputOuter" id="pArea">
+                                            <input type="password" id="p" name="p" class="inputstyle" />
+                                        </div>
+                                    </div>
+	                                <div class="" id="imgcode">
+										<label class="input-tipsimg" for="u">
+                                           	 验证码：
+                                        </label>
+                                        <div class="" id="imgcode-div" style="float:left;">
+                                            <input type="text" id="imgcode-input" name="" class="root-log-text" />
+                                        </div>
+                                        <div class="" id="imgcode-img" style="float:left;">
+                                            <img class="root-log-captcha" alt="点击刷新" src=""/>
+                                        </div>
+                                    </div>
+
+                                    <div style="padding-left:55px;margin-top:20px;">
+                                    	<input id="login_btn2" type="button" value="登 录" style="width:150px;" class="button_blue" onclick="cli()"/>
+                                    </div>
+									
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <!--登录end-->
+                </div>
+                <!--注册-->
+               </div>
+        </section>
+</body>
+
+<script>
+var Captcha_root="";
+			$.ajax({
+                cache: true,
+                type: "get",
+                url:"/getimagecode",
+                async: false,
+                error: function(request) {
+                    alert("图形验证码获取失败");
+                },
+                success: function(data) {	
+					Captcha_root=data.Data.CaptchaId;
+					$(".root-log-captcha").attr("src",data.Data.ImageURL)
+                }
+            });
+
+$(".root-log-captcha").click(function(){
+		$.ajax({
+              cache: true,
+              type: "get",
+              url:"/getimagecode",
+              async: false,
+              error: function(request) {
+                  alert("图形验证码获取失败");
+              },
+              success: function(data) {	
+			Captcha_root=data.Data.CaptchaId;
+			$(".root-log-captcha").attr("src",data.Data.ImageURL)
+              }
+          });
+});
+
+
+
+	function cli(){
+		var id = document.getElementById('u').value;
+		var name = document.getElementById('u').value;
+		var pwd = document.getElementById('p').value;
+	
+		reqAjax("/page/loginrootmyadmin",{username: name,password: pwd,keycode:$(".root-log-text").val(),captcha:Captcha_root},function(msg){
+			console.log(msg);
+			if(msg.ErrorCode!=0) {
+				alert(msg.ErrorMsg);
+			}else {
+				setStorage("Rid",msg.Data.UID);
+				setStorage("username",msg.Data.UserName);
+				setStorage("nicheng",msg.Data.NickName);
+				window.location.href="/root/welcometo";	
+			}
+		},true);
+	}
+</script>
+{{ end }}

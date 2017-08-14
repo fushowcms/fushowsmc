@@ -1,0 +1,52 @@
+{{define "help/problem4-2-1.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{template "page/common_meta.html"}}
+	<title>为什么进入直播间后会出现白屏、无法加载？</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/help_content.css"/>
+	{{template "page/common_js.html"}}
+</head>
+<body>
+	{{template "page/common_head.html"}}
+	<div class="help-container">
+	    <div class="help-head">
+		 <h2>常见问题</h2>
+	    </div>
+		<div class="help-content">
+		  {{template "help/left.html"}}
+		  <div class="help-right">
+                <div class="help-right-title">
+                为什么进入直播间后会出现白屏、无法加载？
+				</div>
+               <div class="help-right-detail">
+                   若您打开富秀直播主页、进入直播间后页面显示白屏、无法加载等情况，请您按照以下步骤操作进行尝试：<br />
+<br />
+白屏情况：<br />
+1、更换浏览器（切换ie内核和谷歌内核），并清理浏览器的缓存；<br />
+2、尝试重启路由器以后重新联网观看；<br />
+3、通过腾讯电脑管家、360安全卫士等软件优选dns（通常是114或者8888dns，若您之前使用的是固定的dns，请在更换前保存好之前的dns）；<br />
+4、切换使用的网络运营商（例如挂vpn或者手机使用4G网络），若是此方法可以正常观看，请您联系原网络运营商投诉解决。<br />
+<br />
+无法加载情况：<br />
+1、确定电脑已安装Flash浏览器插件；<br />
+FLASH插件下载地址：<a href="https://get.adobe.com/flashplayer/?loc=cn">https://get.adobe.com/flashplayer/?loc=cn</a><br />
+2、若您已安装Flash，请在视频区点击鼠标右键切换成其他备用线路尝试，或者切换其他浏览器尝试。
+                </div>
+                <div class="help-right-foot">
+                    <p>以上回复没有解决您的问题？</p>
+                    <a class="contact" href="tencent://message/?uin=3323684573&Site=&menu=yes">联系客服</a>
+                </div>
+            </div>
+		
+		
+		</div>
+	</div>
+	<!--
+	footer太高。
+	-->
+ </body>
+</html>
+
+{{end}}

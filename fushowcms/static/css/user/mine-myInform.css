@@ -1,0 +1,1086 @@
+body,
+li,
+ul,
+p {
+	margin: 0px;
+	padding: 0px;
+	list-style: none;
+}
+
+body {
+	font-family: "微软雅黑";
+}
+*,body,input,select,textarea,button {
+		font-size:14px;
+}
+#iFrame1 {
+	background-color: black;
+}
+
+#mine-tab-top {
+	width: 100%;
+	height: 152px;
+	margin-top: 0px;
+	margin-left: 0px;
+	margin-bottom: 0px;
+	background-color: white;
+}
+
+#mine-tab-myInform {
+	width: 100%;
+	background-color: white;
+	margin-top: 10px;
+}
+
+#mine-myInform-ul-div {
+	border-bottom: 1px solid #F2F2F2;
+	height: 71px;
+	box-sizing: border-box;
+}
+
+#mine-myInform-ul {
+	width: 900px;
+	height: 70px;
+	margin-top: 10px;
+	margin-left: 50px;
+}
+
+#mine-myInform-ul li {
+	float: left;
+	list-style: none;
+	width: 78px;
+	height: 70px;
+	line-height: 70px;
+	text-align: center;
+	color: #cc00000;
+	font-size: 18px;
+	box-sizing: border-box;
+	margin: 0 15px;
+}
+
+.mine-myInform-ul-liOn {
+	background: #00BFFF;
+	color: white;
+	font-weight: bold;
+}
+
+#mine-myInform-ul li:hover {
+	border-bottom: 4px solid #009CFA !important;
+	cursor:pointer;
+}
+.signin{
+	display: inline-block;
+	margin-left: 30px;
+}
+#signinpic{
+	cursor: pointer;
+}
+/***************TABs出现或隐藏*****************/
+
+.mine-myInform-Off {
+	display: none;
+	margin: 0 auto;
+}
+
+.mine-myInform-On {
+	display: block;
+}
+
+
+/***************Section*****************/
+
+#mine-myInform-TabBox {
+	width: 100%;
+	overflow: hidden;
+	background: white;
+}
+
+#mine-myInform-basicInf {
+	width: 100%;
+	height: 100;
+}
+
+#mine-myInform-user-inform {
+	width: 100%;
+	height: 152px;
+	position: relative;
+}
+
+#mine-myInform-userPic {
+	width: 100px;
+	height: 100px;
+	border-radius: 50px;
+	background-image: url();
+	background-size: 100% 100%;
+	float: left;
+	margin-top: 26px;
+	margin-left: 40px;
+}
+
+#userNames {
+	font-weight: bold;
+	font-size: 25px;
+	display: inline-block;
+	margin-top: 50px;
+	margin-left: 24px;
+	margin-bottom: 15px;
+	color: #595758;
+}
+
+.shiliu {
+	font-size: 18px;
+	color: #595758;
+	margin-left: 25px;
+}
+
+.yue,
+#pomegranateNum {
+	font-size: 18px;
+	color: #009CFA;
+}
+
+
+
+#amend {
+	color: orange;
+	text-decoration: none;
+}
+
+#recharge{
+	margin-left: 25px;
+}
+
+#userID {
+	font-size: 16px;
+	color: gray;
+	padding-left: 15px;
+}
+
+
+/***********鱼丸鱼翅***************/
+
+#mine-myInform-user-inform-ul li {
+	float: left;
+	width: 80px;
+	height: 25px;
+	margin-top: 8px;
+	font-size: 14px;
+	line-height: 20px;
+}
+
+.sPic {
+	width: 14px;
+	height: 14px;
+	display: inline-block;
+	margin-left: 3px;
+}
+
+#mine-myInform-user-inform-ul li:nth-child(2) {
+	margin-right: 460px;
+}
+
+#mine-myInform-user-inform-ul li:nth-child(3) {
+	width: 60px;
+}
+
+#mine-myInform-user-inform-ul li:nth-child(4) {
+	margin-left: 2px;
+	color: grey;
+}
+
+
+/***********技能***************/
+
+#mine-myInform-skills {
+	width: 708px;
+	height: 156px;
+	background: white;
+	padding: 24px;
+}
+
+.xiugaiI {
+	width: 14px;
+	height: 14px;
+	float: left;
+	background-image: url(../../images/mine/修改.png);
+	background-size: 100%;
+	margin-top: 3px;
+	margin-right: 3px;
+}
+
+#span1 {
+	font-size: 26px;
+	color: #e84c3d;
+	font-weight: bold;
+	font-family: "微软雅黑";
+}
+
+#span2 {
+	font-size: 14px;
+	color: gray;
+	margin-left: 5px;
+	font-family: "微软雅黑";
+	margin-right: 200px;
+}
+
+#aA {
+	font-size: 12px;
+	height: 14px;
+	text-decoration: none;
+	color: deepskyblue;
+	float: right;
+}
+
+#aA span {
+	float: left;
+	line-height: 16px;
+}
+
+#aA img {
+	float: left;
+	margin-right: 5px;
+}
+
+#mine-myInform-skills-ul li {
+	width: 80px;
+	height: 120px;
+	float: left;
+	margin-right: 18px;
+	margin-top: 10px;
+}
+
+#mine-myInform-skills-ul li div {
+	width: 80px;
+	height: 80px;
+	background: yellow;
+}
+
+#mine-myInform-skills-ul li span {
+	color: gray;
+	font-size: 12px;
+	margin-top: 10px;
+	margin-left: 15px;
+	float: left;
+}
+
+
+/***********手机邮箱等***************/
+
+#mine-myInform-communicate {
+	width: 100%;
+}
+
+#mine-myInform-communicate li {
+	width: 894px;
+	height: 102px;
+	background: #F7F7F7;
+	float: left;
+	font-size: 14px;
+	margin-top: 25px;
+	margin-left: 25px;
+	position: relative;
+}
+
+#mine-myInform-communicate li:nth-child(even) {
+	margin-right: 0;
+}
+
+.imge12 {
+	width: 80px;
+	height: 80px;
+	float: left;
+	margin-right: 10px;
+}
+
+#phoneyz {
+	background-image: url(../../images/mine/phoneinform.png);
+	background-size: 100%;
+	margin: 10px;
+}
+
+#youxiangyanzheng {
+	background-image: url(../../images/mine/邮箱验证.png);
+	background-size: 100%;
+}
+
+.imge345 {
+	width: 20px;
+	height: 20px;
+	float: left;
+	margin-right: 2px;
+}
+
+.imge345:nth-child(1) {
+	background-image: url(../../images/mine/QQ.png);
+}
+
+#changePhone {
+	color: gray;
+	background-color: #E7E7E7;
+	width: 84px;
+	height: 32px;
+	text-align: center;
+	line-height: 32px;
+	position: absolute;
+	right: 58px;
+	top: 44px;
+	cursor:pointer;
+}
+
+#phonestate {
+	font-weight: bold;
+	padding: 8px;
+	margin-left: 10px;
+	position: absolute;
+	top: 44px;
+	right: 146px;
+}
+
+#phonestatePic {
+	width: 19px;
+	height: 23px;
+	position: absolute;
+	top: 48px;
+	right: 233px;
+}
+
+.safephone {
+	font-size: 20px;
+	font-weight: bold;
+	padding-top: 30px;
+	color: gray;
+}
+
+.graySpan {
+	font-size: 16px;
+	color: gray;
+	padding-top: 10px;
+}
+
+
+/***********小图片们***************/
+
+#bianji {
+	background-image: url(../../images/mine/修改.png);
+	background-size: 100%;
+}
+
+#qQ {
+	background-image: url(../../images/mine/QQ.png);
+	background-size: 100%;
+}
+
+#loginSuccess {
+	background-image: url(../../images/mine/已登录.png);
+	background-size: 120%;
+}
+
+#mphone {
+	background-image: url(../../images/mine/麦克风.png);
+	background-size: 100%;
+}
+
+#jinbi {
+	background-image: url(../../images/mine/金币.png);
+	background-size: 100%;
+}
+
+#zhuanshi {
+	background-image: url(../../images/mine/宝石.png);
+	background-size: 100%;
+}
+
+#huojian {
+	background-image: url(../../images/mine/火箭.png);
+	background-size: 100%;
+}
+
+
+/***********修改头像***************/
+
+#chengePic,
+#chengeName,
+#chengePhone,
+#realName,
+#chengeLeagues,
+#chengeEmail,
+#bindPhone {
+	width: 100%;
+	background: white;
+	float: left;
+}
+
+#chengePic-big {
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	background-image: url(../../images/default_avatar_512_512.jpg);
+	background-size: 100%;
+	margin: 60px 20px 0 0;
+	float: left;
+}
+
+#chengePic-big img {
+	width: 100%;
+	height: 100%;
+}
+
+#chengeinput {
+	position: relative;
+}
+
+#chengePic-span {
+	font-size: 14px;
+	color: gray;
+}
+
+#chengePic-See {
+	width: 490px;
+	height: 210px;
+	background-image: url(../../images/mine/透明.jpg);
+	background-size: 100%;
+	margin: 30px 20px 0 0px;
+	float: right;
+}
+
+#chengePic-select {
+	margin-left: 170px;
+	margin-top: 50px;
+}
+
+#chengePic-select li {
+	width: 150px;
+	height: 40px;
+	background: yellow;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 40px;
+	margin-bottom: 20px;
+	font-weight: bold;
+	border: solid 2px #CFD0D2;
+	background: lightskyblue;
+	position: relative;
+}
+
+#submit {
+	width: 150px;
+	height: 40px;
+	filter: alpha(opacity=0);
+	opacity: 0;
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+.sr-only{
+	display: none;
+}
+
+/*11.16NEWchangepic*/
+
+.chengePic-div {
+	width: 430px;
+	height: 350px;
+	background-color: #f6f6f6;
+	position: relative;
+	margin:50px auto;
+}
+
+.picheader {
+	height: 36px;
+	background-color: #009CFA !important;
+	;
+}
+
+.picheader-text {
+	color: white;
+	font-size: 18px;
+	width: 100px;
+	height: 36px;
+	line-height: 36px;
+	padding-left: 10px;
+	float: left;
+}
+
+.picheader-col {
+	float: right;
+	margin: 5px 5px 0 0;
+	width: 25px;
+	height: 25px;
+	background: url('/static/images/mine/guanbi.png') no-repeat right top;
+	background-size: 100%;
+}
+
+.picbody {
+	position: relative;
+}
+
+.picbody-pic {
+	width: 120px;
+	height: 139px;
+	background: url('/static/images/mine/selectimage.png') no-repeat;
+	background-size: 100%;
+	margin: 0 auto;
+	margin-top: 18px;
+}
+
+.picbody-btn {
+	width: 140px;
+	height: 40px;
+	background-color: #009CFA !important;
+	color: white;
+	font-size: 18px;
+	text-align: center;
+	line-height: 36px;
+	margin: 0 auto;
+	margin-top: 10px;
+	padding-top: 3px;
+	cursor: pointer;
+}
+
+.picbody p {
+	text-align: center;
+	font-size: 14px;
+	color: #313131;
+	padding-top: 30px;
+}
+
+#btns {
+	margin-left: 14px;
+	margin-top: 2px;
+	width: 200px;
+	background-color: gainsboro;
+}
+
+.btn1 {
+	display: inline-block;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 1.42857143;
+	text-align: center;
+	white-space: nowrap;
+	vertical-align: middle;
+	-ms-touch-action: manipulation;
+	touch-action: manipulation;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	background-image: none;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	margin-left: 1px;
+}
+
+.btn1 img {
+	width: 17px;
+	height: 16px;
+}
+
+#picyes,
+#picno {
+	width: 72px;
+	height: 32px;
+	font-size: 18px;
+	color: white;
+	/*background-color: #009CFA !important;*/
+	border-radius: 4px;
+	display: inline-block;
+	text-align: center;
+	margin-left: 25px;
+	cursor: pointer;
+	font-size: 18px;
+}
+
+#picyes {
+	background-color: #009CFA !important;
+	position: absolute;
+	right: 108px;
+	bottom: 50px;
+	padding: 0;
+	border-radius:0px;
+}
+
+#picno {
+	background-color: gray;
+	position: absolute;
+	right: 28px;
+	bottom: 50px;
+	padding: 0;
+	border-radius:0px;
+}
+.chengePic-divshow2{
+	display: none;
+}
+
+/***********修改密码***************/
+#chengePassw{
+	margin:50px auto;
+}
+#chengePassw input {
+	width: 338px;
+	height: 40px;
+	border: 1px solid gainsboro;
+	margin-top: 20px;
+	padding-left: 10px;
+	background-color: #EBF6FC;
+}
+
+#chengePassw-Btn {
+	width: 338px;
+	height: 40px;
+	background: #009CFA !important;
+	cursor: pointer;
+	color: white;
+	font-size: 25px;
+	font-weight: bolder;
+	text-align: center;
+	line-height: 40px;
+}
+
+
+/***********修改昵称***************/
+
+.nickdiv {
+	margin-top: 56px;
+	margin-left: 180px;
+	font-size: 16px;
+	color: #575859;
+}
+
+#nicheng {
+	width: 338px;
+	height: 40px;
+	border: 1px solid gainsboro;
+	margin: 20px 0 20px 180px;
+	background-color: #EBF6FC;
+}
+
+#warn {
+	display: inline;
+	margin-left: 180px;
+	color: red;
+}
+
+#chengeName-Btn {
+	width: 338px;
+	height: 40px;
+	border: 1px solid gainsboro;
+	margin-left: 180px;
+	margin-top: 20px;
+	background: #009CFA !important;
+	font-size: 25px;
+	color: white;
+	font-weight: bold;
+	text-align: center;
+	line-height: 40px;
+	cursor:pointer;
+}
+
+
+/***********修改手机***************/
+
+#chengePhone div:nth-child(1) {
+	margin-top: 56px;
+}
+
+#chengePhone div {
+	width: 100%;
+	margin-bottom: 20px;
+	height: 40px;
+	position: relative;
+	line-height: 40px;
+}
+
+.phtext {
+	padding-left: 195px;
+	font-size: 16px;
+	color: #000000;
+}
+
+#nowPhone,
+#newphone,
+#ordpass,
+#phone_check,
+#bindordpass,
+#bindnewphone,
+#bindphone_check {
+	width: 336px;
+	height: 40px;
+	position: absolute;
+	right: 375px;
+	background-color: #EBF6FC;
+	border: 1px solid gainsboro;
+}
+#change-img-verify,#bind-img-verify{
+	width: 180px;
+	height: 40px;
+	position: absolute;
+	right: 530px;
+	background-color: #EBF6FC;
+	border: 1px solid gainsboro;
+}
+.bind-img{
+	width: 150px;
+	height: 40px;
+	position: absolute;
+	right: 375px;
+}
+
+#getting,
+#chengePhone-Btn,
+#check_num,
+#bindPhone-Btn {
+	color: white;
+	font-size: 18px;
+	width: 102px;
+	height: 32px;
+	background-color: #009CFA !important;
+/*	border-radius: 6px;*/
+	margin-left: 150px;
+	border: transparent;
+	position: absolute;
+	left: 218px;
+	line-height: 32px;
+}
+
+#bindgetting {
+	color: white;
+	font-size: 18px;
+	width: 102px;
+	height: 32px;
+	background-color: #009CFA !important;
+	border: transparent;
+    line-height: 31px;
+	float:right;
+	margin-right:10px;
+}
+
+#bindcheck_num {
+	color: white;
+	font-size: 18px;
+	width: 102px;
+	height: 32px;
+	background-color: #009CFA !important;
+	border: transparent;
+	float:right;
+	line-height:31px;
+	display:none;
+}
+
+#leftcheck,
+#bindleftcheck {
+	width: 168px;
+	height: 40px;
+	border: 1px solid gainsboro;
+	box-sizing: border-box;
+	display: block;
+	position: absolute;
+	right: 543px;
+	top: 0;
+	text-align: center;
+	line-height: 40px;
+	font-size: 16px;
+	color: gray;
+	background-color: #fff3f5;
+}
+
+#phone_check,
+#bindphone_check {
+	width: 336px;
+	height: 40px;
+	top: 0;
+}
+
+#phonestr,
+#bindphonestr {
+	margin-top: 68px;
+	margin-left: 50px;
+	height: 32px;
+	display: none;
+}
+
+#phonestr span,
+#bindphonestr span {
+	line-height: 32px;
+}
+
+#phonestr span:nth-child(1) {
+	font-size: 16px;
+	color: #000000;
+}
+
+#phonestr span:nth-child(2) {
+	font-size: 16px;
+	color: #595757;
+}
+
+#phonestr span:nth-child(3) {
+	width: 72px;
+	height: 32px;
+	font-size: 18px;
+	color: white;
+	background-color: #009CFA !important;
+	display: inline-block;
+	text-align: center;
+	margin-left: 25px;
+	cursor: pointer;
+}
+
+
+/*主播*/
+
+#realName input {
+	width: 336px;
+	height: 40px;
+	border: 1px solid gainsboro;
+	margin-top: 20px;
+	padding-left: 10px;
+	background-color: #EBF6FC;
+}
+
+#realName-Btn {
+	background: #009CFA !important;
+    color: white;
+    font-size: 25px;
+    font-weight: bolder;
+    text-align: center;
+    line-height: 40px;
+    width: 336px;
+    margin-top: 20px;
+}
+
+#IDPup,
+#realphone span,#unPhone span {
+	background: #009CFA !important;
+	color: white;
+	font-size: 25px;
+	font-weight: bolder;
+	cursor: pointer;
+}
+#IDPup{
+	border: 0px !important;
+}
+#insertIdPicForm{
+	position: relative;
+    float: left;
+    margin-left: 120px;
+	width: 336px;
+}
+#realphone p,
+#realshow p ,
+#unPhone p{
+	font-size: 25px;
+	text-align: center;
+	padding-top: 100px;
+}
+
+#realphone span,.unPhoneSpan{
+	width: 200px;
+	height: 40px;
+	display: block;
+	text-align: center;
+	line-height: 40px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+#realName-Pre {
+	width: 262px;
+	height: 200px;
+	background-image: url(/static/images/mine/IDcard.png);
+	background-size: 100%;
+	margin: 80px 20px 0 110px;
+	float: left;
+	background-repeat:no-repeat;
+}
+/******************绑定联盟*******************/
+#errorMsg{
+	width: 300px;
+    height: 40px;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 16px;
+    line-height: 40px;
+    color: red;
+}
+#chengeLeagues b {
+	color: #009CFA !important;
+}
+
+#nowLeagues {
+	width: 146px;
+	height: 40px;
+	border: 1px solid gainsboro;
+	font-size: 16px;
+	padding-left: 10px;
+	margin-top: 56px;
+	margin-left: 56px;
+	background-color: #EBF6FC;
+}
+
+#nowLeaguseBtn {
+	color: white;
+	font-size: 18px;
+	width: 102px;
+	height: 32px;
+	background-color: #009CFA !important;
+	margin-left: 177px;
+	margin-top: 35px;
+	border: transparent;
+	text-align: center;
+}
+
+#lvdiv {
+	position: absolute;
+	width: 304px;
+	top: 40px;
+	right: 64px;
+}
+
+.lvbox {
+	position: relative;
+	box-sizing: border-box;
+	width: 304px;
+	height: 14px;
+	background-color: gainsboro;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background-color: transparent;
+	overflow: hidden;
+	background-color: #EAEAEA;
+	border: 1px solid gainsboro;
+	float: right;
+	z-index: 1;
+}
+
+.lvbox-div {
+	position: absolute;
+	left: -0.5px;
+	top: 0;
+	z-index: 3;
+	width: 304px;
+	height: 14px;
+}
+
+.lvbox-div div {
+	width: 20%;
+	height: 14px;
+	float: left;
+	border-left: 1px solid white;
+	border-right: 1px solid white;
+	box-sizing: border-box;
+}
+
+#target-div img {
+	width: 100%;
+	height: 100%;
+}
+
+.lv {
+	width: 0%;
+	height: 12px;
+	box-sizing: border-box;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	background-color: rgba(28, 211, 136, 0.75);
+	box-shadow: 0px -7px 2px rgb(28, 211, 136) inset;
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 2;
+}
+
+.sidebar-user-level-user {
+	width: 70px;
+	height: 25px;
+	float:left;
+}
+
+.sidebar-user-level-user-max {
+	width: 70px;
+	height: 25px;
+	margin: 0 auto;
+}
+#lvmax {
+	position: absolute;
+	bottom: 69px;
+	right: 60px;
+	font-size: 14px;
+	color: #595758;
+}
+
+.lv_box {
+	overflow: hidden;
+	position: absolute;
+    width: 304px;
+    top: 60px;
+    right: 64px;
+}
+.lv_text{
+	text-align: center;
+	width: 164px;
+	height: 25px;
+	line-height: 25px;
+	float:left;
+}
+
+#file_upload {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	height: 50px;
+	position: absolute;
+	left: 120px;
+	cursor: pointer;
+}
+
+#idp_upload {
+	opacity: 0;
+	filter: alpha(opacity=0);
+	position: absolute;
+	top: 260px;
+}
+
+#chengePic-big {
+	width: 200px;
+	height: 200px;
+	border-radius: 100px;
+	background-image: url(../../images/default_avatar_512_512.jpg);
+	background-size: 100% 100%;
+	margin: 60px 20px 0 0;
+	float: left;
+}
+
+#black {
+	width: 100%;
+	height: 10px;
+	background-color: #F2F2F2;
+}
+
+
+/**************第三方登录绑定手机******************/
+
+#bindPhone div:nth-child(1) {
+	margin-top: 56px;
+}
+
+#bindPhone div {
+	width: 100%;
+	margin-bottom: 20px;
+	height: 40px;
+	position: relative;
+	line-height: 40px;
+}
+
+.font-color {
+	color: red;
+	margin-left: 180px;
+}
+.phone-box{ width:285px !important; margin:0 auto !important; margin-left: 327px !important;}
+.timer-num{ font-size:18px; border-radius: 6px !important; width:170px !important; margin:0px !important;  float:left; background:#009CFA; color:#fff; height:32px !important; line-height:32px !important; text-align:center;}	
+.zhuce-agree-box0 {width: 18px; height: 17px; background:#FFCBC9; position: absolute; top: 3px; display: none; cursor: pointer;}	
+.zhuce-agree-box img{float:left; margin-right:5px; margin-top:3px; cursor: pointer;}

@@ -1,0 +1,68 @@
+.comment {
+	width: 680px;
+	margin: 20px auto;
+	position: relative
+}
+
+.comment h3 {
+	height: 28px;
+	line-height: 28px
+}
+
+.com_form {
+	width: 100%;
+	position: relative
+}
+
+.input {
+	width: 310px;
+	height: 60px;
+	border: 1px solid #ccc
+}
+
+.com_form p {
+	height: 28px;
+	line-height: 28px;
+	position: relative
+}
+
+span.emotion {
+	width: 42px;
+	height: 20px;
+	background: url(icon.gif) no-repeat 2px 2px;
+	padding-left: 20px;
+	cursor: pointer
+}
+
+span.emotion:hover {
+	background-position: 2px -28px
+}
+
+.qqFace {
+	margin-top: -145px;
+	margin-left: -43px;
+	background: #fff;
+	padding: 2px;
+	border: 1px #dfe6f6 solid;
+}
+
+.qqFace table td {
+	padding: 0px;
+}
+
+.qqFace table td img {
+	cursor: pointer;
+	border: 1px #fff solid;
+}
+
+.qqFace table td img:hover {
+	border: 1px #0066cc solid;
+}
+
+.show{ display: inline-block;}
+
+.show image {
+	 display: inline-block;
+	 float: left;
+}
+#facebox{ width: 310px; }

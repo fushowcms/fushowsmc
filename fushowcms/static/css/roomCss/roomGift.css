@@ -1,0 +1,97 @@
+.money {
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.money2 {
+	width: 100%;
+	height: 100vh;
+	background: rgba(0, 0, 0, 0.5);
+}
+
+.roomGift-Box {
+	width: 330px;
+	height: 170px;
+	background: white;
+	margin: auto;
+}
+
+.roomGift--title {
+	width: 330px;
+	height: 36px;
+	background: #E84C3D;
+	color: white;
+	text-align: center;
+	font-size: 18px;
+	line-height: 36px;
+	font-weight: bold;
+}
+
+.roomGift-message,
+.roomGift-btns {
+	height: 36px;
+	padding: 0 50px;
+}
+
+.roomGift-message {
+	line-height: 36px;
+	margin-bottom: 20px;
+}
+
+.roomGift-btns {
+	line-height: 36px;
+	font-size: 14px;
+}
+
+.roomGift-icon {
+	width: 24px;
+	height: 24px;
+	margin: 6px 10px 0 0;
+	float: left;
+	background-image: url(../../images/Play/warn.png);
+}
+
+.roomGift-message2 {
+	height: 100px;
+	padding: 0 20px;
+}
+
+.roomGift-message2 {
+	line-height: 36px;
+	margin-bottom: 20px;
+}
+
+.roomGift-icon2 {
+	width: 80px;
+	height: 80px;
+	margin: 6px 10px 0 0;
+	float: left;
+	background-size: 100%;
+}
+
+.roomGift-pay,
+.cancel-btn {
+	float: left;
+	text-decoration: none;
+}
+
+.cancel-btn {
+	color: darkgray;
+}
+
+.roomGift-pay {
+	width: 190px;
+	height: 30px;
+	background: #E84C3D;
+	margin-left: 10px;
+	color: white;
+	font-weight: bold;
+	font-size: 14px;
+	text-align: center;
+	line-height: 30px;
+}
+
+.flipster.flipster-active.flipster-carousel {
+	height: 130px !important;
+}

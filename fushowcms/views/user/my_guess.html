@@ -1,0 +1,50 @@
+{{ define "user/my_guess.html" }}
+<html>
+
+<head>
+	{{template "page/common_meta.html"}}
+	<title>石榴联盟直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/user/personal.css" />
+	<link rel="stylesheet" href="/static/css/user/my_guess.css" />
+	{{template "page/common_js.html"}}
+	<script src="/static/js/user/my_guess.js"></script>
+	<script src="/static/js/user/lwPages.js"></script>
+
+</head>
+
+<body>
+
+	<!-- 导航头 -->
+	{{ template "page/common_head.html" }}
+	<div class="content-Box">
+
+		<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+		</div>
+		<div id="iFrame1">
+			<div class="iFrame1-title">
+				<ul class="iFrame1-title-btns">
+
+					<li>礼物记录</li>
+				</ul>
+			</div>
+
+			<div class="myGuess-show">
+				<table id="myGuess" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:944px; margin:20px auto; text-align: center;color:gray;">
+					<tr style="color:gray;background: #f5f5f5;" height="50">
+						<th>消费时间</th>
+						<th>赠送给主播</th>
+						<th>赠送礼物</th>
+						<th>使用石榴籽</th>
+					</tr>
+				</table>
+				<div class="page-component gift"></div>
+			</div>
+		</div>
+		<div class="loginBox"></div>
+	</div>
+</body>
+
+</html>
+{{ end }}

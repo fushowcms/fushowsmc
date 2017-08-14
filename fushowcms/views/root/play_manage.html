@@ -1,0 +1,87 @@
+{{ define "root/play_manage.html"}} {{ template "root/head.html" }}
+
+<body class="easyui-layout">
+	<!--左start-->
+	{{ template "root/sidebar.html" }}
+	<!--后台右start-->
+	{{ template "root/header.html" }}
+	<style>
+		.datagrid-view {
+			overflow-x: auto;
+		}
+	</style>
+	<div style="height:80px;">
+		<h2>直播记录管理</h2>
+		<div style="padding:5px 0;">
+			<lable>主播id：</lable>
+			<input type="text" name="userId" id="userId" />
+			<input type="button" id="submit" value="查询" />
+		</div>
+	</div>
+
+	<div id="mainPanle" region="center" style="top:150px">
+
+		<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+		<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+		<script type="text/javascript">
+			$(function () {
+				findGetRootPlayList();
+				$("#submit").click(function () {
+					var userId = $("#userId").val();
+					findGetRootPlayList(userId);
+				});
+
+				function findGetRootPlayList(userId) {
+					$('#dg').edatagrid({
+						fitColumns: true,
+						pagination: true,
+						fit: true,
+						url: '../root/getRootPlayList',
+						onLoadSuccess: function (data) {
+						},
+						queryParams: {
+							userId: userId,
+						},
+
+					});
+
+				}
+
+			});
+		</script>
+
+
+		<table id="dg" style="overflow: hidden;padding:20px 0 0 20px;" toolbar="#toolbar" pagination="true" idField="Id" rownumbers="true"
+		 fitColumns="true" singleSelect="true">
+			<thead>
+				<tr>
+					<!--				<th field="ck" checkbox="true"></th> 	-->
+
+					<th field="Uid" width="50" align="center">主播id</th>
+					<th field="StartTime" width="50" align="center">开始时间</th>
+					<th field="EndTime" width="50" align="center">结束时间</th>
+					<th field="RoomId" width="50" align="center">所属频道</th>
+					<th field="AnchormTime" width="50" align="center">直播时长</th>
+				</tr>
+			</thead>
+		</table>
+		<!--	<div id="toolbar">
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入联盟名称',searcher:doSearch" style="width:200px"></input>
+		</div>	
+	</div>-->
+		<script>
+			function doSearch(value) {
+				$('#dg').datagrid('load', { inputid: value })
+			}
+			//dialog取消按钮
+			function cancel() {
+				jQuery("#form").form("reset");
+				jQuery("#dlg").dialog("close");
+			}
+		</script>
+	</div>
+	<!--填充body-end-->
+	{{ template "root/footer.html" }}
+	<!--后台右end-->
+	{{end}}

@@ -1,0 +1,197 @@
+{{ define "root/room_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+<h2 >房间管理</h2>
+<div id="mainPanle" region="center" >
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script src="/static/js/common.js"></script>
+	<script type="text/javascript">
+		nickname = localStorage.getItem("Id");
+		var stick = null;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getroomlist',
+				saveUrl: '../root/roomadd',
+				updateUrl: '../root/roomup',
+				destroyUrl: '../root/roomdel',
+				fit:true
+			});
+		});
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		}
+		//添加置顶
+		function roomStaick(){
+			var row = $('#dg').datagrid('getSelected');
+			var id = row.Id;
+			if (id ==null){
+				alert("错误操作");
+			}
+			authAlert();
+		}
+		
+		//取消置顶
+		function CancelStaick(){
+			var row = $('#dg').datagrid('getSelected');
+			var id = row.Id;
+			if (id ==null){
+				alert("错误操作");
+			}
+			authAlert();
+		}
+		//置顶列表
+		function getStaickList (){
+			window.location.href="../root/room_manage_staick"
+		}
+		//置顶状态
+		function eventtype(val, replace) {
+			if (val == 0) {
+				return "未置顶"
+			}else if(val == 1){
+				return "置顶"
+			}
+		}
+		//直播状态
+		function livestate(val,replace){
+			if(val==0){
+				return "未直播"
+			}else if (val==1){
+				return "直播中"
+			}else if (val==2){
+				return "禁播中"
+			}
+		}
+		//房间类型
+		function roomtype(val,replace){
+			if(val==0){
+				return "普通直播间"
+			}else if (val==1){
+				return "竞猜直播间"
+			}
+		}
+		
+		//直播时长
+		function addtime(val,replace){
+			
+			var timestamp = Date.parse(new Date());
+			if (val==0){
+				return "未直播";	
+			}
+			return  parseInt(((timestamp/1000 - val)/60));
+			
+		}
+		
+		//禁播操作
+		function forbidstreams(){
+			var row = $('#dg').datagrid('getSelected');
+			var id = row.Id;
+			if (id ==null){
+				alert("错误操作");
+			}
+			authAlert();
+		}
+		//恢复操作
+		function resumestreams(){
+			var row = $('#dg').datagrid('getSelected');
+			var id = row.Id;
+			if (id ==null){
+				alert("错误操作");
+			}
+			authAlert();
+		}
+		//筛选事件
+		function mstick(s){
+			if(s==0){
+				stick = 3;
+				return;
+			}else{
+				stick = s;
+			}
+		}
+		//筛选事件 --->livestate
+		function bao(s){
+			var state = null;
+			if(s==0){
+				return;
+			}else{
+				state = s;
+			}
+			$.ajax({
+				type:"post",
+				url:"../root/chooseroom",
+				dataType: 'json',
+				data:{
+					Choose:state,
+					Staick:stick
+				},
+				success:function(result){  
+					if(result.total<=0){
+						alert("没有更多信息");
+						return;
+					}
+					//加载数据
+					$('#dg').datagrid('loadData',result.rows);
+				},error:function(){
+					alert("请求异常");
+				}
+			});
+		}
+	</script>
+	<table id="dg" style="margin:0 0 0 50px;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+ 			singleSelect ="true" checkbox="true"
+			rownumbers="true" fitColumns="true" >
+		<thead>
+			<tr> 
+<!-- 				<th field="ck" checkbox="true"></th> 	-->
+				<th field="Id" width="30">房间Id</th>
+				<th field="Uid" width="30">主播Id</th>
+				<th field="NickName" width="30">主播昵称</th>
+				<th field="RoomType" width="30" formatter="roomtype">房间类型</th>
+				<th field="RoomAlias" width="30" >房间别名</th>
+				<th field="LiveAddress" width="100">直播地址</th>
+				<th field="LiveCover" width="80">直播封面</th>
+				<th field="AddTime" width="80" formatter="addtime">直播时长(分钟)</th>
+				<th field="LiveState" width="50" formatter="livestate">直播状态</th>
+				<th field="RoomStick" width="50" formatter="eventtype">置顶状态</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>
+		<a href="javascript:roomStaick()" class="easyui-linkbutton" iconCls="icon-save" plain="true" >置顶</a>
+		<a href="javascript:CancelStaick()" class="easyui-linkbutton" iconCls="icon-save" plain="true" >取消置顶</a>
+		<a href="javascript:forbidstreams()" class="easyui-linkbutton" iconCls="icon-save" plain="true" >禁播</a>
+		<a href="javascript:resumestreams()" class="easyui-linkbutton" iconCls="icon-save" plain="true" >恢复</a>
+		<a href="javascript:getStaickList()" class="easyui-linkbutton" iconCls="icon-save" plain="true" >置顶列表</a>
+	
+		<div id="tb" style=" float:right">
+			<select  name=sel style="width:100px" onchange="mstick(this.options[this.options.selectedIndex].value)">  	
+			    <option value="0" >未选择</option>
+				<option value="1">置顶中</option>
+	    	</select>
+		
+			<select  name=sel style="width:100px" onchange="bao(this.options[this.options.selectedIndex].value)">  	
+			    <option value="0" >未选择</option>
+				<option value="1">禁封中</option>
+				<option value="2">直播中</option>
+				<option value="3">休息中</option>
+	    	</select>
+			<input class="easyui-searchbox" data-options="prompt:'请输入房间名称',searcher:doSearch" style="width:200px"></input>
+		</div>	
+	</div>
+	
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

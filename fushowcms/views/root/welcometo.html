@@ -1,0 +1,50 @@
+{{ define "root/welcometo.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+/*	.datagrid-view2{
+		overflow-y:scroll;
+		overflow-x:scroll;
+	}*/
+
+	.panel{
+		overflow-x:scroll;
+	}
+	.hint_welcome{
+		width:800px;
+		overflow:hidden;
+		margin-top:300px;
+	}
+	.hint_welcome span{
+		font-size:30px;
+		display:block;
+		text-align:center;
+	}
+</style>
+<div id="mainPanle" region="center" style="overflow: hidden;padding:20px 20px 0 20px;">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	
+
+    <div class="hint_welcome">
+	   <span>欢迎登陆石榴联盟后台管理系统</span>
+	</div>
+	
+
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('loadData',{total:0,rows:[]});
+			$('#dg').datagrid('load',{inputid: value})
+		}
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

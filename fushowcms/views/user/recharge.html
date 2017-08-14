@@ -1,0 +1,72 @@
+{{ define "user/recharge.html" }}
+<html>
+
+<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/user/personal.css" />
+	<link rel="stylesheet" href="/static/css/user/personal-recharge.css" />
+	{{template "page/common_js.html"}}
+	<script type="text/javascript" src="/static/js/user/recharge.js"></script>
+
+</head>
+
+<body>
+	<!-- 导航头 -->
+	{{ template "page/common_head.html" }}
+	<div class="recharge-box">
+		<div class="recharge-title">
+			<span class="title">金币充值</span>
+			<div class="recharge-Inform" style="width:600px">
+				<span>账户余额</span>
+				<span id="accountBalance">&nbsp;0&nbsp;</span>
+				<span>金币</span>
+			</div>
+			<div class="recharge-userName">
+				<!--					<div class="recharge-uName">当前登录昵称:</div>-->
+				<div id="userName"></div>
+			</div>
+		</div>
+		<div class="recharge-Box">
+			<div class="line2">
+				<div class="nameS" style="height: 83px; line-height: 83px;">请选择充值金额:</div>
+				<div class="contentS" style="margin-top: 20px;">
+					<ul class="recharge-Ul">
+						<li class="recharge-Mchoice">10</li>
+						<li class="recharge-Mchoice">50</li>
+						<li class="recharge-Mchoice">100</li>
+						<li class="recharge-Mchoice">500</li>
+						<li class="recharge-Mchoice">1000</li>
+						<li class="recharge-inputBox">
+							<input placeholder="其他金额" id="recharge-btn" style="outline:none;" onpropertychange="OnPropChanged (event)" />
+							<span>元</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="line3">
+				<div class="nameS" style="height: 31px;line-height: 31px;">兑换道具:</div>
+				<div class="contentS">
+					<span class="recharge-money">1000</span>
+					<span class="recharge-moneyName">金币<span style="font-size:16px; color:#595758; font-weight: 500;">（兑换比例 1 元：100金币）</span></span>
+				</div>
+			</div>
+			<div class="line4">
+				<div class="nameS" style="height: 80px;line-height: 80px;">支付方式:</div>
+				<div class="contentS">
+					<ul class="recharge-Pay" style="margin-top: 10px;">
+						<li></li>
+						<li></li>
+						<input id="businesspay" type="hidden" value="" />
+					</ul>
+				</div>
+			</div>
+			<div class="recharge-queren" id="recharge">确认充值</div>
+		</div>
+	</div>
+</body>
+
+</html>
+
+{{end}}

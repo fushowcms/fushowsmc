@@ -1,0 +1,226 @@
+{{define "user/video_content.html"}}
+<!--####################Video#########################-->
+     <div id="room-video" >
+		
+     	<div class="prism-player" id="J_prismPlayer" style="background-color:#000;"></div>
+
+	<!--	<div id="player" class="video-js vjs-default-skin" style="width:1310;height:737px;">
+		    <script type="text/javascript" charset="utf-8" src="http://yuntv.letv.com/player/live/blive.js"></script>
+		    <script>
+		        var player = new CloudLivePlayer();
+		        player.init({activityId:"A2016092400002ez"});
+		    </script>
+		</div>-->
+
+	<!--#########弹幕###########-->	
+	    <div id="danmu">
+	
+		</div>
+     <!--#########竞猜1###########-->	
+     <div id="guess-kinds-1">
+     		<p>产品分类</p>
+            <!--<div class="choices">
+            <ul id="guess-kinds-1-ul">
+            	<li class="Button Block">111</li>
+            	<li class="Button Block">222</li>
+            	<li class="Button Block">333</li>
+            	<li class="Button Block">444</li>
+            	<li class="Button Block">555</li>
+            </ul>	
+            </div>-->
+            <div class="flipster">
+				  <ul class="Gusse-choices11">
+					<li>
+						<p class="Button Block">111</p>
+					</li>
+					<li>
+						<p class="Button Block">222</p>
+					</li>
+					<li>
+						<p class="Button Block">333</p>
+					</li>
+					<li>
+						<p class="Button Block">444</p>
+					</li>
+					<li>
+						<p class="Button Block">555</p>
+					</li>
+				  </ul>
+				</div>
+				
+				<div id="guess-kinds-1-Btn">取消</div>
+     </div>       
+     <!--#########选择1###########-->		
+        <div id="guess-kinds-2">
+          <!--<ul id="guess-kinds-2-ul">
+          	<li id="Player1">A战队</li>
+          	<li>VS</li>
+          	<li id="Player2">B战队</li>
+          	<li class="guess-kinds-2-select"></li>
+          	<li class="Player">A战队</li>
+          	<li class="guess-kinds-2-select"></li>
+          	<li class="Player">B战队</li>
+          </ul>
+          <p>赔率为:<span>1:100</span></p>
+          <p>赔率为:<span>1:200</span></p>
+          <div class="guess-kinds-2-tutiao"></div>
+          <div class="guess-kinds-2-tutiao"></div>
+          <span>100人</span>
+          <span>200人</span>-->
+          <div style="width:388px ; height: 30px; padding: 0 20px;line-height: 30px;">
+	          <input type="checkbox" />
+	          <span class="name">红队</span>
+	          <span>赔率:1:100</span>
+	          <b></b>
+
+          </div>  
+          <input type="text" id="guess-kinds-2-Num"  placeholder="请输入投注数..."/>
+     	  <div id="guess-kinds-2-yes">确认</div>
+        </div>
+     <!--#########选择2###########-->
+     <!--#########选择3###########-->
+      <!--########确认选择###########-->
+      <div id="guess-kinds-Finalyes">
+      	  <p>是否确认支持？</p>
+      	  <div id="guess-kinds-Finalyes-yes">是</div>
+      	  <div id="guess-kinds-Finalyes-no">否</div>
+      </div>
+ </div>
+     <div id="room-video-bottom">
+
+		<div style="float: left;margin-top: 13px;">
+			<div >
+				<label>fms url:</label>
+				<input id="fe_text1" value="rtmp://video-center.alivecdn.com/fushowcms/"  style="background-color: white;width: 280px;" disabled></input>
+				<button id="d_clip_button1" class="my_clip_button" data-clipboard-target="fe_text1"><b>复制</b></button>
+			</div>
+			<div>
+				<label>串码流:</label>
+				<input id="fe_text2" value="" style="background-color: white;width: 280px;" disabled></input>
+				<button id="d_clip_button2" class="my_clip_button" data-clipboard-target="fe_text2"><b>复制</b></button>
+			</div>
+		</div>
+		
+		<div>
+			<p style="color:red;font-size:12px;float: left;line-height:70px; margin-left: 10px">* 复制到OBS广播设定</p>
+		</div>
+		<script type="text/javascript" src="/static/js/room/ZeroClipboard.min.js"></script>
+
+     	
+     	
+ <!--    	<ul id="room-video-bottom-ul">
+     		<div class="gift-Btn">
+     			<img src="images/Play/gif0.gif" style="float: left; margin-top: 5px; background: deepskyblue;"/>
+     			<div>
+     				<p class="giftName1">大米饭团</p>
+     				<p class="giftPrice1">10000石榴籽</p>
+     			</div>
+     		</div>
+     	</ul>
+		<a href="../mineHtml/my-Iform.html" id="guess2">竞猜赢石榴2</a>
+		<div id="guess">竞猜赢石榴</div>-->
+     </div>
+
+	<script>
+		function getPar(par){
+		    //获取当前URL
+		    var local_url = document.location.href; 
+		    //获取要取得的get参数位置
+		    var get = local_url.indexOf(par +"=");
+		    if(get == -1){
+		        return "";   
+		    }   
+		    //截取字符串
+		    var get_par = local_url.slice(par.length + get + 1);    
+		    //判断截取后的字符串是否还有其他get参数
+		    var nextPar = get_par.indexOf("&");
+		    if(nextPar != -1){
+		        get_par = get_par.slice(0, nextPar);
+		    }
+		    return get_par;
+		}
+		var roomId = getPar("roomId");
+		var anchorId = getPar("anchorId");
+		var fe_text2 = anchorId + "-" + roomId + "?vhost=live.shiliu88.com";
+		document.getElementById('fe_text2').value=fe_text2;
+		// 定义一个新的复制对象
+		var clip = new ZeroClipboard( document.getElementById("d_clip_button1"), {
+		    moviePath: "/static/js/room/ZeroClipboard.swf"
+		} );
+		var clip = new ZeroClipboard( document.getElementById("d_clip_button2"), {
+		    moviePath: "/static/js/room/ZeroClipboard.swf"
+		} );
+		
+		// 复制内容到剪贴板成功后的操作
+		clip.on( 'complete', function(client, args) {
+		    alert("复制成功，复制内容为："+ args.text);
+			console.log("复制成功，复制内容为："+ args.text);
+		} );
+	
+	$(function(){
+	var videoHight = $(window).height() - 70 - 100;
+	  var player = new prismplayer({
+	      id: "J_prismPlayer", // 容器id
+	      source: "rtmp://live.shiliu88.com/fushowcms/"+anchorId+"-"+roomId,
+	      autoplay: true,    
+	      width: "100%",       
+	      height: videoHight+"px",      
+	    skinLayout: [
+	        {
+	            "align":"blabs",
+	            "x":0,
+	            "y":0,
+	            "name":"controlBar",
+	            "children":[
+	                {
+	                    "align":"tl",
+	                    "x":15,
+	                    "y":26,
+	                    "name":"playButton"
+	                },{
+	                    "align":"tr",
+	                    "x":20,
+	                    "y":25,
+	                    "name":"fullScreenButton"
+	                },{
+	                    "align":"tr",
+	                    "x":20,
+	                    "y":23,
+	                    "name":"streamButton"
+	                },{
+	                    "align":"tr",
+	                    "x":20,
+	                    "y":25,
+	                    "name":"volume"
+	                }
+	            ]
+	        },{
+	            "align":"tlabs",
+	            "x":0,
+	            "y":0,
+	            "name":"fullControlBar",
+	            "children":[
+	                {
+	                    "align":"tl",
+	                    "x":25,
+	                    "y":6,
+	                    "name":"fullTitle"
+	                },{
+	                    "align":"tr",
+	                    "x":24,
+	                    "y":13,
+	                    "name":"fullNormalScreenButton"
+	                },{
+	                    "align":"tr",
+	                    "x":10,
+	                    "y":12,
+	                    "name":"fullTimeDisplay"
+	                }
+	            ]
+	        }
+	    ]
+	  });
+	});
+	</script>
+<!--####################Video#########################-->
+{{end}}

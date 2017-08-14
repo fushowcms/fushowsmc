@@ -1,0 +1,58 @@
+#mine-setting-ul{width: 100%;}
+#mine-setting-ul li{float: left; margin-top:-1px; border-bottom:5px solid #fff; cursor: pointer;list-style: none;height:66px;line-height:71px;text-align: center;color:#000;font-size: 16px;margin-left:30px;}
+#mine-setting-ul li:first-child{ margin-left:64px;}
+.mySetting-navClick{border-bottom:5px solid #009CFA !important;}
+#room-title {width: 100%;height: 80px;display: block;}
+
+#room-title li {float: left;padding: 5px 2px;width: 80px;height: 14px;line-height: 14px;margin-bottom: 20px;font-size: 12px;}
+
+#room-title li:nth-child(3) {margin-right: 500px;}
+
+.mySetting-listBox{ width:100%; float:left; margin-bottom:34px;}
+.mySetting-list-key{ float:left; text-align:right; width:128px; font-size:16px; height:32px; line-height:32px; margin-right:15px;}
+.mySetting-list-value{ float:left; line-height:32px;}
+.mySetting-list-input{ float:left; height:32px; margin-right:10px; padding:0px 5px; font-size:16px; width:335px;}
+.mySetting-list-btn{ cursor: pointer; float:left; height:32px; width:122px; background-color:#009CFA; line-height:32px; text-align:center; color:#fff; font-size:16px;margin-left:10px;}
+.my_clip_button {float: left; height: 32px; width: 61px;background-color: #009CFA;line-height: 32px;text-align: center;color: #fff;font-size: 16px;}
+.mySetting-list-value textarea{ width:620px; height:150px; margin-bottom:20px;}
+#mysetting_roomid{ font-size:16px; line-height:32px;}
+#wangzhi{ font-size:16px; float:left; margin-right:10px;}
+#mySetting-submit{ margin-top:50px;}
+.mySetting-table-content{ width:100%; display:none; margin:48px 0px 30px 0px;  position:relative;}
+.Explain-font h1{ font-size:16px; color:#000; font-white:bold;}
+.Explain-font p{ font-size:16px;}
+.play-Prompt{ font-size:14px; padding:0px 55px;}
+.play-Prompt b{ margin-right:10px;}
+.play-Prompt span{ color:#009CFA;}
+
+.exchange-nav{  margin:0px auto; width:875px;}
+.exchange-nav li{ float:left; border:1px solid gray; padding:6px 5px; font-size:14px; margin-left:20px;cursor:pointer; color:gray;}
+.exchange-nav li:first-child{ margin-left:0px;}
+.exchange-nav-click{ border-color:#009CFA !important; color:#009CFA !important;}
+.exchange-table{ display:none; margin-top:15px;}
+
+.exchange-show{ margin:0px auto; width:875px;}
+.exchange-show-list{ float:left;}
+#pomegranateNum{ color:#009CFA; font-size:24px;}
+.exchange-show-list span{ color:#595758; font-size:18px;}
+.exchange-show-list b{ font-size:24px; color:#595758; float:left;}
+.exchange-show-list input{ width:240px; height:32px; border:1px solid gainsboro; float:left; display:block;margin-left:10px; padding:0px 5px;}
+#applycashingnumbtn{cursor: pointer; width:72px; height:32px; float:left; text-align:center; line-height:32px;background-color:#009CFA; color:#fff; margin-left:10px;}
+.exchange-duihuan{ float:left;}
+.exchange-show-Nums{text-align:center;color:#79bf3a; margin:10px 0px; float:left; width:100%;}
+.exchange-show-Nums span{color:#79bf3a;font-size:14px;}
+.bank-card{ width:322px; min-height:165px; border:1px solid #CCCCCC; border-radius:5px;}
+.bank-card-title{ width:100%; height:58px; border-bottom:1px solid #CCCCCC;}
+.bankName{ float:left; margin:13px 25px; font-size:18px; width:145px;}
+.bank-card-name{ float:left; font-size:14px;margin: 16px 20px 0px 20px;}
+.bankcardNum{ font-size:24px; text-align:center; margin:15px 0px;color: gray;}
+.bankde-PositBox{ width:300px; margin:0 auto; font-size:14px; margin-bottom:10px;}
+.bankdePosit{font-size: 14px;color: gray;}
+.jjj td{ height:50px;}
+.jjj button{ height:50px; background-color:#fff; border:none;}
+.cancelmanage:hover{color:#009CFA;cursor:pointer;}
+#wangzhiaddr{width: 300px;height: 32px;cursor: pointer;}
+#key_button3{width: 100px;height: 32px;cursor: pointer;}
+
+
+

@@ -1,0 +1,44 @@
+body {margin: 0;padding: 0;overflow-x: hidden;font-family: 'Microsoft YaHei', Tahoma, Verdana, 'Simsun'!important;}
+html,body {height: 100%;}
+img {border: none;}
+a {text-decoration: none;}
+.admin_left {background: #283a56;width:240px;position:absolute;left:0;top:0;bottom:0;}
+.admin_left i{display: inline-block;font-style: normal;}
+.admin_left ul{padding:0;margin: 0}
+.admin_left li{list-style: none;}
+.admin_right {position: absolute;top: 0;right: 0;left: 240px;background: #4d96d8;bottom: 0;box-shadow: 0 0 18px 0 #000;}
+.sltv_s1 {line-height: 60px;}
+.sltv_s1 img {line-height: 60px;margin-top: 15px;float: right;}
+.sltv_s1 dt {line-height: 60px;padding-left: 40px;padding-right: 10px;background-repeat: no-repeat;background-position: 10px center;color: #ffffff;font-size: 12px;position: relative;line-height: 40px;cursor: pointer;}
+.right_header {width: 100%;height: 60px;background: #4d96d8;position: fixed;z-index: 999;}
+#logoname{font-size: 14px;margin-left: 20px;font-weight: normal;color: #dedede;line-height: 55px;}
+.right_body {background: #ffffff;position: fixed;height: 100%;left:250px;right:10px;padding: 0 15px;}
+.right_body h2{padding-bottom: 15px;margin-bottom: 0;border-bottom: 1px solid #c4cbd0;}
+#mainPanle{overflow: auto;position: absolute;top:120px;bottom:50px;left:15px;right:15px;}
+.tbstyle{min-height: 36px;}
+#toolbar select{height: 24px;line-height: 24px;border-radius: 5px;}
+#toolbar select option:checked{color:#fff;background: #232d33}
+.right_footer {width: 100%;height: 50px;background: #4d96d8;position: absolute;bottom: 0;}
+.abcdfg{line-height: 60px;background:#ecb207 !important;}
+.two-sidebar{ background-color:rgb(0, 130, 206) !important;}
+.sidebar-two{ margin:0px;}
+.sidebar_logo{padding: 25px 20px 0;text-align: center;}
+.loginout{height: 40px;cursor: pointer;position: absolute;bottom: 20px;left: 20px;text-align: center;right: 20px;background: #444f61;color: #fff;border-radius: 6px;}
+.loginout:hover{background: #ff4b4b}
+.loginout i{line-height: 40px;font-size: 14px;padding-left: 25px;background: url('/static/images/manage/loginout.png') no-repeat left center;}
+.sidenav_list{position: absolute;bottom: 80px;top:80px;width:100%;}
+.navli.active{background: #4d96d8;}
+.firstnav{height: 45px;padding: 0 15px;cursor: pointer;}
+.firstnav i{line-height: 45px;color: #fff;font-size: 14px;width: 100%;background: url('/static/images/manage/fold_down.png') no-repeat right center;}
+.firstnav.hover i{background: url('/static/images/manage/fold_up.png') no-repeat right center;}
+.firstnav a{display: inline-block;width: 100%;line-height: 45px;color: #fff;font-size: 14px;}
+.secondnav{padding: 10px 10px 0 15px !important;background: #283a56;}
+.secondnav li{display: inline-block; background: #444f61; width: 66px;height: 28px;margin: 0 5px 5px 0; border-radius: 4px;overflow: hidden}
+.secondnav li a{display: inline-block;width: 100%;height: 100%;color: #fff;line-height: 28px;text-align: center; }
+.secondnav li.active{background: #4d96d8;}
+
+
+
+
+
+

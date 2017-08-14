@@ -1,0 +1,228 @@
+{{ define "root/apply_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+
+
+<style>
+	.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >主播申请管理</h2>
+<div id="mainPanle" region="center">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/js/common.js"></script>
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+	
+	<script type="text/javascript">
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getapplylist',
+				fit:true
+			});
+		});
+	function openUserAddDialog(){
+     	var row = $('#dg').datagrid('getSelected');
+		var id = row.UserId;
+		var applyid = row.Id;
+		//alert(row.UserId);
+        jQuery("#dlg").dialog("open").dialog("setTitle", "查看申请记录");
+		
+		//txl
+		reqAjax("/root/getapplyinfo",{id:id,applyId:applyid},function(data) {
+			if (data.ErrorCode!=0){
+				return;
+			}else{
+				document.getElementById("id").value = data.Data.Uid;
+				document.getElementById("newImg").src = data.Data.IdentityPic;
+				document.getElementById("phone").value = data.Data.Phone;
+				document.getElementById("level").value = data.Data.Level;
+				document.getElementById("real").value = data.Data.RealName;
+				document.getElementById("applyid").value = data.Data.ApplyId;
+				document.getElementById("idnum").value = data.Data.IdNumber;
+				document.getElementById("appli").value = data.Data.ApplicantTime;
+			}
+		});
+      
+    }
+		
+//dialog提交按钮
+	 function save(){
+		reqAjax("/root/applyarg",$('#form').serialize(),function(data) {
+			if(data.ErrorCode!=0){
+				jQuery.messager.show({title:"提示",msg:data.ErrorMsg});
+			}else{
+				jQuery.messager.show({title:"提示",msg:data.Data});
+			}
+			jQuery("#dlg").dialog("close");
+			jQuery("#form").form("reset");
+			jQuery("#dg").datagrid("reload");
+		});
+    }
+		//筛选事件 --->
+	function change(s){	
+		var state = null;
+		if(s==0){
+			return;
+		}else{
+			state = s;
+		}
+		reqAjax("/root/getApplyLists",{state:state},function(data) {
+			$('#dg').datagrid('loadData',data.rows);
+		});
+	}
+//dialog提交按钮
+	 function cancel(){
+		reqAjax("/root/applyrefused",$('#form').serialize(),function(data) {
+			if(data.ErrorCode!=0){
+				jQuery.messager.show({title:"提示",msg:data.ErrorMsg});
+			}else{
+				jQuery.messager.show({title:"提示",msg:data.Data});
+			}
+			jQuery("#dlg").dialog("close");
+			jQuery("#form").form("reset");
+			jQuery("#dg").datagrid("reload");
+		});
+    }
+
+
+
+	function getSelected(){
+		var row = $('#dg').datagrid('getSelected');
+		jQuery("#dlg").dialog("open").dialog("setTitle", "友情提示 ");
+ 		url = "../root/giftup";
+		jQuery("#file_upload").attr("name","uploadFile");
+		jQuery("#file_path").textbox("setText",row.GiftPicture);
+	}
+ 
+	function editState(val,replace){
+		if(val == 0){
+			return "未审核"
+		}
+		if(val == 1){
+			return "审核通过"
+		}
+		if(val == 2){
+			return "审核未通过"
+		}
+	}
+	</script>
+
+
+
+	
+	<table id="dg" style="margin:0 0 0 50px;"
+			checkbox="true"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="false">
+		<thead>
+			<tr> 
+				<th field="ck" checkbox="true" ></th>
+				<th field="UserId" width="50">用户Id</th>
+				<th field="ApplicantTime" width="50">申请时间</th>
+				<th field="State" width="120" formatter="editState">审核状态</th>
+				<th field="VerifyUserId" width="50">审核用户Id</th>
+   			
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="javascript:openUserAddDialog()" class="easyui-linkbutton" iconCls="icon-view" plain="true" onclick="">查看当前申请</a>
+			<select  name=sel style="width:100px" onchange="change(this.options[this.options.selectedIndex].value)">  	
+			    <option>未审核</option>
+				<option value="3">全部</option>
+				<option value="1">已同意</option>
+				<option value="2">已拒绝</option>
+	    	</select>
+	</div>
+	
+
+		<div id="dlg" class="easyui-dialog" style="width: 680px;height:630px;padding: 15px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		     overflow-y="scroll">
+		    <form id="form" method="post" enctype="multipart/form-data" >
+		        <table style="margin: 5px 5px;" cellspacing="5px" >
+					<tr>
+		                <td align="right" style="width: 140px;" >Id:</td>
+		                <td align="left">
+		                    <input id="id" name="Id"  readonly="true">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					<tr>
+		                <td align="right" style="width: 140px;" >申请记录Id:</td>
+		                <td align="left">
+		                    <input id="applyid" name="ApplyId" readonly="true" >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+	<!--	            <tr>
+		                <td align="right" style="width: 140px;" >申请人名称:</td>
+		                <td align="left">
+		                    <input id="nick" name="NickName" >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>-->
+		            <tr>
+		                <td align="right" style="width: 140px;">申请人手机号:</td>
+		                <td align="left">
+		                    <input id="phone" type="text" name="Phone" readonly="true" ></span>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		            <tr>
+		                <td align="right" style="width: 140px;">申请人等级:</td>
+		                <td align="left">
+		                    <input id="level" name="Level" readonly="true" >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		            <tr>
+		                <td align="right" style="width: 140px;">申请人真实姓名:</td>
+		                <td align="left">
+		                    <input id="real" type="text" name="RealName" readonly="true">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					<tr>
+		                <td align="right" style="width: 140px;">申请人身份证号码:</td>
+		                <td align="left">
+		                    <input id="idnum" name="IdNumber"  readonly="true">
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					<tr>
+		                <td align="right" style="width: 140px;">申请时间:</td>
+		                <td align="left">
+		                    <input id="appli" type="text" name="ApplicantTime" readonly="true"  class=”easyui-datebox”>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		                <td align="right" style="width: 140px;">申请人手持身份证照片:</td>
+		                <td align="left">
+		                    <img id="newImg"  style="width: 100px;height: 110px;" >&nbsp;<span id="errMsg" style="color: red"></span>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+				
+					
+		          
+		        </table>
+		    </form>
+		</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">同意</a>
+	    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">拒绝</a>
+	</div>
+    
+
+
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

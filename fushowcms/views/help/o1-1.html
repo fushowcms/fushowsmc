@@ -1,0 +1,33 @@
+{{define "help/o1-1.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{template "page/common_meta.html"}}
+	<title>帮助中心-富秀</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/help_content.css"/>
+	{{template "page/common_js.html"}}
+</head>
+<body>
+	{{template "page/common_head.html"}}
+	<div class="help-container">
+	    <div class="help-head">
+		 <h2>常见问题</h2>
+	    </div>
+		<div class="help-content">
+		  {{template "help/left.html"}}
+		  <div class="help-right">
+		    <ul class="help-right-list">
+			  <li><a href="problem1-1-8" target="_blank">手机收不到信息验证码怎么办?</a></li>
+			  <li><a href="problem1-1-9" target="_blank">一个手机号、身份证号可以注册几个富秀直播账号</a></li>
+			</ul>			
+		  </div>
+		</div>
+	</div>
+	<!--
+	footer太高。
+	-->
+ </body>
+</html>
+
+{{end}}

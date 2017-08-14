@@ -1,0 +1,236 @@
+body{margin: 0; padding: 0;}
+	*{ margin:0; padding:0; list-style:none;}
+	a{ text-decoration:none;}
+	a:hover{ text-decoration:none;}
+	#tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;}
+	#tcdPageCode a{display: inline-block;color: #00a0ff;display: inline-block;height: 25px;	line-height: 25px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 4px;vertical-align: middle;}
+	#tcdPageCode a:hover{text-decoration: none;border: 1px solid #00a0ff;}
+	#tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #00a0ff;	border: 1px solid #00a0ff;border-radius: 4px;vertical-align: middle;}
+	#tcdPageCode span.disabled{	display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;	color: #ababab;background: #fff;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+ul,
+li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+#mine-liveGusseBox-top{
+	width: 812px;
+	height: 40px;
+	margin-left: 3px;
+	margin-top: 2px;;
+	background-color: white;
+}
+#mine-liveGusseBox-top li{
+	float: left;
+	list-style: none;
+	width: 135px;
+	height: 40px;
+	/*margin-left: 5px;*/
+	line-height: 40px;
+	text-align: center;
+	color: #828282;
+	font-size: 12px;
+}
+#mine-myGusse-ul li {
+	float: left;
+	list-style: none;
+	width: 110px;
+	height: 35px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+	line-height: 35px;
+	text-align: center;
+	color: #828282;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#mine-myGusse-ul li:hover {
+	background: deepskyblue;
+	color: white;
+	font-weight: bold;
+}
+
+.myGusse-On {
+	background: deepskyblue;
+	color: white !important;
+	font-weight: bold;
+}
+
+.myGusse-Off {
+	background: white; color: #828282;
+	font-weight: bold;
+}
+
+#mine-liveGusseBox {
+	float: left;
+	overflow: hidden;
+	width: 100%;
+	height: 800px;
+}
+
+.mine-liveGusseBox-ul1 li,
+.mine-liveGusseBox-ul2 li,
+.mine-liveGusseBox-ul3 li,
+.mine-liveGusseBox-ul4 li,
+.mine-liveGusseBox-ul5 li,
+.mine-liveGusseBox-ul6 li,
+.mine-liveGusseBox-ul7 li {
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	color: gray;
+	font-size: 14px;
+}
+
+.mine-liveGusseBox-ul1 {
+	float: left;
+	overflow: hidden;
+}
+
+.mine-liveGusseBox-ul1 li {
+	/*   border-left:1px solid gainsboro ;*/
+	width: 65px;
+	float: left;
+/*	padding: 0 25px;*/
+}
+
+
+/*.mine-liveGusseBox-ul1 li:nth-child(odd){background: #f3f3f3;}*/
+
+.mine-liveGusseBox-ul1 li {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.mine-liveGusseBox-ul2 {
+	width:100%;
+	overflow: hidden;
+	float: left;
+}
+
+.mine-liveGusseBox-ul2 li {
+	float: left;
+/*	padding: 0 25px;*/
+	width: 65px;
+	/*border-right:1px solid gainsboro ;*/
+}
+
+
+/*.mine-liveGusseBox-ul2 li:nth-child(odd){background: #f3f3f3;}*/
+
+
+/*.mine-liveGusseBox-ul2 li:nth-child(1){background: #bfbfbf;
+                       color: white;
+                       font-weight: bold;
+                       font-size: 16px;}*/
+
+.mine-liveGusseBox-ul3 {
+	float: left;
+	overflow: hidden;
+}
+
+.mine-liveGusseBox-ul3 li {
+	padding: 0 25px;
+}
+
+.mine-liveGusseBox-ul3 li:nth-child(odd) {
+	background: #f3f3f3;
+}
+
+.mine-liveGusseBox-ul3 li:nth-child(1) {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.mine-liveGusseBox-ul4 {
+	float: left;
+	overflow: hidden;
+}
+
+.mine-liveGusseBox-ul4 li {
+	padding: 0 25px;
+}
+
+.mine-liveGusseBox-ul4 li:nth-child(odd) {
+	background: #f3f3f3;
+}
+
+.mine-liveGusseBox-ul4 li:nth-child(1) {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.mine-liveGusseBox-ul5 {
+	float: left;
+	overflow: hidden;
+}
+
+.mine-liveGusseBox-ul5 li {
+	padding: 0 25px;
+}
+
+.mine-liveGusseBox-ul5 li:nth-child(odd) {
+	background: #f3f3f3;
+}
+
+.mine-liveGusseBox-ul5 li:nth-child(1) {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.mine-liveGusseBox-ul6 {
+	float: left;
+	overflow: hidden;
+}
+
+.mine-liveGusseBox-ul6 li {
+	padding: 0 25px;
+}
+
+.mine-liveGusseBox-ul6 li:nth-child(odd) {
+	background: #f3f3f3;
+}
+
+.mine-liveGusseBox-ul6 li:nth-child(1) {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.mine-liveGusseBox-ul7 {
+	float: left;
+	overflow: hidden;
+}
+
+.mine-liveGusseBox-ul7 li {
+	padding: 0 25px;
+}
+
+.mine-liveGusseBox-ul7 li:nth-child(odd) {
+	background: #f3f3f3;
+}
+
+.mine-liveGusseBox-ul7 li:nth-child(1) {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#winBox {
+	display: block;
+}
+
+#failBox {
+	display: none;
+}

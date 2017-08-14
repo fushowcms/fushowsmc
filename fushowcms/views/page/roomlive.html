@@ -1,0 +1,237 @@
+{{define "page/roomlive.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/page/roomlive.css?test=1.094"/>
+	<link rel="stylesheet" href="/static/css/library/jquery.mCustomScrollbar.min.css" />
+	{{template "page/common_js.html"}}
+	<script type="text/javascript" src="/static/js/library/jquery.qqFace.js"></script>
+	<script type="text/javascript" src="/static/js/library/video/prism-1.5.3-min.js"></script>
+	<script type="text/javascript" src="/static/js/library/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="/static/js/page/roomlive.js?test=1.146"></script>
+	<script type="text/javascript" src="/static/js/library/recharge/jquery.qrcode.js"></script>
+	<script type="text/javascript" src="/static/js/library/recharge/qrcode.js"></script>
+	<script type="text/javascript" src="/static/js/fushowim.js"></script>
+	
+</head>
+
+<body>
+	{{template "page/common_sidebar.html" .}}
+	<div class="right_area">
+		<div class="video-Box">
+			<div class="room-head-box">
+				{{range .state}}
+				<div class="room-head-info">
+					<div class="room-head-info-cover">
+					{{if .Favicon}}
+						<img id="favicon" src="{{.Favicon}}" onerror="$(this).remove();">
+						{{else}}
+						<img id="favicon" src="/static/images/default_avatar.jpg" onerror="$(this).remove();">
+					{{end}}
+					</div>
+				
+					<h1 id="roomAlias" class="room-head-info-title">{{.RoomAlias}}</h1>
+					<div class="room-head-info-detail clearfix">
+						<span id="nickName" class="room-head-info-hostname">{{.NickName}}</span>
+						<i class="lei">{{.TwoCategoryName}}</i>
+						<i class="viewnum">{{.LiveNumber}}</i>
+						<i class="hotnum">{{.GiftNum}}</i>
+					</div>
+				{{end}}
+					<div class="order-area">
+						<div class="ordernum">{{.attention}}</div>
+						<div class="order">+关注</div>
+					</div>
+			
+					<ul id="room-head-lists">
+						<li class="report" style="background:none">
+							<div id="report" style="display:none;"></div>
+							<a href="javascript:void(0);" id="report1">举报</a>
+						</li>
+						<li>
+							<a href="javascript:void(0);" id="shall1">分享</a>
+							<div id="room-head-shallSon" class="showblock">
+								<div id="room-head-shallSon-ul">
+									<div style="color: #999;text-align:center">
+										<!--<div id="weChat" ></div>--><!--&nbsp;&nbsp;-->微信扫二维码
+									</div>
+									<div id="asd" style="margin-top:8px;width:150px;height:153px;position:relative">
+										<!--<div id="codeico"></div>-->
+									</div>
+								</div>
+							</div>
+						</li>
+						<li>
+							<a href="javascript:void(0);" id="download1">APP下载</a>
+							<div id="room-head-appSon" class="showblock">
+								<div style="text-align: center;">手机扫码下载</div>
+								<img src="/static/images/ui/appE.png" style="width:143px;"/>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<div class="room-video-Bigbox">
+				<div id="room-video">
+				
+					<div class="prism-player" id="J_prismPlayer" style="background-color:#000;"></div>
+					<div id="danmu"></div>
+					
+					<div id="livestop" class="none">
+						<div style="display:table; width:100%; height:100%;">
+							<p>o((⊙﹏⊙))o主播好像还没起床，先去其他房间逛逛</p>
+							<div class="btnarea">
+								<button id="playerretry">重试</button>
+								<button id="returnindex">返回首页</button>
+							</div>
+						</div>	
+					</div>
+					
+					
+				</div>
+				
+				<div id="room-video-controller">
+					<div class="nosound" data-state="yes"></div>
+					<div class="Fullscreen-Barrage">
+						<input type="text" value="" placeholder="发弹幕，与大家一起互动" />
+						<div class="Fullscreen-Barrage-btn">发送</div>
+						<div style="clear:both"></div>
+					</div>
+					
+					<div class="fullbtnarea"><!--全屏 退出全屏按钮-->
+						<div class="fullscreenbtn"></div>
+						<div class="unfullscreenbtn"></div>
+					</div>
+					<div class="danmubtn"></div>
+				</div>
+				
+				
+				<div id="room-video-bottom">				
+					
+					<ul id="room-video-bottom-ul">
+						<!--鼠标经过浮框-->
+						<div class="gift-Btn">
+							<img src="" style="float: left; margin-top: 5px; background: deepskyblue;" />
+							<div>
+								<p class="giftName1"></p>
+								<p class="giftPrice1"></p>
+							</div>
+						</div>
+						<!--动态list-->
+					</ul>
+					<div id="recharge"></div>
+				</div>
+				<!--<div class="roomlive-content-font">
+					<div class="room-detail-head clearfix">
+				      <h3 class="active">直播详情</h3>
+				    </div>
+					<div class="roomlive-content-font-min"></div>
+				</div>-->
+			</div>
+		</div>
+	</div>
+	<!--右侧功能区域-->
+		<div id="room-chat-Box">
+			<!--直播公告区-->
+			<div id="room-chat-notic">
+			{{range .state}}
+				<i></i><em>公告:</em> <span id="liveAnnouncement">{{.RoomNotice}}</span>
+			{{end}}
+			</div>
+
+			<!--排行榜区-->
+			<div class="room-ranklist">
+				<div class="room-ranklist-hd">
+					<a class="tab active" data-tab="tab1">周榜</a>
+					<a class="tab" data-tab="tab2">总榜</a>
+				</div>
+
+				<div class="room-ranklist-content">
+					<div class="room-rank-user room-rank-tab1 active">
+						<div class="room-rank-li-top3">
+							<div class="user-top3 rank-2">
+								<div class="user-avater"></div>
+								<div class="user-nickname">--虛位以待--</div>
+							</div>
+							<div class="user-top3 rank-1">
+								<div class="user-avater"></div>
+								<div class="user-nickname">--虛位以待--</div>
+							</div>
+							<div class="user-top3 rank-3">
+								<div class="user-avater"></div>
+								<div class="user-nickname">--虛位以待--</div>
+							</div>
+						</div>
+						<div class="room-rank-li"><i class="room-rank-order">4</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">5</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">6</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">7</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">8</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">9</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">10</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+					</div>
+					<div class="room-rank-user room-rank-tab2">
+						<div class="room-rank-li-top3">
+							<div class="user-top3 rank-2">
+								<div class="user-avater"></div>
+								<div class="user-nickname">--虛位以待--</div>
+							</div>
+							<div class="user-top3 rank-1">
+								<div class="user-avater"></div>
+								<div class="user-nickname">--虛位以待--</div>
+							</div>
+							<div class="user-top3 rank-3">
+								<div class="user-avater"></div>
+								<div class="user-nickname">--虛位以待--</div>
+							</div>
+						</div>
+						<div class="room-rank-li"><i class="room-rank-order">4</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">5</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">6</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">7</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">8</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">9</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+						<div class="room-rank-li"><i class="room-rank-order">10</i><i class="room-rank-user-nickname">--虛位以待--</i></div>
+					</div>
+				</div>
+			</div>
+
+			<!--聊天滚屏区-->
+			<ul class="chat-MessageBox1" id="message11"></ul>
+			<div class="chat-usercard"></div>
+
+			<div id="room-chat-sebdMessage">
+				<div id="room-chat-sebdMessage-btn">
+					<ul id="room-chat-sebdMessage-btn-Pic">
+						<li class="emoj"></li>
+					</ul>
+				</div>
+				<input type="text" id="room-chat-input" value="" placeholder="发弹幕，与大家一起互动" />
+				<div id="room-chat-send">发送</div>
+			</div>
+		</div>
+	<script type="text/javascript" src="/static/js/Filterword.js"></script>
+	<script>	
+		var anchor = {{.anchor}}
+		var IsConcern = {{.IsConcern}}
+		var getUserInfo = {{.GetUserInfo}}
+		var Ui = {{.Ui}}
+		var Fball = {{.Fball}}
+		var Fnall = {{.Fnall}}
+		var Giflow = {{.Giflow}}
+		var Grows = {{.Grows}}
+		var Gtotal = {{.Gtotal}}
+		var Gggm = {{.Gggm}}
+		var Gggw = {{.Gggw}}
+		var state = {{.state}}
+		var attention = {{.attention}}
+		var aaa = {{.aaa}}
+		var indexs = {{.indexs}}
+		var ATeam = {{.ATeam}}
+		var BTeam = {{.BTeam}}              
+	</script>                        
+</body>                              
+{{end}}

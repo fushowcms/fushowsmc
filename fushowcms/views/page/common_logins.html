@@ -1,0 +1,102 @@
+{{define "page/common_logins.html"}}
+	<link rel="stylesheet" href="/static/css/page/login.css"/>
+	<script type="text/javascript" src="/static/js/page/login.js"></script>
+	<div class="logins-alert-bg">
+		<div class="logins-alert-wrap">
+			<div class="logins-alert-inner-wrap">
+				<div class="logins-alert-inner-wrap-body logregbox">
+					<div class="logins-alert-inner-wrap-close"></div>
+					<div class="logins-alert-inner-wrap-title">
+						<div class="logins-alert-inner-tabs tabs-active">登录</div>
+						<div class="logins-alert-inner-tabs">注册</div>
+					</div>
+					<!--登录-->
+					<div class="tabs-pannel logins-form-box">
+						<div class="loginsForm">
+							<input type="text" placeholder="请输入手机号" value="" id="userName"/>
+							<input type="password" placeholder="密码" value="" id="userPassword"/>
+							<div class="logins-form-verify">
+								<input type="text" placeholder="图形验证码" value="" id="log-img-verify"/>
+								<img class="code-img" value="点击重新获取"/>
+								<div class="clearfix"></div>
+							</div>
+							<div class="logins-form-feedback login-font"></div>
+						</div>
+						<div class="logins-form-submit">立即登录</div>
+						<a class="lose-password" style="margin-top:10px;">忘记密码?</a> 
+						<div class="clearfix"></div>
+					</div>
+					<!--注册第一步-->
+					<div class="tabs-pannel logins-form-box none">
+						<div class="loginsForm">
+							<input type="text" placeholder="请输入手机号" value="" id="phone-number"/>
+							<input type="password" placeholder="密码" id="passWord"/>
+							<div class="logins-form-verify">
+								<input type="text" placeholder="图形验证码" value="" id="register-img-verify"/>
+								<img class="code-img" value="点击重新获取"/>
+								<div class="clearfix"></div>
+							</div>
+							<div class="logins-form-verify">
+								<input type="text" placeholder="验证码" value="" id="phone-verify"/>
+								<input type="button" class="logins-form-verify-btn" value="获取手机验证码"/>
+								<div class="clearfix"></div>
+							</div>
+							<div class="logins-form-feedback register-font"></div>
+							<div class="logins-agree-box" data-check="no">
+								<div class="logins-agree-box0"></div>
+								<img src="/static/images/ui/agree-ioc.png"/>
+								<p>同意<a href="/help/zhuce_xieyi" target="blank">《富秀直播用户服务协议》</a></p>
+							</div>
+						</div>
+						<input type="button" class="regists-form-submit" value="下一步">
+					</div>
+					<!--三方登录-->
+					<div class="third-box">
+						<p class="third-box-title">第三方账户直接登录</p>
+						<div class="third-box-body">
+							<div id="qq-login" class="third-box-item third-box-item-qq"></div>
+							<div id="wechat-login" class="third-box-item third-box-item-wechat"></div>
+							<div id="weibo-login" class="third-box-item third-box-item-weibo"></div>
+						</div>
+					</div>
+				</div>
+				<!--忘记密码-->
+				<div class="logins-alert-inner-wrap-body losebox none">
+					<div class="logins-alert-inner-wrap-close"></div>
+					<div class="logins-alert-inner-wrap-title"><h2 style="line-height:40px;font-size:18px;">找回密码</h2></div>
+					<div class="logins-form-box">
+						<form action="#" name="loginsform" accept-charset="utf-8" id="logins-form" class="loginsForm" method="post">
+							<input type="text" placeholder="请输入手机号" value="" id="lose-phone-number"/>
+							<div class="logins-form-verify">
+								<input type="text" placeholder="图形验证码" value="" id="lose-img-verify"/>
+								<img class="code-img" value="点击重新获取"/>
+								<div class="clearfix"></div>
+							</div>
+							<div class="logins-form-verify">
+								<input type="text" placeholder="验证码" value="" id="lose-phone-verify"/>
+								<input type="button" value="获取验证码" class="lose-form-verify-btn" >
+								<div class="clearfix"></div>
+							</div>
+							<input type="password" placeholder="新密码" id="passnew"/>
+							<input type="password" placeholder="确认密码" id="confirmpass"/>
+							<div class="logins-form-feedback lose-font"></div>
+						</form>
+						<div class="lose-form-submit">重置密码</div>
+					</div>
+				</div>
+
+				<!--注册第二步-->
+				<div class="logins-alert-inner-wrap-body regsecbox none">
+					<div class="logins-alert-inner-wrap-close"></div>
+					<div class="logins-alert-inner-wrap-title"><h2 style="line-height:40px;font-size:18px;">设置昵称</h2></div>
+					<div class="logins-form-box">
+						<div class="loginsForm">
+							<input type="text" placeholder="昵称" id="nickname"/>
+						</div>
+						<div class="reg-form-submit" id="reg-form-submit">确认</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+{{end}}

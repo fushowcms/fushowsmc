@@ -1,0 +1,7 @@
+.floatspan{position:absolute;
+                  left:500px;top:90px;
+                  font-size:20px;color: white;
+                  font-weight: bolder;
+                  word-break:keep-all;
+                  border:1px solid red;
+                  z-index: 100px;}

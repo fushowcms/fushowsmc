@@ -1,0 +1,37 @@
+{{define "user/recharge_weChat.html"}}
+<html>
+	<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/user/personal.css"/>
+    <link rel="stylesheet" href="/static/css/rechargeCss/recharge-css.css" />
+	{{template "page/common_js.html"}}
+	<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>  
+	<script type="text/javascript" src="/static/js/user/recharge.js"></script>  
+	<script src="/static/js/user/jquery.qrcode.js" ></script>
+	<script src="/static/js/user/qrcode.js" ></script>
+	<script src="/static/js/user/recharge_weChat.js" ></script>
+	</head>
+	<body>
+		{{ template "page/common_head.html" }}
+            <div class="recharge1">
+            	<div class="recharge-Informdiv">
+            	  <span class="recharge-KindsName">金币充值</span>
+            	  <span style="float: right;">应付金额:
+            	  	 <span class="needDad">￥<span class="uNeedPay">100</span></span>
+            	  </span>
+            	  <p>收款方:大连富秀科技有限公司</p>
+            	</div>
+            	
+            	<div class="recharge-Box1">
+            		<p>微信扫码支付</p>
+					<input type="hidden" id="outTradeNo">
+            		<div id="qrcode"></div>
+            		<div class="shaoma"></div>
+            	</div>
+            </div>
+	</body>
+</html>
+
+{{end}}

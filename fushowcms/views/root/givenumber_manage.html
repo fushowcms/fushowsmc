@@ -1,0 +1,68 @@
+{{ define "root/givenumber_manage.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+<h2 >赠送记录表</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript">
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getnumberlist',
+				fit:true
+			});
+		});
+		
+		function recipient(val) {
+			if(val == "") {
+				return "<div style='color:red;'>用户被删除</div>";
+			}else{
+				return val;
+			}
+
+		}
+		function benefactor(val) {
+			if(val == "") {
+				return "未知用户";
+			}else{
+				return val;
+			}
+
+		}
+	</script>
+	<table id="dg" style="overflow: hidden;padding:20px 0 0 20px;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr> 
+				<th field="BenefactorName" width="80" formatter="benefactor">赠送人昵称</th>
+				<th field="RecipientName" width="80"  formatter="recipient">接收人昵称</th>
+				<th field="GiveDate" width="80">赠送时间</th>
+				<th field="Num" width="80">数量</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar" style="height: 24px;">&nbsp;
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入赠送人昵称',searcher:doSearch" style="width:200px"></input>
+		</div>
+	</div>
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('load',{NickName: value});
+		}
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

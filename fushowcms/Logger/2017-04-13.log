@@ -1,0 +1,4 @@
+[xorm] [info]  2017/04/13 15:24:29.833874 [sql] INSERT INTO `uid_login_info` (`uid`,`login_way`,`login_time`,`ip`) VALUES (?, ?, ?, ?) [args] [10110 1 2017-04-13 ]
+[xorm] [info]  2017/04/13 15:27:01.262535 [sql] UPDATE `uid_info` SET `balance` = ?, `modify_time` = ?, `version` = `version` + 1 WHERE (id=?) AND `version` = ? [args] [8800 2017-04-13 15:27:01 10110 21]
+[xorm] [info]  2017/04/13 15:27:01.264535 [sql] UPDATE `uid_info` SET `balance` = ?, `modify_time` = ?, `version` = `version` + 1 WHERE (id=?) AND `version` = ? [args] [1910 2017-04-13 15:27:01 10014 215]
+[xorm] [info]  2017/04/13 15:27:01.265535 [sql] INSERT INTO `give_slz` (`benefactor_id`,`recipient_id`,`give_date`,`num`,`version`) VALUES (?, ?, ?, ?, ?) [args] [10110 10014 2017-04-13 15:27:01 100 1]

@@ -1,0 +1,415 @@
+{{define "page/list.html"}}
+{{ template "page/head.html" }}
+<!--{{ template "page/header.html" }}-->
+<style>
+	body{margin: 0; padding: 0;}
+	*{ margin:0; padding:0; list-style:none;}
+	a{ text-decoration:none;}
+	a:hover{ text-decoration:none;}
+	#tcdPageCode{padding: 15px 20px;text-align: left;color: #ccc;}
+	#tcdPageCode a{display: inline-block;color: #00a0ff;display: inline-block;height: 25px;	line-height: 25px;	padding: 0 10px;border: 1px solid #ddd;	margin: 0 2px;border-radius: 4px;vertical-align: middle;}
+	#tcdPageCode a:hover{text-decoration: none;border: 1px solid #00a0ff;}
+	#tcdPageCode span.current{display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;color: #fff;background-color: #00a0ff;	border: 1px solid #00a0ff;border-radius: 4px;vertical-align: middle;}
+	#tcdPageCode span.disabled{	display: inline-block;height: 25px;line-height: 25px;padding: 0 10px;margin: 0 2px;	color: #ababab;background: #fff;border: 1px solid #bfbfbf;border-radius: 4px;vertical-align: middle;}
+</style>
+
+<body>
+	<div class="begin-box"></div>
+<div style="margin-left:255px;">
+
+		<!--pd_list-->
+		<div id="wrap">
+		    <!-- side tools bar start -->
+		    <div id="side-tools-bar">
+		      <div class="sidebar-container" style="display: block;">
+		        <div class="sidebar-expand">
+		          <!-- sidebar-head start -->
+		          <div class="sidebar-head"><div class="sidebar-logo">
+		  <a href="/" target="_top">
+		    <img src="/static/images/logo_sltv.png" alt="logo">
+		  </a>
+		</div>
+		<div class="sidebar-search">
+			<div class="sltvpx-search ">
+			  <form name="room-search" action="http://xxx/search" method="get" target="_top" class="search-form">    
+			    <div class="search-submit-btn">   
+			    </div>
+			  </form>
+			</div>
+		</div>
+	</div>
+    <!-- sidebar-head end -->
+    <div class="sidebar-content ps-container" data-ps-id="e5e595df-9f11-2889-0ca1-7e5589ff2853">
+        <!-- sidebar-userinfo start -->
+        <div class="sidebar-userinfo">
+			<div class="sidebar-userinfo-login-panel">
+  				<div class="sidebar-login-btns">
+				    <a href="javascript:;" class="sidebar-login-btn sidebar-userinfo-login-btn">登录</a>
+				    <a href="javascript:;" class="sidebar-register-btn sidebar-userinfo-register-btn">注册</a>
+  				</div>
+				<div class="sidebar-login-btns1" style="text-align: center;"></div>
+  				<p class="sidebar-login-banner">登录和小伙伴一起聊聊吧</p>
+			</div>
+		</div>
+        <!-- sidebar-userinfo end -->
+        <div class="sidebar-split-line"></div>
+            <!-- sidebar-quick-browse start -->
+            <div class="sidebar-quick-browse">
+                <div class="sidebar-list-head"><b></b>快速浏览</div>
+                <ul class="sidebar-list sidebar-list-1">
+                <li>
+                  <a href="#" target="_top"><i class="sidebar-icon sidebar-icon-all-live"></i>全部直播</a>
+                </li>
+                <li>
+                  <a href="cate" target="_top"><i class="sidebar-icon sidebar-icon-all-cate"></i>全部分类</a>
+                </li>
+              </ul>
+            </div>
+            <div class="sidebar-split-line"></div>
+            <!-- sidebar-quick-browse end -->
+            <!-- sidebar-category start -->
+            <div class="sidebar-category">
+                <div class="sidebar-list-head">
+	                <b></b><span class="sidebar-list-head-tit">精彩分类</span>
+	                <i class="sidebar-icon sidebar-icon-sort-cate" data-tips="分类排序"></i>
+                </div>
+                <div class="sidebar-site-category">
+	                <ul class="sidebar-list sidebar-list-2 clearfix" id="page-list">
+	                    <li class="sidebar-list-sort-disable" data-ename="nvshen" title="热门直播">
+		                    <a href="/page/list" target="_top">热门直播</a>
+	                    </li>
+	                    <li class="sidebar-site-category-item" data-ename="lol" title="英雄联盟">
+	                        <a href="/page/list" >英雄联盟</a>
+	                    </li>
+	                    <li class="sidebar-site-category-item" data-ename="yzdr" title="娱乐联萌">
+	                        <a href="/page/list" >娱乐联萌</a>
+	                    </li>
+	                    <li class="sidebar-site-category-item" data-ename="hearthstone" title="直播现场">
+	                        <a href="/page/list" >直播现场</a>
+	                    </li>
+	                    <li class="sidebar-site-category-item" data-ename="dota2" title="DOTA2">
+	                        <a href="/page/list" >DOTA2</a>
+	                    </li>
+	                    <li class="sidebar-site-category-item" data-ename="hwzb" title="户外直播">
+	                        <a href="/page/list" >户外直播</a>
+	                    </li>
+						<li class="sidebar-site-category-item" data-ename="hwzb" title="在线商城">
+	                        <a href="/user/goods_list" >在线商城</a>
+	                    </li>
+	                </ul>
+	            </div>
+            </div>
+            <!-- sidebar-category end -->
+            <div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 1px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+            <!-- sidebar-foot start -->
+            <div class="sidebar-foot"><div class="sidebar-split-line"></div>
+		<ul class="sidebar-list sidebar-list-3 clearfix">
+		    <li>
+		    	<a href="#" target="_blank">直播指导</a>
+		    </li>
+		    <li>
+		    	<a href="#" target="_blank">客服支持</a>
+		    </li>
+		    <li>
+		    	<a class="sidebar-feedback" href="#" target="_blank">问题反馈</a>
+		    </li>
+		</ul>
+	</div>
+    <!-- sidebar-foot end -->
+    </div>
+    <div class="sidebar-collapse"><div class="sidebar-collapse-head">
+  <a href="" target="_top">
+    <i class="sidebar-icon sidebar-icon-home"></i>
+  </a>
+</div>
+<div class="sidebar-collapse-content ps-container" data-ps-id="2ba1d046-ae14-7de4-9fdc-fb2a940683ad">
+  <ul class="sidebar-list sidebar-list-4">
+    <li>
+      <a href="javascript:;" class="sidebar-userinfo-login-btn">
+        <i class="sidebar-icon sidebar-icon-personal"></i>
+        <span>登录</span>
+      </a>
+    </li>
+    <li>
+      <a href="/" target="_top">
+          <i class="sidebar-icon sidebar-icon-all-live-big"></i>
+          <span>直播</span>
+      </a>
+    </li>
+    <li>
+      <a href="cate" target="_top">
+          <i class="sidebar-icon sidebar-icon-all-cate-big"></i>
+          <span>分类</span>
+      </a>
+    </li>
+  </ul>
+<div class="ps-scrollbar-x-rail" style="left: 0px; bottom: 0px;"><div class="ps-scrollbar-x" tabindex="0" style="left: 0px; width: 0px;"></div></div><div class="ps-scrollbar-y-rail" style="top: 0px; right: 1px;"><div class="ps-scrollbar-y" tabindex="0" style="top: 0px; height: 0px;"></div></div></div>
+<div class="sidebar-collapse-foot">
+  <a href="#" class="service-button" target="_blank" title="客服">
+    <i class="sidebar-icon sidebar-icon-service-big"></i>
+    <span>客服</span>
+  </a>
+</div>
+</div>
+       <!--<a href="javascript:;" class="sidebar-state-toggle-btn"></a>-->
+      </div>
+      
+    </div>
+    <!-- side tools bar end -->
+    <div id="all-video-list-container" class="list-container" style="visibility: visible; display: block;">
+      <!-- 热门直播 start -->
+      <div class="playing-container">
+        <!-- 列表头部信息 start -->
+        <div class="list-header">
+          <h3 class="list-title2" >精彩推荐</h3>
+        </div>
+        <!-- 列表头部信息 end -->
+        <ul class="video-list clearfix" id="list_type">
+            <!--<li class="video-list-item">
+              <a href="roomlive" class="video-list-item-wrap">
+                <div class="video-cover">
+                  <img class="video-img video-img-lazy" alt="hello!女神-上海甄选-重播" src="/static/images/h190(5).jpg" style="display: block;">
+                  <div class="video-overlay"></div>
+                  <div class="video-play"></div>
+                </div>
+                <div class="video-title" title="hello!女神-上海甄选-重播">
+                  hello!女神-上海甄选-重播                </div>
+                <div class="video-info">
+                  <span class="video-nickname">Hello女神甄选</span>
+                  <span class="video-number">34514</span>
+                  <span class="video-cate">娱乐联萌</span>
+                </div>
+              </a>-->
+           
+        </ul>
+      </div>
+      <!-- 热门直播 end -->
+      <!-- 正在直播 start -->
+      <div class="later-play-container">
+        <!-- 列表头部信息 start -->
+        <div class="list-header">
+          <h3 class="list-title2">正在直播</h3>
+        </div>
+        <!-- 列表头部信息 end -->
+        
+ 		<ul class="video-list video-list-hotlives clearfix" id="hot_title">
+ <!--             <li class="video-list-item video-no-tag " data-id="777777">
+              <a href="" class="video-list-item-wrap" data-id="777777">
+                  <div class="video-cover">
+                  <img class="video-img video-img-lazy" alt="愿天堂没有德莱文2！" src="/static/images/h190(14).jpg" style="display: block;">
+                  <div class="video-overlay"></div>
+                  <div class="video-play"></div>
+                </div>
+                <div class="video-title" title="愿天堂没有德莱文！">
+				愿天堂没有德莱文！
+				</div>
+                <div class="video-info">
+                  <span class="video-nickname">会旋转的冬瓜丶</span>
+                  <span class="video-number">134984</span>
+                  <span class="video-cate">英雄联盟</span>
+                </div>
+              </a>
+            </li> -->                         
+        </ul>
+      </div>
+      
+      
+     <section id="loginBox">	
+	{{ template "page/common_logins.html"}}
+    </section>
+  
+      <!-- 正在直播 end -->
+
+<div id="tcdPageCode" style="text-align:center;"></div>
+<!--pd_list-->
+		<!--printstyel-->
+		<div style="display:none;" id="pstyle"></div>
+
+</div>
+
+<script src="../../static/js/jpages/jPages.js"></script>
+<script>
+	var uid = window.localStorage.getItem("Id");
+	var nicheng1 = window.localStorage.getItem("nicheng");
+	if(uid == null) {
+		$(".sidebar-login-btns a").eq(0).click(function() {
+			$("#loginBox").css("display", "block");
+			$('#switch_login').removeClass("switch_btn_focus").addClass('switch_btn');
+			$('#switch_qlogin').removeClass("switch_btn").addClass('switch_btn_focus');
+			$('#switch_bottom').css({
+				left: '0px',
+				width: '70px'
+			});
+			$('#qlogin').css('display', 'none');
+			$('#web_qr_login').css('display', 'block');
+		});
+
+		$(".sidebar-register-btns a").eq(1).click(function() {
+			$("#loginBox").css("display", "block");
+			$('#switch_login').removeClass("switch_btn").addClass('switch_btn_focus');
+			$('#switch_qlogin').removeClass("switch_btn_focus").addClass('switch_btn');
+			$('#switch_bottom').animate({
+				left: '154px',
+				width: '70px'
+			});
+			$('#qlogin').css('display', 'block');
+			$('#web_qr_login').css('display', 'none');
+		});
+	} else {
+		$(".sidebar-login-btns").detach();
+		var str = "<li style='color:white;'><a  href='/user/mine_myInform' style='font-size:20px;color:skyblue;font-family:Microsoft Yahei'> " + nicheng1 + "</a></li>";
+		$(".sidebar-login-btns1").append(str);
+		$(".sidebar-login-banner").detach();
+	}
+//add by liuhan
+//-----------------------------------------------
+var pages = localStorage.getItem("zbpage");
+if(pages==null){
+	pages=1;
+}
+var page;
+//----------------------------------------------------
+
+
+
+
+	$.getScript("/static/js/login.js");
+   	$.getScript("/static/js/head.js");
+   	 //regnative
+    $("body").css("overflow-x","hidden");
+   	 $(window).resize(function() { 
+			Item_adaptation();
+		});
+
+//热门直播ajax
+   	$(function() {  
+		Item_adaptation();
+			reqAjax("/page/getroomlisting",{page:pages,rows:1},function(msg){
+				if(msg.ErrorCode!=0) {
+					Dialog(msg.ErrorMsg,true,"确定",null,function() {
+						$('.dialog').remove();
+					},null);
+				}else {			
+					total = msg.Data.total_normal;
+					page = Math.ceil(total / 1);
+					
+					var html='';
+					var html1='';
+					
+					if(msg.Data.data_normal!=null&&msg.Data.data_normal.length >= 8){
+	
+						for(var i=0;i<msg.Data.data_normal.length;i++){
+							str = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_normal[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_normal[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_normal[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_normal[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_normal[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+							html+=str;
+						}
+					}else if(msg.Data.data_normal!=null&&msg.Data.data_normal.length< 8){
+						for(var i=0;i<msg.Data.data_normal.length;i++){
+							str = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_normal[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_normal[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_normal[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_normal[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_normal[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+							html+=str;
+						}
+						if(msg.Data.data_normal_state!=null) {
+							for(var i=0;i<msg.Data.data_normal_state.length;i++){
+								str1 = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_normal_state[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_normal_state[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_normal_state[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_normal_state[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_normal_state[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+								html+=str1;
+							}
+						}
+						
+						
+					}else if (msg.Data.data_normal==null){
+						for(var i=0;i<msg.Data.data_normal_state.length;i++){
+								str1 = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_normal_state[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_normal_state[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_normal_state[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_normal_state[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_normal_state[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+								html+=str1;
+							}	
+					}
+					if(msg.Data.data_stick_state!=null &&msg.Data.data_stick_state.length >4){
+						if(mmsg.Datasg.data_stick!=null) {
+							for(var i=0;i<msg.Data.data_stick.length;i++){	
+							str2 = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_stick[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_stick[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_stick[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_stick[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_stick[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+							html1+=str2;
+							}
+						}
+						
+					}else if(msg.Data.data_stick_state!=null &&msg.Data.data_stick_state.length <4){
+						
+						if(msg.Data.data_stick!=null) {
+							for(var i=0;i<msg.Data.data_stick.length;i++){	
+								str3 = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_stick[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_stick[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_stick[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_stick[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_stick[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+								html1+=str3;
+							}
+						}
+						
+						for(var i=0;i<msg.Data.data_stick_state.length;i++){	
+							str2 = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_stick_state[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_stick_state[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_stick_state[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_stick_state[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_stick_state[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+							html1+=str2;
+						}
+						
+					}else if(msg.Data.data_stick==null){
+						for(var i=0;i<msg.Data.data_stick_state.length;i++){	
+							str2 = '<li class=\"video-list-item video-no-tag\"><a href="'+msg.Data.data_stick_state[i].LiveAddress+'"class=\"video-list-item-wrap\"><div class=\"video-cover\"><img class=\"video-img video-img-lazy\"  src=\"'+msg.Data.data_stick_state[i].LiveCover+'\"   onerror="this.src=\'/static/images/thumb.jpg\'" style=\"display: block;\"><div class=\"video-overlay\"></div><div class=\"video-play\"></div></div><div class=\"video-title\" title=\"hello!女神-上海甄选-重播\">'+msg.Data.data_stick_state[i].RoomAlias+'</div><div class=\"video-info\"><span class=\"video-nickname\">'+msg.Data.data_stick_state[i].NickName+'</span><span class=\"video-number\">'+ msg.Data.data_stick_state[i].LiveNumber +'</span><span class=\"video-cate\">英雄联盟</span></div> </a></li>';
+							html1+=str2;
+						}
+					}
+					
+					// add by liuhan
+					//--------------------------------------------------------
+					if(total>=1){
+						$("#tcdPageCode").createPage({
+					        pageCount:page,
+					        current:pages,
+					        backFn:function(p){
+			           			 //console.log(p);
+				      		  }		
+				    });
+					}
+					//--------------------------------------------------------
+					var hot_title = document.getElementById('hot_title');
+					var list_type = document.getElementById('list_type');
+					hot_title.innerHTML += html;
+					list_type.innerHTML += html1;
+				}
+			},true);
+		});  
+
+	$("#page-list").on('click','li',function(){
+		var pages = localStorage.setItem("zbpage",1);
+	});
+
+		function Item_adaptation(){
+			var winWidth = $(window).width();
+			var boxWidth = $('#wrap').width();
+			
+			if(winWidth <= 1280){
+				var itemWidth = $('#wrap').width()*0.315;
+				var itemHeight = itemWidth/1.7;
+				var styleElement = '<style>.video-list-item{width:' + itemWidth + 'px !important;';
+				styleElement += '}.video-list-item .video-img{height:' + itemHeight + 'px !important;}';
+				
+				styleElement += '#list_type{height:' + (itemHeight+55) + 'px !important;overflow:hidden;}';
+				
+				
+				styleElement += '</style>';
+			}
+			
+			if(winWidth>1280&&winWidth<=1600){
+				var itemWidth = $('#wrap').width()*0.235;
+				var itemHeight = itemWidth/1.7;
+				var styleElement = '<style>.video-list-item{width:' + itemWidth + 'px !important;';
+				styleElement += '}.video-list-item .video-img{height:' + itemHeight + 'px !important;}';
+				styleElement += '#list_type{height:' + (itemHeight+55) + 'px !important;overflow:hidden;}';
+				styleElement += '</style>';
+				
+			}
+			if(winWidth>1600){
+				var itemWidth = $('#wrap').width()*0.19;
+				var itemHeight = itemWidth/1.7;
+				var styleElement = '<style>.video-list-item{width:' + itemWidth + 'px !important;';
+				styleElement += '}.video-list-item .video-img{height:' + itemHeight + 'px !important;}';
+				styleElement += '#list_type{height:' + (itemHeight+55) + 'px !important;overflow:hidden;}';
+				styleElement += '</style>';
+			}
+			$('#pstyle').html(styleElement);
+		}
+</script>
+ </body>
+</html>
+{{end}}

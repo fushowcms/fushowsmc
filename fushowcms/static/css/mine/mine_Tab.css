@@ -1,0 +1,147 @@
+body,ul,li {
+	margin: 0px;
+	padding: 0;
+}
+
+nav {
+	width: 70%;
+	height: 100px;
+	background: ghostwhite;
+	padding: 0 200px 0 0;
+	float: right;
+}
+
+
+/***********************TAB*************************/
+
+#mine-Tab-ul {
+	width: 168px;
+	float: left;
+	list-style: none;
+	background: #ffffff;
+}
+
+#mine-Tab-ul li {
+	width: 140px;
+	height: 22px;
+	padding: 13px 0 13px 28px;
+	border-bottom: solid #efefef 1px;
+	line-height: 22px;
+	text-align: center;
+}
+
+
+/*#mine-Tab-ul li:hover{ background: #e84c3d;}                        
+  #mine-Tab-ul li a:hover{ color: white;}                            */
+
+#mine-Tab-ul li a {
+	color: #525157;
+	font-size: 14px;
+}
+
+#mine-Tab-ul li a {
+	text-decoration: none;
+	float: left;
+}
+
+
+/*#mine-Tab-ul li:nth-child(1){
+                         color: #fc627a ;
+                         font-size: 25px;
+                         font-weight: bold;
+                         border-bottom:solid 2px #FC627A ;
+                         line-height: 45px; text-align: center;}*/
+
+#user-name,
+#user-money-Pic,
+#user-money,
+#user-Pay {
+	float: left;
+	margin-top: 40px;
+}
+
+#user-Pic {
+	width: 90px;
+	height: 90px;
+	border-radius: 45px;
+	float: left;
+	margin-top: 10px;
+	background-image: url(../../static/images/header/u=807200093,2340038484&fm=21&gp=0.jpg);
+	background-size: 100%;
+	margin-left: 20px;
+}
+
+#user-name {
+	font-size: 20px;
+	font-weight: bold;
+	margin-left: 20px;
+}
+
+#user-money-Pic {
+	width: 20px;
+	height: 20px;
+	margin-left: 20px;
+	background-image: url(../../static/images/header/17A58PICged_1024.png);
+	background-size: 100%;
+}
+
+#user-Pay {
+	text-decoration: none;
+	font-weight: bolder;
+	color: orange;
+	margin-left: 30px;
+}
+
+#hotss {
+	float: left;
+	font-size: 12px;
+}
+
+
+/***********************TABPic*************************/
+
+.mine-Tab-liPic {
+	width: 22px;
+	height: 22px;
+	float: left;
+	line-break: 22px;
+	margin-left: 18px;
+	margin-right: 3px;
+	background-image: url(../../static/images/mine/u_nav_icon.png);
+	background-repeat: no-repeat;
+}
+
+#myIform {
+	background-position: 2px 2px;
+}
+
+
+/*#myIform:hover{background-position: -59px 2px;}*/
+
+#myCash {
+	background-position: 2px -365px;
+}
+
+#myISet {
+	background-position: -59px -188px;
+}
+
+#myHistory {
+	background-position: 0px -318px;
+}
+
+#myEarnings {
+	background-position: 0px -140px;
+}
+
+#myOrder {
+	background-position: 0px -94px;
+}
+
+#myGift {
+	background-position: -0px -450px;
+}
+
+#myISet {
+	background-position: 0px -414px;
+}

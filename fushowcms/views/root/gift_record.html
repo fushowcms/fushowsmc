@@ -1,0 +1,66 @@
+{{ define "root/gift_record.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+<h2 >礼物记录</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript">
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/findGiveAll',	
+				queryParams:{  
+			        OrganId:1,  
+				},
+				fit:true
+			});
+		});
+		
+	</script>
+	
+	<table id="dg"  style="overflow: hidden;padding:20px 0 0 20px;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="GiveDate" width="50" align="center" >消费时间</th>
+				<th field="BenefactorId" width="50" align="center" >赠送人id</th>
+				<th field="BenefactorName" width="50" align="center"  >赠送人昵称</th>
+				<th field="RecipientId" width="50" align="center">主播id</th>
+				<th field="RecipientName" width="50" align="center">主播昵称</th>
+				<th field="GiftName" width="50" align="center">赠送礼物</th>
+				<th field="GiftNum" width="50" align="center">数量</th>
+
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入赠送人昵称',searcher:doSearch" style="width:200px"></input>
+		</div>	
+	</div>
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		}
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

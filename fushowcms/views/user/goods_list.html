@@ -1,0 +1,90 @@
+{{ define "user/goods_list.html"}}
+{{ template "user/index_head.html" }}
+{{ template "user/header.html" }}
+{{ template "user/goods_head.html"}}
+
+<div id="main" class="container mt10">
+	<div class="row">
+    	<div>      	
+			<ul id="ul_list" class='prolist' style=""></ul>
+        </div>
+   </div>
+</div>
+   <div id="tcdPageCode" style="text-align:center;"></div>
+
+
+<script src="/static/js/jpages/goodsjPages.js"></script>
+<script>
+var pages = localStorage.getItem("page");
+var page;
+if(pages==null){
+	pages=1;
+}
+$(function(){
+
+	var total;
+	$.ajax({  
+			type: "post",  
+			url: "/user/getgoodslist",  
+			dataType: "json",  
+			data: {
+				page:pages,
+				rows:8
+			},  
+			success: function(data){
+				total = data.total;
+				page = Math.ceil(total / 8);
+
+				$.each(data.rows, function(key,val){ 				
+					var str = "<li style='height:300px;' data-id='"
+					+val.Id
+					+"'id='"
+					+val.Id
+					+"'><img src='"					
+					+val.GoodsPic
+					+"'class='img-responsive'><div id='goodsPirce' class='goods_pirce'>"
+					+"￥"
+					+val.GoodsPirce
+					+"</div>"
+					+"<div id='salesVolume' class='sales_volume'><span id='salesText'>"
+					+val.SalesVolume
+					+"人购买</span></div><a href='#'><div><span id='goodsName'>"
+					+val.GoodsName
+					+"</span></div><div><span id='goodsAccount'>"
+					+val.GoodsAccount
+					+"</span></div></a></li>"; 
+					$("#ul_list").append(str);
+				});
+				
+					$("#ul_list").on("click","li", function() {
+					var id =$(this).data("id");
+					localStorage.setItem("goodsDetailId",id);
+					window.location.href='goods_detail';
+					 });
+					
+				//分页
+				if(total>=8){
+					$("#tcdPageCode").createPage({
+				        pageCount:page,
+				        current:pages,
+				        backFn:function(p){
+		           			 //console.log(p);
+					}
+			    });
+				}
+			}  
+		}); 				
+})
+
+function onclick_click(e) { // 在页面任意位置点击而触发此事件
+
+	$("a").removeClass("selected");
+    $('#a'+e).addClass("selected");
+	localStorage.setItem("page",e);
+	window.location.reload();
+}
+</script>
+</body>
+</html>
+
+{{end}}

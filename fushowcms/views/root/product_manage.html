@@ -1,0 +1,63 @@
+{{ define "root/product_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+<h2 >产品管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript">
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getproductlist',
+				saveUrl: '../root/productadd',
+				updateUrl: '../root/productup',
+				destroyUrl: '../root/productdel',
+				fit:true
+			});
+		});
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		}
+	</script>
+	<table id="dg" style="margin:0 0 0 50px;height:500px"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="ProductName" width="50" editor="text">产品名称</th>
+				<th field="State1" width="50" editor="{type:'validatebox',options:{required:true}}">状态1</th>
+				<th field="State2" width="50" editor="{type:'validatebox',options:{required:true}}">状态2</th>
+				<th field="State3" width="50" editor="text">状态3</th>
+				<th field="State4" width="50" editor="text">状态4</th>
+				<th field="State5" width="50" editor="text">状态5</th>
+				<th field="State6" width="50" editor="text">状态6</th>
+				<th field="State7" width="50" editor="text">状态7</th>
+				<th field="State8" width="50" editor="text">状态8</th>
+				<th field="State9" width="50" editor="text">状态9</th>
+				<th field="State10" width="50" editor="text">状态10</th>	
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="#" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">添加</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">保存</a>-->
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a>-->
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入产品名称',searcher:doSearch" style="width:200px"></input>
+		</div>	
+	</div>
+
+</div>
+<!--end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

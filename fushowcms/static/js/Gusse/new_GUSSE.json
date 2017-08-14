@@ -1,0 +1,66 @@
+{
+    "date": [
+        {
+            "Id": 44,
+            "PeriodsId": 201609181,
+            "StartTime": "2016-09-19 14:46:34",
+            "EndTime": "2016-09-20 14:46:39",
+            "ATeam": "QQ",
+            "BTeam": "WW",
+            "State": 0,
+            "SubmitTime": "2016-09-18 06:47:01.067302",
+            "VerifyTime": "2016-09-18 06:47:01.067302",
+            "ProEncoding": "1,2",
+            "SupEncoding": "",
+            "DelTime": "0001-01-01T00:00:00Z",
+            "Version": 1
+        },
+        {
+            "Id": 45,
+            "PeriodsId": 201609182,
+            "StartTime": "2016-09-19 15:47:04",
+            "EndTime": "2016-09-19 15:47:09",
+            "ATeam": "EE",
+            "BTeam": "RR",
+            "State": 0,
+            "SubmitTime": "2016-09-18 06:47:30.154966",
+            "VerifyTime": "2016-09-18 06:47:30.154966",
+            "ProEncoding": "1",
+            "SupEncoding": "",
+            "DelTime": "0001-01-01T00:00:00Z",
+            "Version": 1
+        },
+        {
+            "Id": 46,
+            "PeriodsId": 201609183,
+            "StartTime": "2016-09-20 14:47:32",
+            "EndTime": "2016-09-21 14:47:36",
+            "ATeam": "aa",
+            "BTeam": "ss",
+            "State": 0,
+            "SubmitTime": "2016-09-18 06:47:52.993272",
+            "VerifyTime": "2016-09-18 06:47:52.993272",
+            "ProEncoding": "2",
+            "SupEncoding": "",
+            "DelTime": "0001-01-01T00:00:00Z",
+            "Version": 1
+        },
+        {
+            "Id": 47,
+            "PeriodsId": 201609184,
+            "StartTime": "2016-09-20 14:47:57",
+            "EndTime": "2016-09-21 14:48:02",
+            "ATeam": "SD",
+            "BTeam": "FF",
+            "State": 0,
+            "SubmitTime": "2016-09-18 06:48:43.263148",
+            "VerifyTime": "2016-09-18 06:48:43.263148",
+            "ProEncoding": "4,5,11",
+            "SupEncoding": "",
+            "DelTime": "0001-01-01T00:00:00Z",
+            "Version": 1
+        }
+    ],
+    "rows": 4,
+    "state": true
+}

@@ -1,0 +1,55 @@
+{{ define "user/product.html" }}
+<html>
+<head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> </head>
+	<body>
+		<h1>增加产品</h1>
+		<form action="/root/productadd" method="post">
+			用户名: <input type="text" name="productName"><br>
+			密 码 : <input type="text" name="id"><br>
+			
+			<div style="margin:10 0 0 0">
+				<input type="submit" value="添加">
+			</div>
+		</form>
+
+		<h1>删除产品</h1>
+		<form action="/root/productdel" method="post">
+			产品ID: <input type="text" name="id"><br>
+			<div style="margin:10 0 0 0">
+				<input type="submit" value="删除">
+			</div>
+		</form>
+		
+		
+		<h1>修改产品</h1>
+		<form action="/root/productup" method="post">
+			ID : <input type="text" name="id"><br>
+			名称: <input type="text" name="productName"><br>
+			状态 : <input type="text" name="state1"><br>
+
+			<div style="margin:10 0 0 0">
+				<input type="submit" value="修改">
+			</div>
+		</form>
+		
+		<h1>查询产品</h1>
+		<form action="/root/getproduct" method="post">
+			ID: <input type="text" name="id"><br>
+			
+			<div style="margin:10 0 0 0">
+				<input type="submit" value="查询">
+			</div>
+		</form>
+		
+		<h1>查询多条</h1>
+		<form action="/root/getproductlist" method="post">
+			ID: <input type="text" name="id1"><br>
+			ID: <input type="text" name="id2"><br>
+			ID: <input type="text" name="id3"><br>
+			<div style="margin:10 0 0 0">
+				<input type="submit" value="查询多条">
+			</div>
+		</form>
+	</body>
+</html>
+{{ end }}

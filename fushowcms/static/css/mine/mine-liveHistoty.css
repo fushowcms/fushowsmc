@@ -1,0 +1,89 @@
+body,ul,li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+#mine-liveHistotyBox-ul1 {
+	float: left;
+}
+
+#mine-liveHistotyBox-ul1 li,#mine-liveHistotyBox-ul2 li {
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	color: gray;
+	font-size: 14px;
+}
+
+#mine-liveHistotyBox-ul1 li {
+	border-left: 1px solid gainsboro;
+	width: 584px;
+}
+
+#mine-liveHistotyBox-ul1 li:nth-child(odd) {
+	background: #f3f3f3;
+}
+
+#mine-liveHistotyBox-ul1 li:nth-child(1) {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#mine-liveHistotyBox-ul2 {
+	float: left;
+}
+
+#mine-liveHistotyBox-ul2 li {
+	width: 234px;
+	border-right: 1px solid gainsboro;
+}
+
+#mine-liveHistotyBox-ul2 li:nth-child(odd) {
+	background: #f3f3f3;
+}
+
+#mine-liveHistotyBox-ul2 li:nth-child(1) {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#mine-liveHistotyBox-Nam li,
+.liveHistoty-content {
+	float: left;
+	line-height: 30px;
+}
+
+.liveHistoty-content li {
+	float: left;
+	line-height: 30px;
+}
+
+#mine-liveHistotyBox-Nam li {
+	background: #bfbfbf;
+	color: white;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.History-1,
+.liveHistoty-content-T {
+	width: 584px;
+	height: 30px;
+	text-align: center;
+}
+
+.History-2,
+.liveHistoty-content-S {
+	width: 234px;
+	height: 30px;
+	text-align: center;
+}
+
+.liveHistoty-content-T:nth-child(even) {
+	background: #f3f3f3;
+}

@@ -1,0 +1,164 @@
+body,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+#mine-myOrder-Box {
+	width: 756px;
+	height: 680px;
+	margin-top: 0px;
+	margin-left: 20px;
+	padding: 5px 28px 15px 5px;
+	overflow: hidden;
+	position: relative;
+}
+
+.anchorPart {
+	width: 325px;
+	height: 100px;
+	padding: 10px;
+	margin-left: 10px;
+	margin-bottom: 10px;
+	background: #F1F2F3;
+	list-style: none;
+	float: left;
+}
+
+
+/*#anchorPart-ul li:nth-child(even){ margin-right: 800px;}*/
+
+.anchorPic {
+	width: 180px;
+	height: 100px;
+	background: gray;
+	float: left;
+	margin-right: 10px;
+	background-image: url('/static/images/thumb.jpg');
+	background-size: 100%;
+}
+
+.anchorWord {
+	list-style: none;
+}
+
+.anchor-Time {
+	font-size: 16px;
+    font-weight: bold;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.anchor-Name,
+.anchor-yes,
+.anchor-audience,
+.anchor-game {
+	font-size: 14px;
+	color: gray;
+	font-size: 12px;
+	width: 130px;
+	height: 16px;
+	float: left;
+	margin-top: 4px;
+}
+
+.anchor-sPic1,
+.anchor-sPic2 {
+	width: 16px;
+	height: 16px;
+	float: left;
+	margin-right: 2px;
+}
+
+#mine-myOrder-ul {
+	margin-left: 20px;
+	margin-top: 10px;
+}
+
+#mine-myOrder-ul li {
+	float: left;
+	list-style: none;
+	width: 110px;
+	height: 35px;
+	margin-left: 5px;
+	margin-bottom: 10px;
+	line-height: 35px;
+	text-align: center;
+	color: #828282;
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#mine-myOrder-ul li:hover {
+	background: deepskyblue;
+	color: white;
+	font-weight: bold;
+}
+
+.myOrder-On {
+	background: deepskyblue;
+	color: white !important;
+	font-weight: bold;
+}
+
+.myOrder-Off {
+	background: white; color: #828282;
+	font-weight: bold;
+}
+
+#Follwers,
+#Follwers-setting {
+	height: 100vh;
+	float: left;
+	display: none;
+}
+
+#Follwers li,
+#Follwers-setting li {
+	padding: 0 40px;
+	height: 30px;
+	list-style: none;
+	line-height: 30px;
+	color: gray;
+	font-size: 14px;
+	font-weight: bold;
+	text-align: center;
+	;
+}
+
+#Follwers li:nth-child(odd) {
+	background: gainsboro;
+}
+
+#Follwers-setting li:nth-child(odd) {
+	background: gainsboro;
+}
+
+#Follwers-setting li span:nth-child(1) {
+	color: orange;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#Follwers-setting li span:nth-child(2) {
+	color: red;
+	font-weight: bold;
+	font-size: 12px;
+}
+
+#Follwers-alert {
+	width: 300px;
+	height: 200px;
+	border: 1px solid red;
+	position: absolute;
+	background: white;
+	left: 300px;
+	top: 100px;
+	display: none;
+}
+
+#Follwers-alert h1 {
+	text-align: center;
+	font-size: 20px;
+}

@@ -1,0 +1,34 @@
+{{define "news/o1-1.html"}}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	{{template "page/common_meta.html"}}
+	<title>【富秀直播】-公告</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/help_content.css"/>
+	{{template "page/common_js.html"}}
+</head>
+ <body>
+{{template "page/common_head.html"}}
+	<div class="help-container">
+	    <div class="help-head">
+		 <h2>新闻</h2>
+	    </div>
+		<div class="help-content">
+		  {{template "news/left.html"}}
+		  <div class="help-right">
+		    <ul class="help-right-list">
+			  <li><a href="news1-1-1" target="_blank">新闻A</a></li>
+			  <li><a href="news1-1-1" target="_blank">新闻A</a></li>
+			</ul>			
+		  </div>
+		</div>
+	</div>
+	<!--
+	footer太高。
+	-->
+ </body>
+</html>
+
+{{end}}

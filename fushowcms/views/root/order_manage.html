@@ -1,0 +1,170 @@
+{{ define "root/order_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+
+<style>
+	.panel{
+		overflow-x:scroll;
+	}
+</style>
+	<h2 >订单管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script src="/static/js/common.js"></script>
+	<script type="text/javascript">
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../user/getorderlists',
+				saveUrl: '../user/orderadd',
+				updateUrl: '../user/orderup',
+				destroyUrl: '../user/orderdel',
+				fit:true
+			});
+		});
+		//显示dialog
+	function openUserAddDialog(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("open").dialog("setTitle", "新增订单");
+        url="../root/orderadd";
+        jQuery("#file_upload").attr("name","uploadFile");
+        jQuery("#newImg").attr("src","../../static/images/add.png");
+    }
+	
+	//dialog提交按钮
+	 function save(){
+		var setstate = $("#wrap input[name='setstate']:checked ").val();
+		var id = $("#id").val();
+		reqAjax(url,{Setstate:setstate,myuid:id},function(data) {
+			if(data.ErrorCode=="0"){
+				jQuery.messager.show({title:"提示",msg:data.Data});
+			}else{
+				jQuery.messager.show({title:"提示",msg:data.ErrorMsg});
+			}
+			jQuery("#dg").datagrid("reload");
+			jQuery("#dlg").dialog("close");
+			jQuery("#form").form("reset");
+		});
+    }
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	 // jQuery("#file_upload").fileupload({
+  //       iframe: true,
+  //       dataType: 'json',
+  //       url: "../user/upload",//文件上传地址，当然也可以直接写在input的data-url属性内
+  //       done: function (e, result) {
+  //           if(result.result.succ){
+  //               jQuery("#newImg").attr("src",result.result.path);
+  //               jQuery("#file_path").val(result.result.path);
+  //           }else{
+  //               jQuery("#errMsg").html("文件上传出错");
+  //           }
+  //       }
+  //   });
+
+	function dispValue(row){
+		//document.getElementById("id").val(row.Id);
+		jQuery("#id").val(row.Id);
+		jQuery("#orderid").textbox("setText",row.OrderID);
+        jQuery("#goodsname").textbox("setText",row.GoodsName);
+		jQuery("#goodsnum").textbox("setText",row.GoodsNum);
+        jQuery("#goodspirce").textbox("setText",row.GoodsPirce);
+        jQuery("#goodstotal").textbox("setText",row.GoodsTotal);
+        jQuery("#userid").textbox("setText",row.UserId);
+		jQuery("#receiver").textbox("setText",row.Receiver);
+		jQuery("#address").textbox("setText",row.Address);
+		jQuery("#tel").textbox("setText",row.Tel);
+		jQuery("#createtime").textbox("setText",row.CreateTime);
+		jQuery("#setstate").textbox("setText",row.Setstate);
+    }
+	function getSelected (){
+		var row = $('#dg').datagrid('getSelected');
+		dispValue(row);
+		jQuery("#dlg").dialog("open").dialog("setTitle", "修改订单");
+ 		url = "../user/orderup";
+		jQuery("#file_upload").attr("name","uploadFile");
+
+	}
+
+	function editState(val,replace){
+		if(val == 0){
+			return "未发货"
+		}
+		if(val == 1){
+			return "已发货"
+		}
+	}
+	</script>
+
+	<table id="dg" style="margin:0 50px 0 50px;height:auto" class="easyui-datagrid"
+			toolbar="#toolbar" pagination="true" idField="Id" 
+			rownumbers="true" fitColumns="true" singleSelect="true"  >
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true" ></th>-->
+				<th field="Id" width="50" >订单编号</th>
+				<th field="GoodsName" width="50" >商品名称</th>
+				<th field="GoodsNum" width="50"  >商品数量</th>
+				<th field="GoodsPirce" width="50" >商品价格</th>
+				<th field="GoodsTotal" width="50" >商品总价</th>
+				<th field="UserId" width="50">用户id</th>
+				<th field="Receiver" width="50" >收货人</th>
+				<th field="Address" width="50" >收货地址</th>
+				<th field="Tel" width="50" >收货人电话</th>
+				<th field="CreateTime" width="50">下单时间</th>
+				<th field="Setstate" width="50" formatter="editState">商家发货状态</th>
+				
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+<!--	 	<a href="javascript:openUserAddDialog()" class="easyui-linkbutton" data-options="plain:true"  iconCls="icon-add" plain="true">接单</a>-->
+		<a href="#" class="easyui-linkbutton" iconcls="icon-edit" onclick="getSelected()" plain="true">修改</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" onclick="javascript:$('#dg').edatagrid('destroyRow')" plain="true">删除</a>
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" onclick="javascript:$('#dg').edatagrid('cancelRow')" plain="true" >取消</a>-->
+	</div>
+	<div id="dlg" class="easyui-dialog" style="height:300px;padding: 5px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		     overflow-y="scroll">
+		    <form id="form" method="post" enctype="multipart/form-data" >
+		        <table style="margin: 5px 5px;" cellspacing="5px" >
+					<tr>
+		                <td align="right" style="width: 140px;" hidden>Id:</td>
+		                <td align="left">
+		                    <input id="id" name="myuid" hidden >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+						<tr>
+		                <td align="right" style="width: 140px;">商家发货状态</td>
+		                <td align="left">
+<!--		                    <input id="setstate" type="text" name="Setstate" class="easyui-textbox" style="width: 150px;" data-options="required:true" missingMessage="0:默认未发货、1:已发货">-->
+<!--		                    <input id="setstate" type="radio" name="Setstate" var="1" class="easyui-textbox" data-options="required:true">已发货-->
+								<div id = "wrap">
+								<input type="radio" name="setstate" value="1" checked="checked">发货
+		               </div>
+					 </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+		   
+		        </table>
+		    </form>
+	</div>	
+	<div id="dlg-buttons">
+	    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+	    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+	</div>
+
+</div>    
+{{ template "root/footer.html" }}
+{{end}}
+<!--填充body-end-->
+
+<!--后台右end-->

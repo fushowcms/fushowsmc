@@ -1,0 +1,216 @@
+{{ define "root/affiliation_manage.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+<script type="text/javascript" src="/static/js/common.js"></script>
+
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >联盟管理</h2>
+<div id="mainPanle" region="center">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+	
+	<script type="text/javascript">
+		var url;
+		var passWord;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/findOrgan',
+				fit:true
+			});
+		});
+		
+		function p_del() { 
+			var msg = "您真的确定要删除吗？请确认！"; 
+			if (confirm(msg)==true){ 
+				return true; 
+			}else{ 
+				return false; 	
+			} 
+		} 
+		function openDelDialog(){
+			var row = $('#dg').datagrid('getSelected');
+			url = "../root/delOrgan";
+			reqAjax(url,{Id:row.Id},function(result) {
+				jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+				jQuery("#dg").datagrid("reload");
+				jQuery("#dlg").dialog("close");
+ 				jQuery("#form").form("reset");
+			});
+		}
+
+		function openAddDialog(){
+			jQuery("#form").form("reset");
+      		jQuery("#dlg").dialog("open").dialog("setTitle", "添加联盟信息");
+			$("#_easyui_textbox_input1").removeAttr("readOnly","readOnly");
+			$("#_easyui_textbox_input3").removeAttr("readOnly","readOnly");
+			url = "/root/addOrgan";
+		}
+		function openUpDialog(){
+			var row = $('#dg').datagrid('getSelected');
+			pid =row.OrganCode;
+			passWord = row.PassWord
+			jQuery("#dlg").dialog("open").dialog("setTitle", "修改联盟信息");
+			jQuery("#OrganCode").textbox("setText",row.OrganCode);
+			jQuery("#OrganName").textbox("setText",row.OrganName);	
+			jQuery("#PassWord").textbox("setText",row.PassWord);
+			$("#_easyui_textbox_input1").attr("readOnly","readOnly");
+			//$("#_easyui_textbox_input3").attr("readOnly","readOnly");
+			$("#Id").val(row.Id)
+			$("#_easyui_textbox_input1").val(row.OrganCode)
+			$("#_easyui_textbox_input2").val(row.OrganName)
+			$("#_easyui_textbox_input3").val(row.PassWord)
+			url = "/root/updateOrgan"
+		}
+		function save(){
+			var code = "^[0-9]*[1-9][0-9]*$";
+			var pword = "^[0-9][a-z][A-Z]*$";
+			var a = $('#form').serialize();
+			if($("#_easyui_textbox_input1").val().length != 8){
+				jQuery.messager.show({title:"提示",msg:"联盟编号必须由8位数字组成"});
+				return
+			}
+			if(!$("#_easyui_textbox_input1").val().match(code)){
+				jQuery.messager.show({title:"提示",msg:"联盟编号必须由8位数字组成"});
+				return
+			}
+			if($("#_easyui_textbox_input3").val().length != 6){
+				jQuery.messager.show({title:"提示",msg:"密码必须为6位"});
+				return
+			}
+			if($("#_easyui_textbox_input3").val().match(pword)){
+				jQuery.messager.show({title:"提示",msg:"密码必须由数字或字母组成"});
+				return
+			}
+			reqAjax(url,{
+				Id:$("#Id").val(),
+				OrganCode:$("#_easyui_textbox_input1").val(),
+				OrganName:$("#_easyui_textbox_input2").val(),
+				NewPassWord:$("#_easyui_textbox_input3").val(),
+				PassWord:passWord
+			},function(result) {
+				jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+				jQuery("#dg").datagrid("reload");
+				jQuery("#dlg").dialog("close");
+ 				jQuery("#form").form("reset");
+			});
+			// $.ajax({
+			// type:"post",
+			// url:url,
+			// dataType: 'json',
+			// //data:$('#form').serialize(),// 你的formid
+			// data:{
+			// 	Id:$("#Id").val(),
+			// 	OrganCode:$("#_easyui_textbox_input1").val(),
+			// 	OrganName:$("#_easyui_textbox_input2").val(),
+			// 	NewPassWord:$("#_easyui_textbox_input3").val(),
+			// 	PassWord:passWord
+			// },
+			// success:function(result){
+			// 	jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+			// 	jQuery("#dg").datagrid("reload");
+			// 	jQuery("#dlg").dialog("close");
+ 		// 		jQuery("#form").form("reset");
+				
+			// },error:function(){
+			// 	alert("系统错误");
+			// }
+			// });
+		}
+	</script>
+
+	
+	<table id="dg" style="overflow: hidden;padding:20px 0 0 20px;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="Id" width="50" align="center">联盟id</th>
+				<th field="OrganCode" width="50" align="center" sortable="true">联盟编码</th>
+				<th field="OrganName" width="50" align="center">联盟名称</th>
+<!--				<th field="UserName" width="50" align="center" editor="text">联盟账号</th>-->
+				<th field="PassWord" width="50" align="center">密码</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+		<a href="javascript:openAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">添加</a>
+		<a href="javascript:openDelDialog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:return p_del()" >删除</a>  <!--onclick="javascript:$('#dg').edatagrid('destroyRow')"-->
+		<a href="javascript:openUpDialog()" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">修改</a>	
+		
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入联盟名称',searcher:doSearch" style="width:200px"></input>
+		</div>	
+
+<!--		<div id="tb" style="padding:3px;float:right">
+			<span>联盟名称:</span>
+			<input id="itemid" style="line-height:15px;border:1px solid #ccc">
+			<a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查询</a>
+		</div>-->
+	</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width: 580px;padding: 15px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		     overflow-y="scroll">
+		    <form id="form" method="post" enctype="multipart/form-data" >
+		        <table style="margin: 30px 70px;" cellspacing="15px" >
+				<tr><input id="Id" name="Id" type="hidden"></tr>
+					<tr>
+		                <td align="right" style="width: 140px;" >联盟编号:</td>
+		                <td align="left">
+		                    <input id="OrganCode" name="OrganCode" class="easyui-textbox" data-options="required:true"  missingMessage="请输入8位联盟编码如:45003180"  validType='length[0,8]'>
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>
+					<tr>
+		                <td align="right" style="width: 140px;" >联盟名称:</td>
+		                <td align="left">
+		                    <input id="OrganName" name="OrganName" class="easyui-textbox" data-options="required:true"  missingMessage="请输入联盟名称"  >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>  
+					<!--<tr>
+		                <td align="right" style="width: 140px;" >联盟账号:</td>
+		                <td align="left">
+		                    <input id="UserName" name="UserName" class="easyui-textbox" data-options="required:true"  missingMessage="请输入联盟账号"  >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr> --> 
+					<tr>
+		                <td align="right" style="width: 140px;" >密码:</td>
+		                <td align="left">
+		                    <input id="PassWord" name="PassWord" class="easyui-textbox" data-options="required:true"  missingMessage="请输入联盟密码"  >
+		                </td>
+		                <td align="left">&nbsp;</td>
+		            </tr>  
+		        </table>
+		    </form>
+		</div>
+<div id="dlg-buttons">
+    <a href="javascript:save()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+</div>
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		
+		}
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

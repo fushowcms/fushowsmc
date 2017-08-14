@@ -1,0 +1,37 @@
+{{ define "user/sidebar.html"}}
+       
+	<ul id="mine-Tab-ul">
+		<li id="mine_myInform">
+			<a href="mine_myInform" class="tabA">我的资料</a>
+		</li>
+		
+		<li id="my_order">
+			<a href="my_order" class="tabA">我的关注</a>
+		</li>
+		
+		<li id="my_guess">
+			<a href="my_guess" class="tabA">礼物记录</a>
+		</li>
+		
+		<li id="my_rechargerecord">
+			<a href="my_rechargerecord" class="tabA">充值记录</a>
+		</li>
+		
+		<li id="my_gift">
+			<a href="my_gift" class="tabA">赠送管理</a>
+		</li>
+		
+	    <li id="beAnchor">
+			<a href="javascript:void(0);" class="tabA">关于主播</a>
+		</li>
+			
+		<li  id="my_setting" class="anchor-Inform">
+			<a href="my_setting" class="tabA">直播设置</a>
+		</li>
+		
+		<li id="my_order_list">
+			<a href="javascript:authAlert();" class="tabA">在线商城</a>
+		</li>
+	</ul>
+	<script src="/static/js/user/sidebar.js"></script>
+{{end}}

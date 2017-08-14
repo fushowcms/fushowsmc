@@ -1,0 +1,381 @@
+body,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+/*#iFrame1{
+	width:812px;
+	height: 800px;
+	background:ghostwhite; 
+	float: right;  
+	margin-left: 20px;
+}*/
+#mine-setting-top{
+	width: 812px;
+	height: 60px;
+}
+#mine-setting-ul{
+	width: 812px;
+	height: 40px;
+	margin-left: 3px;
+	margin-top: 2px;
+	background-color: white;
+}
+#mine-setting-ul li,#roomdiy li{
+	float: left;
+	list-style: none;
+	width: 135px;
+	height: 40px;
+	/*margin-left: 5px;*/
+	line-height: 40px;
+	text-align: center;
+	color: #828282;
+	font-size: 12px;
+}
+#mine-setting-Box {
+	width: 812px;
+	height: 803px;
+	padding-top: 20px;
+}
+.mine-myInform-Off {
+	display: none;
+}
+#room-title {
+	width: 100%;
+	height: 80px;
+	display: block;
+}
+
+#room-title li {
+	float: left;
+	padding: 5px 2px;
+	width: 80px;
+	height: 14px;
+	line-height: 14px;
+	margin-bottom: 20px;
+	font-size: 12px;
+}
+
+#room-title li:nth-child(3) {
+	margin-right: 500px;
+}
+
+.items {
+	color: gray;
+	margin-left: 20px;
+	width: 80px;
+	height: 24px;
+	text-align: right;
+	font-size: 12px;
+	line-height: 24px;
+}
+
+.buttons {
+	text-align: center;
+	width: 100px;
+	font-size: 12px;
+	padding: 5px 2px;
+	color: white;
+	font-weight: 600;
+	background: #e84c3d;
+}
+
+.setting-Tips {
+	font-size: 12px;
+	color: orangered;
+	display: block;
+	padding-left: 130px;
+	margin-bottom: 20px;
+}
+
+#inputM {
+	width: 560px;
+	height: 90px;
+/*	border: none;*/
+	padding: 10px;
+	background: ghostwhite;
+	margin-left: 5px;
+}
+
+#xiugai {
+	margin: 20px 0 20px 104px;
+}
+
+.content {
+	color: gray;
+	margin-left: 5px;
+	width: 160px;
+	height: 20px;
+	text-align: left;
+	font-size: 14px;
+	margin-bottom: 20px;
+}
+
+#yuming {
+	float: left;
+	margin-left: 5px;
+}
+
+#mine-setting-Yuming,
+#zhibofenlei,
+#yuming-Now {
+	width: 100%;
+	height: 24px;
+	position: relative;
+	line-height: 24px;
+}
+
+#mine-setting-room,
+#zhibofenlei,
+#mine-Score {
+	width: 100%;
+	height: 30px;
+	margin-bottom: 20px;
+}
+#mine-setting-room li {
+
+	padding: 5px 2px;
+	width: 100px;
+	height: 14px;
+	border: 1px solid gainsboro;
+	font-size: 12px;
+	color: deepskyblue;
+	float: left;
+	text-align: center;
+	margin-right: 5px;
+}
+
+#mine-setting-room li:hover {
+	background: deepskyblue;
+	color: white;
+}
+
+#mine-setting-room li:nth-child(1) {
+	border: none;
+	width: 80px;
+	margin-right: 0;
+	text-align: right;
+	color: gray;
+	line-height: 20px;
+}
+
+#hotss,
+#kinds {
+	float: left;
+	font-size: 12px;
+	height: 24px;
+	line-height: 24px;
+	margin-left: 5px;
+}
+
+#hotss-xiugai,
+#biaoqian-xiugai {
+	float: left;
+	margin-left: 5px;
+}
+
+#mine-Score li {
+	padding: 5px 2px;
+	width: 100px;
+	height: 14px;
+	border: 1px solid gainsboro;
+	font-size: 12px;
+	color: deepskyblue;
+	float: left;
+	text-align: center;
+	margin-right: 5px;
+}
+
+#mine-Score li:nth-child(1) {
+	border: none;
+	width: 80px;
+	margin-right: 0;
+	text-align: right;
+	color: gray;
+	line-height: 20px;
+}
+
+#mine-Score li:nth-child(2) {
+	border: none;
+	width: 50px;
+	line-break: inherit;
+}
+
+#setting-zhiboBtn {
+	width: 104px;
+	height: 24px;
+	background: #E84C3D;
+	color: white;
+	text-align: center;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 24px;
+	position: absolute;
+	left: 250px;
+	top: 0;
+	
+}
+
+#biaoti-xiugai {
+	margin: 0;
+	padding: 0;
+	width: 100px;
+	float: left;
+	display: none;
+}
+/*修改主播头像*/
+#live_cover{
+	width:700px;height:220px;margin-left:97px;padding:10px;
+}
+#live_cover_img{
+	width:200px;height:200px;background:#fff;background-image: url(../../static/images/default_avatar_512_512.jpg);
+                     background-size: 100%;float:left;
+}
+#target_div img{
+	width:390px;
+}
+#edit_img{
+	                width:390px;margin-left:100px;position: absolute;
+                    top: 200px;
+                    left: 665px;
+                    padding: 10px 10px;
+                    z-index: 120;
+					background: white;
+                    border-radius: 5px;
+                    border: 5px solid #C8C8C8;
+					display:none;
+}
+#preview_div{
+	width:70px;height:70px;margin-top:10px;overflow:hidden; float:left;border: 2px solid red;
+}
+ #overlay{
+position:absolute;
+left:0px;
+top:0px;
+width:100%;
+height:100%;
+background:#000;
+filter:alpha(opacity=70);
+-moz-opacity:0.7; /*Firefox私有，透明度50%*/
+opacity:0.7;/*其他，透明度50%*/
+display:none;
+}
+#submit_img{
+	position: relative;left:60px;top:30px
+}
+#cancel{
+	position: relative;left:70px;top:30px
+}
+#rtmp_text1,#rtmp_text2{
+	background-color: white;
+	width: 500px;
+	height:30px;
+}
+.key{
+	position: relative;
+}
+.key label{
+	color: gray;
+}
+.key1{
+	position: absolute;
+	top: 40px;
+	right: 70px;
+}
+.key2{
+	position: absolute;
+	right:70px;
+	top: 100px;
+}
+#key_button1,#key_button2{
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+#roomdiyTab,#returnexchangeTab{
+	width: 812px;
+	height: 40px;
+	margin-left: 3px;
+	margin-top: 2px;
+}
+#roomdiyTab li,#returnexchangeTab li{
+	float: left;
+	list-style: none;
+	width: 135px;
+	height: 40px;
+	line-height: 40px;
+	text-align: center;
+	color: white;
+	font-size: 12px;
+}
+#roommanage tr{
+	height: 50px;
+}
+#cancelmanage-show{
+	width: 400px;
+	height: 200px;
+	border: 1px solid black;
+	text-align: center;
+	background-color: white;
+	display: none;
+}
+#cancelmanage-show p{
+	padding-top: 50px;;
+}
+#cancelmanage-show button{
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+    position: absolute;
+}
+#bankcardmsg,#bangbank{
+	padding-top: 50px;
+	text-align: center;
+}
+#bankcardmsg p,#bangbank p{
+	line-height: 50px;
+}
+#bankNameshow,#bankcardNumshow,#bankdePositshow{
+	display: none;
+}
+

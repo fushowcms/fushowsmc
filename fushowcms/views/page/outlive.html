@@ -1,0 +1,46 @@
+{{define "page/outlive.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/roomlive.css"/>
+	<link rel="stylesheet" href="/static/css/outlive.css"/>
+	<link rel="stylesheet" href="/static/css/jquery.mCustomScrollbar.min.css" />
+	{{template "page/common_js.html"}}
+	<script type="text/javascript" src="/static/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<script type="text/javascript" src="/static/js/recharge/jquery.qrcode.js"></script>
+	<script type="text/javascript" src="/static/js/recharge/qrcode.js"></script>
+    <script type="text/javascript" src="/static/js/outlive.js"></script>
+	
+</head>
+
+<body>
+	{{template "page/common_sidebar.html" .}}
+	<div class="right_area">
+		<div class="video-Box">
+			<div class="room-head-box">
+				<div class="room-head-info">
+					<h1 id="roomAlias" class="room-head-info-title"></h1>
+					<div id="roomMsg" class="room-head-info-detail clearfix">
+						<span id="nickName" class="room-head-info-hostname"></span>
+						<!--<i class="lei"></i>
+						<i class="viewnum"></i>-->
+						<i class="hotnum"></i>
+					</div>
+				</div>
+			</div>
+			<div class="room-video-Bigbox">
+				<div id="room-video">
+                    <iframe width="100%" height="100%" name="ifrmname"  frameborder="no" id="ifrmname" border="0"></iframe>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div id="advertisement">
+		
+	</div>
+	<script type="text/javascript" src="/static/js/Filterword.js"></script> 
+</body>                              
+{{end}}

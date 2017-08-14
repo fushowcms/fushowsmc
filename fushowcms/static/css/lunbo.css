@@ -1,0 +1,152 @@
+﻿body,
+ul,
+li {
+	margin: 0;
+	padding: 0;
+}
+
+#lunbo-Pic {
+	width: 1008px;
+	height: 562px;
+	float: left;
+	position: relative;
+	overflow: hidden;
+}
+
+#lunbo-Pic-ul {
+	list-style: none;
+	width: 7560px;
+	height: 562px;
+	position: absolute;
+	left: 0px;
+	top: 0;
+}
+
+#lunbo-Pic-ul li {
+	width: 1008px;
+	height: 562px;
+	float: left;
+	background: no-repeat;
+	background-size: 100%;
+}
+
+/*#lunbo-Pic-ul li:nth-child(1) {
+	background-image: url(../images/lunbo/kalazhan.jpg);
+}
+
+#lunbo-Pic-ul li:nth-child(2) {
+	background-image: url(../images/lunbo/lollll.jpg);
+}
+
+#lunbo-Pic-ul li:nth-child(3) {
+	background-image: url(../images/lunbo/gold.jpg);
+}
+
+#lunbo-Pic-ul li:nth-child(4) {
+	background-image: url(../images/lunbo/hanguo.jpeg);
+}
+
+#lunbo-Pic-ul li:nth-child(5) {
+	background-image: url(../images/lunbo/quanhuang0.jpg);
+}
+
+#lunbo-Pic-ul li:nth-child(6) {
+	background-image: url(../images/lunbo/a5a5.jpg);
+	;
+}
+
+#lunbo-Pic-ul li:nth-child(7) {
+	background-image: url(../images/lunbo/kalazhan.jpg);
+}*/
+
+#lunbo-Btn {
+	width: 189px;
+	height: 562px;
+	padding: 11px 11px 0 11px;
+	background: #3c3c3c;
+	list-style: none;
+	float: left;
+	margin-left: 3px;
+	position: relative;
+}
+
+#lunbo-Btn li {
+	width: 165px;
+	height: 85px;
+	background: pink;
+	margin-bottom: 8px;
+	background-size: 100% 100%;
+	position: relative;
+}
+#lunbo-Btn li>img{
+	height: 85px;
+}
+#lunbo-Btn li:nth-child(1) {
+	background-image: url(../images/lunbo/lushi.png);
+}
+
+#lunbo-Btn li:nth-child(2) {
+	background-image: url(../images/lunbo/lol.jpg);
+}
+
+#lunbo-Btn li:nth-child(3) {
+	background-image: url(../images/lunbo/fengbao.jpg);
+}
+
+#lunbo-Btn li:nth-child(4) {
+	background-image: url(../images/lunbo/liansai.jpeg);
+}
+
+#lunbo-Btn li:nth-child(5) {
+	background-image: url(../images/lunbo/quanhuang.jpeg);
+}
+
+#lunbo-Btn li:nth-child(6) {
+	background-image: url(../images/lunbo/a491.jpeg);
+}
+
+#pics-Border {
+	width: 176px;
+	height: 95px;
+	background-image: url(../images/lunbo/channel-item-border.png);
+	margin-left: -8px;
+	background-size: 100%;
+}
+
+.pics-Border2 {
+	width: 176px;
+	height: 85px;
+	background: url(../images/lunbo/channel-item-border.png) no-repeat;
+	margin-left: -8px;
+	background-size: 100% 100%;
+}
+
+#pics-Border {
+	position: absolute;
+	left: 11px;
+	top: 11px;
+}
+
+.pics-Border2 {
+	position: absolute;
+	left: -1px;
+	top: -1px;
+	display: none;
+}
+.oPic{
+	position: relative;
+}
+#playcome{
+	border: 2px solid orangered;
+	border-radius: 5px;
+	color: orangered;
+	font-size: 15px;
+	width: 120px;
+	height: 50px;
+	background-color: transparent;
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	margin-left: -60px;
+	margin-top: -25px;
+}

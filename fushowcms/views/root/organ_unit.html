@@ -1,0 +1,60 @@
+{{ define "root/organ_unit.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+	.panel{
+		overflow-x:scroll;
+	}
+</style>
+<div id="mainPanle" region="center" style="overflow: hidden;padding:20px 20px 0 20px;position:relative">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+	
+	<script type="text/javascript">
+			reqAjax("../root/findOrganById",{Id:2},function(result) {
+				if(result.ErrorMsg != "ok"){
+					alert(result.ErrorMsg);
+				}else{
+					$("#OrganName").text(result.Data[0].OrganName)
+					$("#OrganCode").text(result.Data[0].OrganCode)
+				}
+			},true);
+			reqAjax("../root/sumOrganManageByOrganId",{OrganId:2},function(result) {
+				$("#total").text(result.Data.total)
+				$("#count").text(result.Data.count)
+			},true);
+
+	</script>
+	<div style="margin-left:20%;margin-top:10%">
+	<div>
+		<span style="font-size:30px;font-weight:bold;color:gray;">联盟名称:</span>
+		<span id="OrganName" style="font-size:30px;color:gray;"></span>
+	</div>
+	<div>
+		<span style="font-size:30px;font-weight:bold;color:gray;">联盟代码:</span>
+		<span id="OrganCode" style="font-size:30px;color:gray;"></span>
+	</div>
+	<div style="margin-top:20px;">
+		<span style="font-size:30px;font-weight:bold;color:gray;">绑定用户数:</span>
+		<span id="count" style="font-size:70px;color:gray;"></span><span style="font-size:30px;color:gray;">名</span>
+	</div>
+	<div style="margin-top:20px;">
+		<span style="font-size:30px;font-weight:bold;color:gray;margin-top:20px;">用户总充值:</span>
+		<span id="total" style="font-size:70px;color:gray;"></span><span style="font-size:30px;color:gray;">元</span>
+	</div>
+<div style="margin-top: 31%;margin-left: -26%;">*客服电话：4008-546-168</div>
+	</div>
+
+	
+</div>	
+	
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

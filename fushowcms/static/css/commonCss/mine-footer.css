@@ -1,0 +1,30 @@
+body,ul,li{margin: 0;padding: 0;}
+footer{
+  background: url(../images/foot.png) no-repeat center top;
+  height: 85px;
+  padding-top: 18px;
+  min-width: 1210px;
+  width: auto!important;
+  width: 1210px;
+  background-color: #37363c;
+}
+.foot_global .about {
+  overflow: hidden;
+  padding-left: 38px;
+  width: 650px;
+  margin: 0 auto;
+  line-height: 24px;
+  list-style: none;
+}
+.foot_global .about li {
+  float: left;
+}
+.foot_global .about li a, .foot_global .about li span {
+  color: white;
+  padding: 0 2px;
+  font-size: 14px;
+  text-decoration: none;
+}
+.foot_global .about li a:hover {
+  color: #E84C3D;
+}

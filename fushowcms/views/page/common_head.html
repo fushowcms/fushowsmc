@@ -1,0 +1,118 @@
+{{define "page/common_head.html"}}
+	<!-- header start -->
+<header id="panda_header" data-current="index">
+    <div class="panda-header-container clearfix">
+	    <div class="panda-header">
+	        <div class="header-logo">
+	          <a href="/">
+	                <img src="/static/images/pic/logo.png">
+	          </a>
+	        </div>
+	        <div class="header-tab-container clearfix">
+                <div id="panda_header_index" class="header-tab current-tab">
+                    <a href="/">首页</a>
+                </div>
+                <div id="panda_header_all_lives" class="header-tab"> 
+                    <a href="/page/lists">全部</a>
+                </div>
+                <div id="panda_header_go_sort" class="header-tab">
+                    <a href="/page/listsClass">分类</a>
+                </div>
+                <!--<div id="panda_header_cong" class="header-tab">
+                    <a href="#">小葱秀</a>
+                </div>
+                <div id="panda_header_livewall" class="header-tab">
+                    <a href="#">30s</a>
+                </div>-->
+				<div class="header-tab-hover current_index"></div>
+	        </div>
+            <div class="header-tool-user-info">
+				<div class="header-loginOff">
+	                <a class="tool-user-info-login header-login-btn" href="javascript:;">登录</a>
+	                <b>|</b>
+	                <a class="tool-user-info-regist header-register-btn"  href="javascript:;" style="position: relative;">注册</a>
+                </div>
+				<div class="header-loginUserImg" id="header-hover-btn">
+					<a href="javascript:;" >
+			            <img class="loginUserImg-img comm-avatar">
+			        </a>				        
+					<div class="head-login-userBox">
+						<a class="out out_head">退出</a>
+	        			<div class="head-login-content">
+	        				<div class="flip-container"> 
+						        <div class="flipper">
+						        	<div class="head-login-content-userImg"><img class="comm-avatar"/></div>
+			        				<div class="head-login-content-userMsg">
+			        					<p>升级还需<span class="comm-level-number"></span>经验</p>
+			        				</div>
+						        </div>
+						    </div>	        				
+	        				<p class="head-login-content-userName comm-nickname">名字</p>
+	        				<ul class="head-login-content-list">
+	        					<li class="sidebar-user-level sidebar-level comm-level" style="margin-top: 0px !important;"></li>
+	        					<li class="user-msg-icon-box"><a href="/user/my_order" target="_blank">我的关注</a></li>
+								<li class="user-history-icon-box" style="margin-left: 20px"><a href="/user/my_gift" target="_blank">赠送记录</a></li>
+	        				</ul>
+							<div class="head-login-content-btn"><a href="/user/mine_myInform" target="_blank">我的资料</a></div>
+	        			</div>
+	        			<ul class="head-login-content-bottom">
+	        				<li class="dropdown-icon-bamboo-right">
+	        					<div class="dropdown-user-bamboo-num comm-remain-nums">0</div>
+	        					<div class="user-info-account">
+	                              <i class="dropdown-icon-bamboo"></i>
+	                              <span class="user-property-desc">积分</span>
+	                            </div>
+	        				</li>
+	        				<li class="dropdown-icon-bamboo-right">
+	        					<div class="dropdown-user-bamboo-num comm-remain-money">0</div>
+	        					<div class="user-info-account">
+	                              <i class="dropdown-icon-nums"></i>
+	                              <span class="user-property-desc">金币</span>
+	                            </div>
+	        				</li>
+	        				<li>
+								<div class="head-login-content-bottom-btn"><a href="/user/recharge" target="_blank">充值</a></div>
+	        				</li>
+	        			</ul>
+	        		</div>
+            	</div>
+            </div>
+	        <div class="header-tool header-download">
+	            <a class="header-download-inner header-download-btn" href="javascript:;" target="_blank">
+	                <i class="header-icon icon-download"></i>
+	                <span class="header-download-text">下载</span>
+	            </a>
+	        </div>
+	        <div class="panda-search header-tool">
+				<form name="room-search" action="/page/search" method="get" target="_top" class="search-form">
+				    <input type="text" name="kw" placeholder="搜主播" autocomplete="off" class="search-key search-default">
+				    <div class="search-submit-btn">
+				      <input type="buttom" class="search-submit">
+				    </div>
+				</form>
+			</div>
+    	</div>
+	</div>
+	<section id="loginBox">
+    	{{ template "page/common_logins.html"}}
+    </section>
+</header>
+<!-- header end -->
+<script type="text/javascript">
+	$(function(){
+		$('#header-hover-btn').hover(function(){
+			$('.head-login-userBox').css('display','block');
+			$('.head-login-userBox').stop().animate({'height':292,'opacity':1},500);
+		},function(){
+			$('.head-login-userBox').stop().animate({'height':44,'opacity':0},500,function(){
+				$('.head-login-userBox').css('display','none');
+			});
+		})
+		
+	})
+	
+	
+	
+
+</script>
+{{end}}

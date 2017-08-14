@@ -1,0 +1,64 @@
+{{define "help/problem3-2-4.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{template "page/common_meta.html"}}
+	<title>直播时FPS很低，画面很卡怎么办？</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/help_content.css"/>
+	{{template "page/common_js.html"}}
+</head>
+<body>
+	{{template "page/common_head.html"}}
+	<div class="help-container">
+	    <div class="help-head">
+		 <h2>常见问题</h2>
+	    </div>
+		<div class="help-content">
+		  {{template "help/left.html"}}
+		  <div class="help-right">
+                <div class="help-right-title">
+                直播时FPS很低，画面很卡怎么办？
+				</div>
+               <div class="help-right-detail">
+                   <p>&nbsp;</p>
+
+<p><span style="font-family:microsoft yahei;">FPS是图像领域中的定义，是指画面每秒传输帧数，每秒钟帧数愈多，所显示的动作就会愈流畅。通常，要避免动作不流畅的最低是30。某些计算机视频格式，每秒只能提供15帧。<br />
+FPS也可以理解为我们常说的&ldquo;刷新率（单位为Hz）&rdquo;，</span><span style="font-family:microsoft yahei;">代表每秒钟屏幕刷新的次数，当该参数变低时，会导致屏幕变卡、延迟等效果，会影响到观看直播和游戏的体验。<br />
+<br />
+主播可以通过以下方法尝试：<br />
+<br />
+1、导致FPS变低的一部分原因在于显卡性能欠佳或设置不当，建议更新显卡驱动，同时开启显卡的&ldquo;硬件加速&rdquo;功能；<br />
+<img alt="" src="http://i1.pdim.gs/t019c026a39201173ed.png" style="width: 742px; height: 500px;" /><br />
+<br />
+2、降低游戏的各项效果参数。进入直播游戏 的&ldquo;选项&rdquo;或&ldquo;设置&rdquo;窗口，切换至&ldquo;视频&rdquo;选项卡，将如图所示的所有效果调整至中低水平，关闭垂直同步，同时设置为最佳分辨率及全屏模式；<br />
+<img alt="" src="http://i4.pdim.gs/t0143f6372e97afd96c.png" style="width: 927px; height: 673px;" /><br />
+<br />
+3、另外，过多的后台程序的运行也会导致变慢变卡，请关闭不需要允许的后台程序；<br />
+<br />
+4、调高OBS设定&mdash;压缩分辨率，一般为1.25，若设置后仍然卡，可以尝试1.5、1.75等。设置之后需要关闭OBS再重新打开即可；<br />
+<img alt="" src="http://i0.pdim.gs/t01136dde036036d0d0.jpg" style="width: 733px; height: 319px;" /><br />
+<br />
+5、注意OBS来源的添加顺序：先添加&ldquo;显示器获取&rdquo;，再添加&ldquo;游戏源&rdquo;，若有其他文字、图片、摄像头等再后面添加。<br />
+<img alt="" src="http://i1.pdim.gs/t0138b23bdb4644be14.jpg" style="width: 450px; height: 204px;" /><br />
+<img alt="" src="http://i3.pdim.gs/t013758a295359826cd.jpg" style="width: 449px; height: 224px;" /><br />
+<br />
+6、若是使用窗口模式直播游戏同时也使用富秀直播助手软件的，尝试在设置里关闭勾选Aero效果。<br />
+<img alt="" src="http://i1.pdim.gs/t01354f3bd06d9b09cd.png" style="width: 528px; height: 431px;" /></span></p>
+                </div>
+                <div class="help-right-foot">
+                    <p>以上回复没有解决您的问题？</p>
+                    <a class="contact" href="tencent://message/?uin=3323684573&Site=&menu=yes">联系客服</a>
+                </div>
+            </div>
+		
+		
+		</div>
+	</div>
+	<!--
+	footer太高。
+	-->
+ </body>
+</html>
+
+{{end}}

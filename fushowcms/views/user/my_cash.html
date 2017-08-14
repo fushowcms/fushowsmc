@@ -1,0 +1,64 @@
+﻿{{ define "user/my_cash.html" }}
+{{ template "user/index_head.html" }}
+{{ template "user/header.html" }}
+	    <div class="content-Box">
+	    	<div class="mine-title" >
+	    		<h1>个人中心</h1>
+	    		<div>
+	    			<a href="/" id="returnIndex">返回首页>></a>
+	    		</div>
+	    	</div>
+	    	<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+			</div>
+	    	<div id="iFrame1" style=" width:812px; height:800px;background:ghostwhite; float: right;  margin-left: 20px;">
+				<section id="mine-myCashBox">
+					<ul id="mine-myCash-ul">
+						<li>账户余额</li>
+						<li></li>
+						<li>￥66666</li>
+					</ul>
+					<hr/  style="display: block; border: 1px solid orange;">
+					
+					<table border="1" cellspacing="0" id="mine-myCash-table">
+							<tr id="table-head">
+								<td>日期</td>
+								<td>资金出入项目</td>
+								<td>收支</td>
+							</tr>
+							<tr>
+								<td>2016-07-09</td>
+								<td>直播收入</td>
+								<td>+1050</td>
+							</tr>
+							<tr>
+								<td>2016-07-09</td>
+								<td>直播收入</td>
+								<td>+1050</td>
+							</tr>
+							<tr>
+								<td>2016-07-09</td>
+								<td>直播收入</td>
+								<td>+1050</td>
+							</tr>	
+							<tr>
+								<td>2016-07-09</td>
+								<td>直播收入</td>
+								<td>+1050</td>
+							</tr>					
+					</table>
+			</section>
+			
+			</div>
+	        <div class="loginBox">
+			</div>
+	    </div>
+	</body>
+	<script>
+
+		$.getScript("../js/mine/mine&Tab.js");
+		$.getScript("../js/commonHtml/header.js");
+	
+	</script>
+</html>
+{{ end }}

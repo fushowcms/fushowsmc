@@ -1,0 +1,89 @@
+{{ define "user/my_order_list.html" }}
+<html>
+
+<head>
+
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" href="/static/css/user/personal.css" />
+	<link rel="stylesheet" href="/static/css/user/my_order_list.css" />
+	{{template "page/common_js.html"}}
+	<script src="/static/js/user/mine-myOrder-list.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/user/by-product.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/user/orderjPages.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/user/goodsjPages.js" type="text/javascript" charset="utf-8"></script>
+
+</head>
+
+<body>
+	{{ template "page/common_head.html" }}
+	<div class="content-Box">
+		<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+		</div>
+		<div id="iFrame1">
+			<div class="iFrame1-title">
+				<ul class="my-gift-nav">
+					<li class="my-gift-nav-click">商品列表</li>
+					<li>交易记录</li>
+					<div style="clear:both"></div>
+				</ul>
+			</div>
+			<div class="mySetting-table-content" id="product-show" style="display:block">
+				<ul id="ul_list" class='prolist'></ul>
+				<div style="clear:both;"></div>
+				<div class="page-component1"></div>
+				<div class="product-form-bg">
+					<div class="product-form">
+						<div class="product-form-list">
+							<div class="product-form-list-key">数量:</div>
+							<div class="product-form-list-value">
+								<img id="img_jian" src="../static/images/goods/jian1.png" style="width: 30px;" />
+								<input id="num" class="tb-text" value="1" maxlength="8" title="请输入购买量" style="width: 40px;">
+								<img src="../static/images/goods/add.png" style="width: 30px;" id="img_add" />
+								<span id="emStock" class="tb-hidden"></span>
+								<span class="mui-amount-unit">件库存</span>
+							</div>
+						</div>
+						<div class="product-form-list">
+							<div class="product-form-list-key">收件人姓名:</div>
+							<div class="product-form-list-value"><input id="receiver" type="text" maxlength="10"></div>
+						</div>
+						<div class="product-form-list">
+							<div class="product-form-list-key">手机号码:</div>
+							<div class="product-form-list-value"><input id="tel" type="text" maxlength="20"></div>
+						</div>
+						<div class="product-form-list">
+							<div class="product-form-list-key">收货地址:</div>
+							<div class="product-form-list-value"><input id="address" type="text" maxlength="50"></div>
+						</div>
+						<div class="product-form-list">
+							<div class="product-form-list-key"></div>
+							<div class="product-form-list-value">
+								<input id="num" class="product-btn" type="button" value="购买" onclick="return CheckForm();">
+								<div class="product-btn-no">取消</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="mySetting-table-content">
+				<table id="order_list" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:944px; margin:20px auto; margin-top:15px; text-align: center;color:gray;">
+					<tr style="background-color:#f5f5f5;" height="50">
+						<th style="width:200px">商品图片</th>
+						<th style="width:200px">商品名称</th>
+						<th style="width:95px">商品数量</th>
+						<th style="width:150px">商品总价</th>
+						<th style="width:200px">兑换时间</th>
+						<th style="width:120px">商家发货状态</th>
+					</tr>
+				</table>
+				<div class="page-component"></div>
+			</div>
+		</div>
+	</div>
+
+</body>
+
+</html>
+{{ end }}

@@ -1,0 +1,29 @@
+{{define "page/listsClass.html"}}
+<html>
+	<!-- 头部文件 -->
+	<head>
+		{{template "page/common_meta.html"}}
+		<title>富秀直播</title>
+		{{template "page/common_css.html"}}
+		<link rel="stylesheet" href="/static/css/page/lists.css"/>	
+		<link rel="stylesheet" href="/static/css/page/listsClass.css"/>	
+		{{template "page/common_js.html"}}
+		<script src="/static/js/page/listsClass.js"></script>
+	</head>
+	<body>
+		{{ template "page/common_sidebar.html" .}}
+		<div class="lists-big-box">
+			<div class="listsClass-Nav-Box">
+				<div class="listsClass-Nav-font">全部分类</div>
+				<ul class="listsClass-Nav-lists">
+					<li class="listsClass-Nav-lists-after category_all">全部</li>
+				</ul>
+				<div style="clear: both;"></div>
+			</div>
+			<ul class="listsClass-list">
+			</ul>
+		</div>
+	</body>
+
+</html>
+{{end}}	

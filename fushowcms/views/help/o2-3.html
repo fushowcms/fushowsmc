@@ -1,0 +1,34 @@
+{{define "help/o2-3.html"}}
+<!DOCTYPE html>
+<html>
+<head>
+	{{template "page/common_meta.html"}}
+	<title>帮助中心-富秀</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/help_content.css"/>
+	{{template "page/common_js.html"}}
+</head>
+<body>
+	{{template "page/common_head.html"}}
+	<div class="help-container">
+	    <div class="help-head">
+		 <h2>常见问题</h2>
+	    </div>
+		<div class="help-content">
+		  {{template "help/left.html"}}
+		  <div class="help-right">
+		    <ul class="help-right-list">
+            <li><a href="problem2-2-1" target="_blank">什么是经验值？</a></li>
+			  <li><a href="problem2-3-1" target="_blank">充值不到账怎么办？</a></li>
+			  <li><a href="problem2-3-2" target="_blank">主播收到的礼物如何结算？</a></li>	
+			</ul>			
+		  </div>
+		</div>
+	</div>
+	<!--
+	footer太高。
+	-->
+ </body>
+</html>
+
+{{end}}

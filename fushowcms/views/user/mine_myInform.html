@@ -1,0 +1,207 @@
+{{ define "user/mine_myInform.html" }}
+<html>
+
+<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/user/mine-myInform.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/user/personal.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/user/normalize.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/user/default.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/user/cropper.css">
+	<link rel="stylesheet" type="text/css" href="/static/css/user/main.css"> 
+	{{template "page/common_js.html"}}
+	<script src="/static/js/user/jquery.Jcrop.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/user/mine-myInform.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/user/jquery.form.min.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/user/cropper.js" type="text/javascript" charset="utf-8"></script>
+	<script src="/static/js/user/main.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body>
+	<!-- 导航头 -->
+	{{ template "page/common_head.html" }}
+	<div class="content-Box">
+		<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+		</div>
+		<div id="iFrame1">
+			<div id="mine-tab-top">
+				<div id="mine-myInform-user-inform">
+					<div id="mine-myInform-userPic"></div>
+					<span id="userNames"></span><span id="userID"><span>ID:</span><span id="userId"></span></span><br>
+					<span class="shiliu">金币：</span><span class="yue"></span>
+					<span class="shiliu">积分：</span><span id="pomegranateNum"></span>
+					<a id="recharge" href="/user/recharge"><img src="/static/images/mine/charge.png" alt="" /></a>
+					<a class="signin"><img id="signinpic" src="" /></a>
+					<div id="lvdiv">
+						<ul class="lvbox">
+							<div class="lvbox-div">
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+								<div></div>
+							</div>
+							<li class="lv"></li>
+						</ul>
+					</div>
+					<div class="lv_box">
+						<div class="sidebar-user-level-user lvmin"></div>
+						<div class="lv_text"></div>
+						<div class="sidebar-user-level-user lvmax"></div>
+					</div>
+				</div>
+			</div>
+			<div id="black"></div>
+			<div id="mine-tab-myInform">
+				<div id="mine-myInform-ul-div">
+					<ul id="mine-myInform-ul">
+						<li id="basic" style="border-bottom: 4px solid #009CFA !important;">基本资料</li>
+						<li>修改头像</li>
+						<li id="editPassword">修改密码</li>
+						<li id="cNickname">修改昵称</li>
+						<li id="cAnchor">成为主播</li>
+						<li id="changephoneli">修改手机</li>
+						<li id="bindphoneli">绑定手机</li>
+					</ul>
+				</div>
+				<div id="mine-myInform-TabBox">
+					<!--############基本资料############# -->
+					<div id="mine-myInform-basicInf" class="tabs_content">
+						<ul id="mine-myInform-communicate">
+							<li>
+								<div class="imge12" id="phoneyz"></div>
+								<p class="safephone">安全手机</p>
+								<p class="graySpan">您可以享受手机相关的安全和提醒服务</p>
+								<span id="changePhone">修改手机</span>
+								<span id="phonestate"></span>
+								<span id="phonestatePic"></span>
+							</li>
+						</ul>
+					</div>
+					<div id="chengePic" class="tabs_content mine-myInform-Off">
+						<div class="chengePic-div chengePic-divshow1">
+							<div class="picheader">
+								<div class="picheader-text">上传头像</div>
+							</div>
+							<div class="picbody">
+								<div class="picbody-pic"></div>
+								<div class="picbody-btn">
+									请选择图片
+								</div>
+								<p>仅支持JPG、JPEG、PNG格式的图片文件<br />文件不能大于2M</p>
+							</div>
+						</div>
+						<div class="chengePic-div chengePic-divshow2">
+							<div class="picheader">
+								<div class="picheader-text">上传头像</div>
+								<div class="picheader-col"></div>
+							</div>
+							<div class="picbody">
+								<div class="img-container">
+									<img src="" alt="Picture">
+								</div>
+								<div class="docs-preview clearfix">
+									<div class="img-preview preview-md"></div>
+									<div class="img-preview preview-sm"></div>
+									<div class="img-preview preview-xs"></div>
+								</div>
+								<label class="btn1 btn-upload" for="inputImage" title="Upload image file">
+										<form id="formajax"  enctype="multipart/form-data" >
+											<input class="sr-only" id="inputImage" name="uploadFile" type="file" accept="image/jpg,image/jpeg,image/png"/>
+											<input type="hidden" name="xx" id="xx" value="" />
+											<input type="hidden" name="yy" id="yy" value="" />
+											<span class="docs-tooltip changepicbtn" data-toggle="tooltip" title="Import image with Blob URLs"></span>
+											<button id="picyes" class="btn1" data-method="getData" data-option="" data-target="#putData" type="submit">
+												<span class="docs-tooltip" data-toggle="tooltip" title="$().cropper(&quot;getData&quot;)">确认</span>
+											</button>
+										</form>
+									</label>
+								<button id="picno" class="btn1" type="button">取消</button>
+							</div>
+						</div>
+					</div>
+					<!--############修改密码############# -->
+					<div id="chengePassw" class="tabs_content mine-myInform-Off" style="width:338px;">
+						<input type="password" placeholder="请输入原密码.." id="newpwd1" /><br />
+						<input type="password" placeholder="请输入新密码.." id="newpwd2" /><br />
+						<input type="password" placeholder="请核对新密码.." id="newpwd3" style="margin-bottom:20px;" />
+						<div id="chengePassw-Btn">确&nbsp;认</div>
+					</div>
+					<!--############修改昵称############# -->
+					<div id="chengeName" class="tabs_content mine-myInform-Off">
+						<div class="nickdiv"><span>昵称:</span><span id="nowNichen"></span></div>
+						<input type="text" placeholder="请输入新昵称.." id="nicheng" /><br />
+						<div class="font-color">*昵称仅可修改一次，请想好喔~</div>
+						<div id="chengeName-Btn">确&nbsp;认</div>
+					</div>
+					<!--############成为主播############# -->
+					<div id="realName" class="tabs_content mine-myInform-Off">
+						<div id="realshow">
+							<p>您已经是主播了</p>
+						</div>
+						<div id="realphone">
+							<p>您还未绑定手机</p><span>绑定手机</span>
+						</div>
+						<div id="realName-Pre"></div>
+						<form action="/upload" method="post" id="insertIdPicForm" enctype="multipart/form-data" style="position: relative">
+							<div id="errorMsg"></div>
+							<input type="text" placeholder="请输入当前手机号.." id="myphone" /><br />
+							<input type="text" placeholder="请输入您的真实姓名.." id="myname" /><br />
+							<input type="text" placeholder="请核对您的身份证号码.." id="myidnumber" maxlength="18" />
+							<div class="zhuce-agree-box" data-checked="no" style="position: relative;top: 10px;">
+								<div class="zhuce-agree-box0"></div>
+								<img src="/static/images/ui/agree-ioc.png" />
+								<p>同意
+									<a href="/help/zhibo_xieyi" target="blank">《富秀直播个人直播协议》</a>
+								</p>
+							</div>
+							<input type="hidden" id="idp_upload_name" value="" />
+							<input type="file" id="idp_upload" name="uploadFile" onclick="idpclearfile()" style="cursor: pointer;" />
+							<input type="button" value="上传手持身份证照片" id="IDPup" />
+							<div id="realName-Btn" style="cursor: pointer;">确&nbsp;认</div>
+						</form>
+					</div>
+					<!--############修改手机############# -->
+					<div id="chengePhone" class="tabs_content mine-myInform-Off">
+						<div><span class="phtext">原手机</span><input id="nowPhone" type="text" readonly placeholder="请输入当前手机号.." /></div>
+						<div><span class="phtext">绑定手机</span><input type="text" id="newphone" placeholder="请输入新手机号.." /></div>
+						<div><span class="phtext">密码验证</span><input type="password" id="ordpass" placeholder="请输入原密码.." /></div>
+						<div><span class="phtext">图形验证码</span><input type="text" id="change-img-verify" value="" placeholder="请输入图形码.." maxlength="6"><img
+							 src="" class="bind-img" value="点击重新获取" /></div>
+						<div id="phCheck" style="display: none;">
+							<span class="phtext">验证码</span>
+							<input type="text" id="phone_check" value="" onclick="this.value=null" maxlength="6">
+						</div>
+						<div><input type="button" id="getting" value="发送短信"></div>
+						<div><input type="button" id="chengePhone-Btn" style="display:none" value="确认"></div>
+						<div id="phonestr"></div>
+					</div>
+					<!--############绑定手机############# -->
+					<div id="bindPhone" class="tabs_content mine-myInform-Off">
+						<div><span class="phtext">绑定手机</span><input type="text" id="bindnewphone" placeholder="请输入新手机号.." /></div>
+						<div><span class="phtext">新密码</span><input type="password" id="bindordpass" placeholder="请输入新密码.." /></div>
+						<div><span class="phtext">图形验证码</span><input type="text" id="bind-img-verify" value="" placeholder="请输入图形码.." maxlength="6"><img
+							 src="" class="bind-img" value="点击重新获取" /></div>
+						<div id="bindphCheck" style="display: none;">
+							<span class="phtext">验证码</span>
+							<input type="text" id="bindphone_check" value="" onclick="this.value=null" maxlength="6">
+						</div>
+						<div id='bindgetting-box' class="phone-box">
+							<input type="button" id="bindcheck_num" value="验证">
+							<input type="button" id="bindgetting" value="发送短信">
+						</div>
+						<div><input type="button" id="bindPhone-Btn" style="display:none" value="确认绑定"></div>
+						<div id="bindphonestr"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="begin-box"></div>
+</body>
+
+</html>
+{{ end }}

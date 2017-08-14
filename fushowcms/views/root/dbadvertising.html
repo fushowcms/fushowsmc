@@ -1,0 +1,142 @@
+{{ define "root/dbadvertising.html"}} {{ template "root/head.html" }}
+
+<body class="easyui-layout">
+	<!--左start-->
+	{{ template "root/sidebar.html" }}
+	<!--后台右start-->
+	{{ template "root/header.html" }}
+	<style>
+		.datagrid-view {
+			overflow-x: auto;
+		}
+	</style>
+	<div style="height:80px;">
+		<h2>直播间广告</h2>
+	</div>
+	<div id="mainPanle" region="center" style="overflow: hidden;">
+		<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+		<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+		<script type="text/javascript">
+			var url;
+			$(function () {
+				$('#dg').edatagrid({
+					url: '../root/getDbadvertisinglist',
+					saveUrl: '../root/dbadvertisingUp',
+					destroyUrl: '../root/dbadvertisingDel'
+				});
+			});
+
+			function openAddDialog() {
+				jQuery("#form").form("reset");
+				jQuery("#dlg").dialog("open").dialog("setTitle", "添加直播间广告");
+				url = "../root/dbadvertisingAdd";
+				jQuery("#file_upload").attr("name", "uploadFile");
+			}
+			function openUpDialog() {
+				jQuery("#dlg").dialog("open").dialog("setTitle", "修改广告信息");
+				var row = $('#dg').datagrid('getSelected');
+				jQuery("#id").val(row.Id);
+				jQuery("#file_upload").attr("name", "uploadFile");
+				jQuery("#DbadURL").textbox("setText", row.DbadURL);
+				jQuery("#DbadName").textbox("setText", row.DbadName);
+				jQuery("#DbadBriefing").textbox("setText", row.DbadBriefing);
+				//jQuery("#Livestate").textbox("setText",row.Livestate);
+				url = "/root/dbadvertisingUp";
+			}
+			function save() {
+				debugger
+				jQuery("#form").form("submit", {
+					url: url,
+					onSubmit: function (param) {
+						if (!jQuery(this).form("validate")) {
+							return false;
+						}
+						return true;
+					},
+					success: function (result) {   //result返回为String类型，需用eval函数处理为Object型对象再判断
+						result = JSON.parse(result);
+						jQuery.messager.show({ title: "提示", msg: result.ErrorMsg });
+						jQuery("#dg").datagrid("reload");
+						jQuery("#dlg").dialog("close");
+						jQuery("#form").form("reset");
+					}, error: function () {
+						alert("添加失败");
+					}
+				});
+
+			}
+		</script>
+		<table id="dg" style="overflow: hidden;padding:20px 0 0 20px;" toolbar="#toolbar" pagination="true" idField="Id" rownumbers="true"
+		 fitColumns="true" singleSelect="true">
+			<thead>
+				<tr>
+					<!-- <th field="ck" checkbox="true"></th> 	 -->
+					<th field="PicURL" width="50" align="center" editor="text">广告图片</th>
+					<th field="DbadURL" width="50" align="center">广告链接</th>
+					<th field="DbadName" width="50" align="center">广告名称</th>
+					<th field="DbadBriefing" width="50" align="center">广告简介</th>
+				</tr>
+			</thead>
+		</table>
+		<div id="toolbar">
+			<a href="javascript:openAddDialog()" class="easyui-linkbutton" data-options="plain:true" iconCls="icon-add" plain="true">添加</a>
+			<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+			<a href="javascript:openUpDialog()" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">修改</a>
+			<!-- <a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a> -->
+
+		</div>
+
+		<div id="dlg" class="easyui-dialog" style="width: 580px;height:400px;" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+		 overflow-y="scroll">
+			<form id="form" method="post" enctype="multipart/form-data">
+				<table style="margin: 30px 70px;" cellspacing="15px">
+					<tr>
+						<td align="right" style="width: 140px;" hidden>Id:</td>
+						<td align="left">
+							<input id="id" name="myuid" hidden>
+						</td>
+						<td align="left">&nbsp;</td>
+					</tr>
+					<tr>
+						<td class="mtd" align="right">广告图片(387*130)：</td>
+						<td align="left">
+							<input type="file" id="file_upload" name="uploadFile" />
+						</td>
+					</tr>
+					<tr>
+						<td align="right" style="width: 140px;">广告链接:</td>
+						<td align="left">
+							<input id="DbadURL" name="DbadURL" class="easyui-textbox" data-options="required:true">
+						</td>
+						<td align="left">&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="right" style="width: 140px;">广告名称:</td>
+						<td align="left">
+							<input id="DbadName" name="DbadName" class="easyui-textbox" data-options="required:true">
+						</td>
+						<td align="left">&nbsp;</td>
+					</tr>
+					<tr>
+						<td align="right" style="width: 140px;">广告简介:</td>
+						<td align="left">
+							<input id="DbadBriefing" name="DbadBriefing" class="easyui-textbox" data-options="required:true">
+						</td>
+						<td align="left">&nbsp;</td>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="dlg-buttons">
+			<a href="javascript:save()" class="easyui-linkbutton" iconCls="icon-ok" plain="true">提交</a>
+		</div>
+		<script>
+			function doSearch(value) {
+				$('#dg').datagrid('load', { inputid: value })
+			}
+		</script>
+	</div>
+	<!--填充body-end-->
+	{{ template "root/footer.html" }}
+	<!--后台右end-->
+	{{end}}

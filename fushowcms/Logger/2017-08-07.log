@@ -1,0 +1,1 @@
+[xorm] [info]  2017/08/07 08:59:36.043209 [sql] INSERT INTO `uid_login_info` (`uid`,`login_way`,`login_time`,`ip`) VALUES (?, ?, ?, ?) [args] [10124 1 2017-08-07 08:59:36 192.168.99.1]

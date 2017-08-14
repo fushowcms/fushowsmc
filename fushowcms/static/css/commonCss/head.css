@@ -1,0 +1,178 @@
+﻿body,
+ul,
+li {
+	margin: 0px;
+	padding: 0;
+}
+
+header {
+	width: 100%;
+	height: 80px;
+	background: white;
+	border-bottom: 1px solid #8C8C8C;
+}
+
+.header_w {
+	width: 1200px;
+}
+
+#logo {
+	width: 49px;
+	height: 49px;
+	margin-top: 13px;
+	float: left;
+	background-image: url(../../images/header/logo.png);
+	background-size: 100%;
+	/*margin-left:200px;*/
+}
+
+#logoname {
+	font-size: 35px;
+	color: #e84c3d;
+	;
+	font-weight: bold;
+	display: block;
+	font-family: "arial narrow";
+	line-height: 80px;
+	float: left;
+}
+
+#header-Btns {
+	list-style: none;
+	float: left;
+	margin-left: 30px;
+}
+
+#header-Btns li {
+	width: 90px;
+	height: 50px;
+	float: left;
+	border: none;
+	line-height: 50px;
+	text-align: center;
+	font-size: 25px;
+	color: #e84c3d;
+	/*font-weight: bold;*/
+	margin-top: 15px;
+	border-radius: 5px;
+	margin-left: 20px;
+}
+
+#header-Btns li a {
+	color: #e84c3d;
+	text-decoration: none;
+}
+
+
+/*                         
+#header-Btns li:hover{
+	background:#e84c3d;
+                          color: white; 
+	transition: 0.5s;  
+}
+*/
+
+#header-Search {
+	width: 180px;
+	height: 28px;
+	margin-top: 25px;
+	margin-left: 30px;
+	padding: 0;
+	border: 1px solid #aeaeae;
+	box-sizing: content-box;
+	float: left;
+}
+
+#header-serch-Btn {
+	width: 80px;
+	height: 30px;
+	background: #e84c3d;
+	margin-left: 0px;
+	margin-top: 25px;
+	float: left;
+	line-height: 30px;
+	text-align: center;
+	font-size: 14px;
+	color: #fff;
+}
+
+.Search-css {
+	float: left;
+	margin-left: 100px;
+}
+
+#header-Setup-Login {
+	list-style: none;
+	float: right;
+	/*margin-right:322px ;*/
+	margin-top: 22px;
+}
+
+#header-Setup-Login li {
+	height: 35px;
+	float: left;
+	margin-left: 30px;
+	font-size: 18px;
+	color: #999;
+	line-height: 35px;
+	/*font-weight: bolder;*/
+	text-align: right;
+}
+
+#header-Btns li,
+#header-Setup-Login li {}
+
+
+/*��½��*/
+
+.o-login {
+	padding: 26px 15px 0 0;
+	position: relative;
+}
+
+.fl {
+	float: right;
+}
+
+.o-login .o-login-a {
+	display: block;
+}
+
+a,
+a:hover,
+ins {
+	text-decoration: none;
+}
+
+.o-login .l-pic {
+	width: 26px;
+	height: 26px;
+	overflow: hidden;
+}
+
+.o-login .l-pic img {
+	width: 26px;
+	height: 26px;
+	border-radius: 13px;
+}
+
+fieldset,
+img {
+	border: none;
+}
+
+.o-login .l-txt {
+	display: inline-block;
+	max-width: 85px;
+	line-height: 26px;
+	font-size: 12px;
+	vertical-align: top;
+	color: #868686;
+	cursor: pointer;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+
+/*��½��*/

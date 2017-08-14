@@ -1,0 +1,67 @@
+{{ define "root/pay_manage.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+	<h2 >充值记录</h2>
+<div id="mainPanle" region="center">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+	
+	<script type="text/javascript">
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getpaylist',
+				fit:true
+			});
+		});
+	</script>
+
+
+
+	
+	<table id="dg" style="margin:0 0 0 50px;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+			<thead>
+			<tr>  
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="Uid" width="50" align="center" >用户ID</th>
+				<th field="TradeNo" width="50" align="center">订单号</th>
+				<th field="Money" width="50" align="center">人民币</th>
+				<th field="Balance" width="50" align="center">金币</th>
+				<th field="Origin" width="50" align="center">充值方式</th>
+				<th field="Time" width="50" align="center">充值时间</th>
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar" style="height:24px;">
+	&nbsp;
+<!--		<a href="javascript:openAddDialog()" class="easyui-linkbutton" iconCls="icon-add" plain="true" onclick="javascript:$('#dg').edatagrid('addRow')">添加</a>-->
+<!--		<a href="javascript:openDelDialog()" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:return p_del()" >删除</a>  <!--onclick="javascript:$('#dg').edatagrid('destroyRow')"-->
+<!--		<a href="javascript:openUpDialog()" class="easyui-linkbutton" iconCls="icon-save" plain="true" onclick="javascript:$('#dg').edatagrid('saveRow')">修改</a>	-->
+		
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入用户Id',searcher:doSearch" style="width:200px"></input>
+		</div>	
+
+
+	</div>
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value});
+		}
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

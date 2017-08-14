@@ -1,0 +1,1 @@
+[xorm] [info]  2017/08/08 08:58:18.471838 [sql] INSERT INTO `set_up` (`ip`,`phone`,`modify_time`) VALUES (?, ?, ?) [args] [192.168.99.1 2 2017-08-08 08:58:18]

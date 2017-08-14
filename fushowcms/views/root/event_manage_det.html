@@ -1,0 +1,88 @@
+{{ define "root/event_manage_det.html" }}
+{{ template "root/head.html" }}
+
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+
+
+<div id="mainPanle" region="center" style="overflow: hidden;padding:20px 0 0 20px;">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+
+	<script type="text/javascript">
+			var type = getPar("type");
+			var id = getPar("event_id");
+			
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/geteventrecinfo',
+ 				queryParams:{  
+			        Type:type,  
+			        Id:id 
+				}  
+			});
+		});	
+		/**
+		 * eventtype,替换后台返回值
+		 * param：val(替换值)
+		 */
+		function eventtype(val, replace) {
+			if (val == 0) {
+				return "注册"
+			}else if(val == 1){
+				return "签到"
+			}else if (val==2){
+				return "绑定机构"
+			}
+		}
+
+		function getPar(par){
+		    //获取当前URL
+		    var local_url = document.location.href; 
+		    //获取要取得的get参数位置
+		    var get = local_url.indexOf(par +"=");
+		    if(get == -1){
+		        return "";   
+		    }   
+		    //截取字符串
+		    var get_par = local_url.slice(par.length + get + 1);    
+		    //判断截取后的字符串是否还有其他get参数
+		    var nextPar = get_par.indexOf("&");
+		    if(nextPar != -1){
+		        get_par = get_par.slice(0, nextPar);
+		    }
+		    return get_par;
+		}
+	</script>
+	<h2 >活动管理详情</h2>
+	<div class="demo-info" style="margin-bottom:10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>管理员活动管理页面，由管理员操作！</div>
+	</div> 
+	<table id="dg" title="活动管理列表"  style="margin:0 0 0 50px;width:1580px;height:500px" class="easyui-datagrid"
+			toolbar="#toolbar" pagination="true" idField="Id" checkbox="true"
+			rownumbers="true" fitColumns="true" singleSelect="true" >
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true" ></th>-->
+				<th field="EventId" width="80" editor="text"  >活动Id</th>
+				<th field="EventType" width="80"  editor="text" formatter="eventtype">活动类型</th>
+				<th field="UserId" width="80" editor="text">用户Id</th>
+				<th field="SponsorId" width="80" editor="text">活动负责人Id</th>
+				<th field="DateTime" width="80" editor="text">系统赠送时间</th>
+				<th field="BalanceNumber" width="80" editor="text">活动剩余经费</th>
+			
+
+
+			</tr>
+		</thead>
+	</table>
+	</div>
+{{ template "root/footer.html" }}
+{{end}}

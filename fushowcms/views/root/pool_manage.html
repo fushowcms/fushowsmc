@@ -1,0 +1,48 @@
+{{ define "root/pool_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout" data-options="fit:true">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+<h2 >资金池管理</h2>
+<div id="mainPanle" region="center">
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	<script type="text/javascript" src="/static/js/mine/ajaxfileupload.js"></script>
+	<script type="text/javascript">
+		var id = localStorage.getItem("id");
+		var addId = 0;
+			var url;
+			$(function(){
+				$('#dg').edatagrid({
+					url: '../root/getallfundDesc',
+					fit:true
+				});
+			});	
+	</script>
+	<table id="dg" style="margin:0 50px 0 50px;" class="easyui-datagrid"
+			toolbar="#toolbar" pagination="true" idField="Id" 
+			rownumbers="true" fitColumns="true" singleSelect="true"  >
+		<thead>
+			<tr> 		
+				<th field="OfferAmount" width="50"  editor="{type:'validatebox',options:{required:true,validType:['111	啊','length[0,20]']}}">发行总额</th>
+				<th field="StorageFund" width="50" editor="{type:'validatebox',options:{required:true}} ">储备金</th>
+				<th field="CurrencyMoney" width="50" editor="text">流通金</th>
+				<th field="AddTime" width="50" editor="text">增加时间</th>
+			</tr>
+		</thead>
+	</table>
+		    </form>
+		</div>
+		{{ template "root/footer.html" }}
+</div>
+
+{{end}}
+<!--填充body-end-->
+
+<!--后台右end-->

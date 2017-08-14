@@ -1,0 +1,16 @@
+.my-gift-nav li{float:left; height:66px; margin-top:-1px; border-bottom:5px solid #fff; width:78px; font-size:18px; margin-left:50px; line-height:71px; text-align:center;cursor:pointer;}
+.my-gift-nav-click{border-bottom:5px solid #009CFA !important;}
+#mine-myGift-ul{ margin-top:52px; margin-bottom:52px; width:100%; float:left;}
+#mine-myGift-ul p{font-size: 24px; color: #595758;font-weight:bold; height: 50px;margin-left:55px; float: left;margin-top: 0px;line-height: 50px;}
+#mine-myGift-ul span{font-size: 24px; color: #009cfa; font-weight:bold; margin:0px 10px;}
+.my-Gift-table{ width:944px; margin:0 auto;}
+.my-gift-list{ width:100%; float:left; margin-bottom:15px;}
+.my-giftList-key{ width:150px; float:left; text-align:right; height:40px; line-height:40px; font-size:16px; margin-right:10px;}
+.my-giftList-value{ float:left; height:40px; border-color:#c9caca;}
+.my-giftList-value input{ height:40px; width:336px;}
+#mine-myGift-Yes{ cursor: pointer; width:102px; margin-top:45px; height:32px;background: #009CFA;color: white;font-size:18px;text-align: center;line-height:32px; margin-left:120px;}
+.mySetting-table-content{ width:100%; float:left; position: relative; display:none;}
+.mySetting-table-content input{background-color:#EBF6FC;border: 1px solid gainsboro;}
+#transaction_list{ padding-top:15px;}
+
+table td{ height:64px;}

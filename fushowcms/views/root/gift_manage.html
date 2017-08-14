@@ -1,0 +1,255 @@
+{{ define "root/gift_manage.html" }}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<!--填充body-start-->
+
+<style>
+.datagrid-view{overflow-x:auto;}
+</style>
+<h2 >礼物管理</h2>
+<div id="mainPanle" region="center">
+
+	<script type="text/javascript">
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/getgiftlist',
+				saveUrl: '/root/giftadd',
+				updateUrl: '../root/giftup',
+				destroyUrl: '../root/giftdel',
+				fit:true
+				
+			});
+		});
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		}
+		//显示dialog
+		 function openUserAddDialog(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("open").dialog("setTitle", "新增礼物");
+        url="../root/giftadd";
+        jQuery("#file_upload").attr("name","uploadFile");
+		jQuery("#file_upload_png").attr("name","uploadFile_png");
+        jQuery("#newImg").attr("src","../../static/images/add.png");
+		jQuery("#newImg_png").attr("src","../../static/images/add.png");
+    }
+		
+	//dialog提交按钮
+	 function saves(){
+		if($("#_easyui_textbox_input2").val()==0){
+			jQuery.messager.show({title:"提示",msg:"购买所需金币数不能为0"});
+			return
+		}
+		if($("#_easyui_textbox_input3").val()==0){
+			jQuery.messager.show({title:"提示",msg:"可兑换积分数不能为0"});
+			return
+		}
+		var num1 =$("#_easyui_textbox_input2").val();
+		var num3 = Number(num1);
+		var num2 =$("#_easyui_textbox_input3").val();
+		var num4 = Number(num2);
+		if(num3<num4){
+			jQuery.messager.show({title:"提示",msg:"购买所需金币数应大于可兑换积分数"});
+			return
+		}
+        jQuery("#form").form("submit", {
+			
+            url:url, 
+			
+            onSubmit: function (param) {
+                if (!jQuery(this).form("validate")) {
+                    return false;
+                }
+                return true;
+            },
+            success: function (result) {   //result返回为String类型，需用eval函数处理为Object型对象再判断
+                result = JSON.parse(result);
+                jQuery.messager.show({title:"提示",msg:result.ErrorMsg});
+                jQuery("#dg").datagrid("reload");
+                jQuery("#dlg").dialog("close");
+                jQuery("#form").form("reset");
+            },error:function(){
+				alert("添加失败");
+			}
+        });
+    }
+	
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	
+	function formatOperate(value, row, index){
+        var del = "<a href='#' onclick='javascript:del("+row.Id+")'>删除</a>";
+        var update = "<a href='#' onclick='javascript:openUpdateDlg("+index+")'>修改</a>";
+		
+        return del + "&nbsp;" + update;
+    }	
+	
+	function dispValue(row){ 
+		jQuery("#id").val(row.Id);
+		jQuery("#giftname").textbox("setText",row.GiftName);
+        jQuery("#gifttype").textbox("setText",row.GiftType);
+        jQuery("#giftaccount").textbox("setText",row.GiftAccount);
+        jQuery("#buynumber").textbox("setText",row.BuyNumber);
+		jQuery("#tonumber").textbox("setText",row.ToNumber);
+        jQuery("#state").textbox("setText",row.State);
+		jQuery("#remark").val(row.GiftAccount);
+        jQuery("#newImg").attr("src",row.GiftPicture?row.GiftPicture:"/static/upload/an.png");
+		jQuery("#newImg_png").attr("src",row.GiftPicStatic?row.GiftPicStatic:"/static/upload/an.png");
+    }
+	function getSelected(){
+		var row = $('#dg').datagrid('getSelected');
+		dispValue(row);
+		jQuery("#dlg").dialog("open").dialog("setTitle", "修改礼物");
+ 		url = "../root/giftup";
+		jQuery("#file_upload").attr("name","uploadFile");
+		jQuery("#file_upload_png").attr("name","uploadFile_png");
+	}
+ 	function openUpdateDlg(index){
+        var row = jQuery("#dg").datagrid('getData').rows[index];
+        dispValue(row);
+        jQuery("#dlg").dialog("open").dialog("setTitle", "修改礼物");
+        url = "../root/giftup";
+		var filepath = "/static/images/"+row.GiftPicture;
+		var filepath_png = "/static/images/"+row.GiftPicStatic;
+        jQuery("#file_upload").attr("name",filepath);
+		jQuery("#file_upload_png").attr("name",filepath_png);
+		jQuery("#file_path").textbox("setText",filepath);
+		jQuery("#file_path_png").textbox("setText",filepath_png);
+    }
+	</script>
+	<table id="dg" style="margin:0 0 0 50px;width:1580px;height:500px" class="easyui-datagrid"
+			toolbar="#toolbar" pagination="true" idField="Id" checkbox="true"
+			rownumbers="true"  fitColumns="true" singleSelect="true" >
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true" ></th>-->
+				<th field="GiftName" width="50" >礼物名称</th>
+<!--				<th field="GiftType" width="50"  editor="{type:'validatebox',options:{required:true,validType:['111	啊','length[0,20]']}}">礼物类型</th>-->
+				<th field="GiftAccount" width="50">礼物描述</th>
+				<th field="BuyNumber" width="50" sortable="true">购买所需金币数</th>
+				<th field="ToNumber" width="50">赠送时可兑换积分数</th>
+				<th field="GiftPicture" width="50">动态礼物图片</th>
+				<th field="GiftPicStatic" width="50">静态礼物图片</th>
+<!--				<th field="State" width="50">状态</th>-->
+				
+			</tr>
+		</thead>
+	</table>
+	<div id="toolbar">
+	 	<a href="javascript:openUserAddDialog()" class="easyui-linkbutton" data-options="plain:true"  iconCls="icon-add" plain="true">添加</a>
+		<a href="#" class="easyui-linkbutton" iconCls="icon-remove" plain="true" onclick="javascript:$('#dg').edatagrid('destroyRow')">删除</a>
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconcls="icon-edit" onclick="getSelected()" plain="true">修改</a>
+<!--		<a href="#" class="easyui-linkbutton" iconCls="icon-undo" plain="true" onclick="javascript:$('#dg').edatagrid('cancelRow')">取消</a>-->
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入礼物名称',searcher:doSearch" style="width:200px"></input>
+		</div>
+</div>
+	
+	<div id="dlg" class="easyui-dialog" style="width: 680px;height:700px;padding: 5px 5px" closed="true" buttons="#dlg-buttons" data-options="modal:true"
+	     overflow-y="scroll">
+	    <form id="form"   method="post" enctype="multipart/form-data">
+	        <table style="margin: 5px 5px;" cellspacing="5px">
+				<td align="left"><input id="id" name="myuid" hidden ></td>
+	            <tr>
+	                <td align="right" style="width: 140px;" >礼物名称：</td>
+	                <td align="left">
+	                    <input id="giftname" name="GiftName" type="text" class="easyui-textbox" data-options="required:true" 
+	                           style="width: 150px;">
+	                </td>
+	                <td align="left">&nbsp;</td>
+	            </tr>
+	            <!--<tr>
+	                <td align="right" style="width: 140px;">礼物类型：</td>
+	                <td align="left">
+	                    <input id="gifttype" type="text" name="GiftType" class="easyui-textbox" data-options="required:true" 
+	                           style="width: 150px;"></span>
+	                </td>
+	                <td align="left">&nbsp;</td>
+	            </tr>-->
+	            <tr>
+	                <td align="right" style="width: 140px;">购买所需金币数：</td>
+	                <td align="left">
+	                    <input id="buynumber" name="BuyNumber" type="text" class="easyui-textbox" style="width: 150px;" data-options="required:true">
+	                </td>
+	                <td align="left">&nbsp;</td>
+	            </tr>
+	            <tr>
+	                <td align="right" style="width: 140px;">赠送时可兑换积分数：</td>
+	                <td align="left">
+	                    <input id="tonumber" type="text" name="ToNumber" class="easyui-textbox" style="width: 150px;" data-options="required:true">
+	                </td>
+	                <td align="left">&nbsp;</td>
+	            </tr>
+				<!--<tr>
+	                <td align="right" style="width: 140px;">状态：</td>
+	                <td align="left">
+	                    <input id="state" type="text" name="State" class="easyui-textbox" style="width: 150px;" data-options="required:true" missingMessage="0:默认、1:首页">
+	                </td>
+	                <td align="left">&nbsp;</td>
+	            </tr>-->
+				<tr>
+	            	<td align="right" style="width: 140px;">礼物图片(.gif)：</td>
+	                <td align="left">
+	                    <input type="file" id="file_upload" name="uploadFile"/>
+	                    <input type="hidden" id="file_path" name="image"/>
+	                </td>
+	                <td align="left">&nbsp;</td>
+	            </tr>
+				<tr>
+	                <td valign="top" align="left" style="width: 140px;">&nbsp;</td>
+	                <td align="left">
+	                    <img id="newImg" style="width: 100px;height: 110px;" >&nbsp;<span id="errMsg" style="color: red"></span>
+	                </td>
+	                <td align="left">&nbsp;</td>
+       			</tr>
+				
+				<tr>
+	            	<td align="right" style="width: 140px;">礼物图片(.png)：</td>
+	                <td align="left">
+	                    <input type="file" id="file_upload_png" name="uploadFile_png"/>
+	                    <input type="hidden" id="file_path_png" name="image"/>
+	                </td>
+	                <td align="left">&nbsp;</td>
+	            </tr>
+				<tr>
+	                <td valign="top" align="left" style="width: 140px;">&nbsp;</td>
+	                <td align="left">
+	                    <img id="newImg_png" style="width: 100px;height: 110px;" >&nbsp;<span id="errMsg" style="color: red"></span>
+	                </td>
+	                <td align="left">&nbsp;</td>
+       			</tr>
+			
+	            <tr>
+	                <td align="right" style="width: 140px;">礼物描述：</td>
+	                <td align="left">
+	                    <textarea rows="10" cols="65" id="remark" name="GiftAccount" placeholder="请简要描述您的专业经验"></textarea>
+	                </td>
+	            </tr>
+				<tr>
+	                <td align="right" style="width: 140px;">备注：</td>
+	                <td align="left">
+	                    <div rows="10" cols="65" id="remarks" name="remarks" style="font-weight:bold;">添加礼物时请同时添加.gif和.png两种格式的礼物图片</div>
+	                </td>
+	            </tr>
+	        </table>
+	    </form>
+	</div>
+	<div id="dlg-buttons">
+	    <a href="javascript:saves()" class="easyui-linkbutton custombtn" iconCls="icon-ok" plain="true">提交</a>
+	    <a href="javascript:cancel()" class="easyui-linkbutton custombtn" iconCls="icon-cancel" plain="true">取消</a>
+	</div>
+    
+</div>
+{{ template "root/footer.html" }}
+{{end}}
+<!--填充body-end-->
+
+<!--后台右end-->

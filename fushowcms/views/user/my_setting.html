@@ -1,0 +1,254 @@
+{{ define "user/my_setting.html" }}
+<html>
+
+<head>
+	{{template "page/common_meta.html"}}
+	<title>富秀直播</title>
+	{{template "page/common_css.html"}}
+	<link rel="stylesheet" type="text/css" href="/static/css/user/personal.css" />
+	<link rel="stylesheet" type="text/css" href="/static/css/user/my_setting.css" />
+	{{template "page/common_js.html"}}
+	<script src="/static/js/user/ajaxfileupload.js" type="text/javascript"></script>
+	<script src="/static/js/user/clipboard.min.js" type="text/javascript"></script>
+	<script src="/static/js/user/mine-mySetting.js" type="text/javascript"></script>
+	
+	<script src="/static/js/user/setting-livePages.js" type="text/javascript"></script>
+	<script src="/static/js/user/zbjlPages.js" type="text/javascript"></script>
+	<script src="/static/js/user/sydhPages.js" type="text/javascript"></script>
+	<script src="/static/js/user/glyPages.js" type="text/javascript"></script>
+</head>
+
+<body>
+	<!-- 导航头 -->
+	{{ template "page/common_head.html" }}
+	<div class="content-Box">
+		<div class="mine-Tab-btn">
+			{{ template "user/sidebar.html"}}
+		</div>
+		<div id="iFrame1">
+			<div class="iFrame1-title">
+				<ul id="mine-setting-ul">
+					<li class="mySetting-navClick" id="basic">直播设置</li>
+					<li>播放路径</li>
+					<li>直播记录</li>
+					<li>直播收益</li>
+					<li>收益兑换</li>
+					<li>房间管理员</li>
+					<div style="clear:both"></div>
+				</ul>
+			</div>
+
+			<div id="mine-setting-TabBox">
+				<div class="mySetting-table-content" style="display:block">
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key">房间号:</div>
+						<div class="mySetting-list-value">
+							<div id="mysetting_roomid"></div>
+						</div>
+					</div>
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key">房间标题:</div>
+						<div class="mySetting-list-value">
+							<input type="text" class="mySetting-list-input" id="biaoti-xiugai" maxlength="20">
+							<div style="clear:both"></div>
+						</div>
+					</div>
+
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key">房间公告:</div>
+						<div class="mySetting-list-value">
+							<textarea id="inputM" style="resize:none;" maxlength="200"></textarea>
+						</div>
+					</div>
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key">房间地址:</div>
+						<div class="mySetting-list-value">
+							<div id="wangzhi"><input type="" name="" id="wangzhiaddr" value="123" /></div>
+							<div id="key_button3" class="my_clip_button" data-clipboard-target="#wangzhiaddr">复制链接</div>
+							<a href="javascript:void(0);">
+								<div class="mySetting-list-btn" id="setting-zhiboBtn">进入直播间</div>
+							</a>
+						</div>
+					</div>
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key">房间类型:</div>
+						<div class="mySetting-list-value">
+							<select id="roomType" style="font-size: 18px;width: 110px;">  
+							</select>
+						</div>
+					</div>
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key"></div>
+						<div class="mySetting-list-value">
+							<div class="mySetting-list-btn room-xiugai" id="mySetting-submit">保存设置</div>
+						</div>
+					</div>
+					<div style="clear:both"></div>
+				</div>
+				<div class="mySetting-table-content">
+					<!--直播路径-->
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key" style=" width:165px;">RTMP服务器:</div>
+						<div class="mySetting-list-value">
+							<input class="mySetting-list-input" style="width:527px;" id="rtmp_text1" value="rtmp://video-center.alivecdn.com/sllmzb/"
+							/>
+							<div id="key_button1" class="my_clip_button" data-clipboard-target="#rtmp_text1">复制</div>
+						</div>
+					</div>
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key" style=" width:165px;">流秘钥(播放路径):</div>
+						<div class="mySetting-list-value">
+							<input class="mySetting-list-input plugflow" style="width:527px;" id="rtmp_text2" />
+							<div class="mySetting-list-btn plugag" style="margin-left:0">重置流密钥</div>
+							<div id="key_button2" class="my_clip_button" data-clipboard-target="#rtmp_text2" style="margin-left:10px">复制</div>
+						</div>
+					</div>
+					<div class="mySetting-listBox">
+						<div class="mySetting-list-key" style=" width:165px;"></div>
+						<div class="mySetting-list-value Explain-font">
+							<h1 style="padding-left: 38px;">说明：</h1>
+							<p style="margin-left:61px;margin-right:61px;">我们建议您使用OBS直播软件或此刻直播助手，<a href="../help/o3-1" target="_blank;" style="color:#db0050;">点此查看教程</a>，通过指定 【RTMP】 地址 和 【流秘钥】来进行直播。需要注意的是：任何知道您账号【流秘钥】的人，都能以您的名义进行直播，请妥善保管，切勿随意告诉他人。若您觉得流密匙已经被泄露，可以通过“重置”功能让之前的流密钥失效。</p>
+						</div>
+					</div>
+				</div>
+				<div class="mySetting-table-content" style="margin-top:20px;">
+					<!--直播记录-->
+					<table id="liverecord" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:944px; margin:20px auto; text-align: center;color:gray;">
+						<tr style="background-color:#f5f5f5;" height="50">
+							<th>直播时间</th>
+							<th>所属频道</th>
+							<th>直播时长</th>
+						</tr>
+					</table>
+					<div class="page-component"></div>
+				</div>
+
+				<div class="mySetting-table-content">
+					<!--直播收益-->
+					<table id="liveearnings" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:944px; margin:20px auto; text-align: center;color:gray;">
+						<tr style="background-color:#f5f5f5;" height="50">
+							<th width="40%">收到日期</th>
+							<th width="30%">赠送者</th>
+							<th width="30%">赠送礼物</th>
+						</tr>
+					</table>
+					<div class="page-component livepage"></div>
+				</div>
+
+				<div class="mySetting-table-content" style=" margin-top:30px;">
+
+					<!--收益兑换-->
+					<ul class="exchange-nav">
+						<li class="exchange-nav-click">收益兑换</li>
+						<li>银行卡信息</li>
+						<div style="clear:both"></div>
+					</ul>
+					<div class="exchange-table" style="display:block">
+						<div class="exchange-show">
+							<div class="exchange-show-list" style="margin-right:100px;">
+								<p><span>目前可兑换积分：</span><span id="pomegranateNum"></span></p>
+							</div>
+							<div class="exchange-show-list" style="margin-top:-5px;  width:435px;">
+								<div class="exchange-duihuan">
+									<b>兑换数量:</b>
+									<input type="number" id="applycashingnumtext" onpropertychange="OnPropChanged (event)" placeholder="输入兑换积分数量" value="" />
+									<div id="applycashingnumbtn">兑换</div>
+								</div>
+								<p class="exchange-show-Nums" style=""><span>折合人民币:</span><span id="convertedinto"></span><span>元（已扣除个人所得税）</span></p>
+							</div>
+							<div style="clear:both"></div>
+						</div>
+						<!--收益兑换信息-->
+						<table id="returnexchange" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:944px; margin:20px auto; margin-top:0px; text-align: center;color:gray;">
+							<tr style="background-color:#f5f5f5;" height="50">
+								<th>兑换时间</th>
+								<th>积分</th>
+								<th>折合人民币(元)</th>
+								<th>状态</th>
+							</tr>
+						</table>
+						<div class="page-component1"></div>
+					</div>
+					<div class="exchange-table">
+						<div id="bangbank">
+							<!--银行卡信息-->
+							<div class="mySetting-listBox">
+								<div class="mySetting-list-key">姓名:</div>
+								<div class="mySetting-list-value">
+									<input type="text" class="mySetting-list-input" id="zsname" maxlength="20" readonly="" />
+									<div style="clear:both"></div>
+								</div>
+							</div>
+							<div class="mySetting-listBox">
+								<div class="mySetting-list-key">银行卡号:</div>
+								<div class="mySetting-list-value">
+									<input type="text" class="mySetting-list-input" id="bankcardNum" name="policyNo" onkeyup="this.value=this.value.replace(/\D/g,'')"
+									 onafterpaste="this.value=this.value.replace(/\D/g,'')" maxlength="19" /><span id="bankcardNumshow">*银行卡号不能为空</span>
+									<div style="clear:both"></div>
+								</div>
+							</div>
+							<div class="mySetting-listBox">
+								<div class="mySetting-list-key">银行:</div>
+								<div class="mySetting-list-value">
+									<input type="text" class="mySetting-list-input" id="bankName" /><span id="bankcardNumshow">*银行名不能为空</span>
+									<div style="clear:both"></div>
+								</div>
+							</div>
+							<div class="mySetting-listBox">
+								<div class="mySetting-list-key">开户行:</div>
+								<div class="mySetting-list-value">
+									<input type="text" class="mySetting-list-input" id="bankdePosit" /><span id="bankcardNumshow">*开户行不能为空</span>
+									<div style="clear:both"></div>
+								</div>
+							</div>
+							<div class="mySetting-listBox">
+								<div class="mySetting-list-key"></div>
+								<div class="mySetting-list-value">
+									<div class="mySetting-list-btn" id="bangbankbtn">提交</div>
+								</div>
+							</div>
+						</div>
+						<div id="bankcardmsg" style="display: none">
+							<div class="mySetting-listBox">
+								<div class="mySetting-list-key">我的银行卡</div>
+								<div class="mySetting-list-value">
+									<div class="bank-card">
+										<div class="bank-card-title">
+											<div class="bankName"></div>
+											<div class="bank-card-name">姓名：<span class="zsname"></span></div>
+										</div>
+										<div class="bankcardNum"></div>
+										<div class="bankde-PositBox">
+											<p>开户行：<span class="bankdePosit"></span></p>
+										</div>
+									</div>
+								</div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<div class="mySetting-table-content" style="margin-top:25px;">
+					<div id="cancelmanage-show" style="display:none;">
+						<p>您将取消###的房管权限
+							<p><button>确认</button><button>取消</button></div>
+					<table id="roommanage" border="0" bordercolor="#cccccc" cellspacing="0" cellpadding="0" style="width:944px; margin:20px auto; margin-top:0px; text-align: center;color:gray;">
+						<tr style="background-color:#f5f5f5;" height="50">
+							<th>管理员用户账号</th>
+							<th>任命时间</th>
+							<th>操作</th>
+						</tr>
+						<tr class='jjj'></tr>
+					</table>
+					<div class="page-component2"></div>
+				</div>
+			</div>
+		</div>
+		<div class="loginBox"></div>
+	</div>
+	<div class="begin-box"></div>
+</body>
+
+</html>
+{{ end }}

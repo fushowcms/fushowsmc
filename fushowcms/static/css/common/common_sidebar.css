@@ -1,0 +1,70 @@
+.clearBoth{ clear:both;}
+.sidebar-box{ width:240px; height:100%; position:fixed; top:0; left:0; background-image:url("/static/images/common_sidebar/sidebar-bg.jpg"); z-index:999; bottom:0;}
+.sidebar-show-top{ width: 240px; height: 116px; overflow: hidden; position: relative;}
+.sidebar-box-logo{ width:190px; margin:25px;}
+.sidebar-box-logo img{ width:100%;}
+.sidebar-box-login-listBtn{width:140px; margin:0 auto; margin-top: 18px;}
+.sidebar-box-login-listBtn li{box-sizing: border-box;cursor: pointer; width:60px; height:30px; float:left; margin-left:20px; text-align: center; border-radius:3px; line-height:27px; font-size:16px; border:1px solid #009CFA; color:#009CFA;}
+.sidebar-box-login-listBtn li:first-child{ margin-left:0px;}
+.sidebar-box-login-listBtn li:hover{ background-color:#009CFA; color:#fff;}
+.sidebar-box-login{ background-color:rgba(0,0,0,.2); padding:35px 0px; position: absolute; width: 100%; height:136px; left: 0;}
+.sidebar-box-login p{ text-align:center; color:#fff; margin-top:10px; font-size:12px;}
+
+/*侧栏搜索样式*/
+.sidebar-box-search{ width:240px;}
+.sidebar-box-search-box{ width:175px; margin:20px auto;}
+.sidebar-box-search-box input{box-sizing: border-box; float:left; width:125px; height:25px; background-color:#979696; padding:0px 10px; border:none; color:#000000; border-radius:15px 0px 0px 15px;}
+.sidebar-search-btn{ width:50px; height:25px; float:left; background-color:#979696;  border-radius:0px 15px 15px 0px; cursor: pointer;}
+.sidebar-search-btn img{ margin:5px auto;}
+
+/*侧栏分类列表*/
+.sidebar-box-classification{ width:100%;}
+.sidebar-box-classification a{ color:#fff;}
+.sidebar-box-classification li{ text-align:center; height:45px; line-height:45px; border-left:3px solid rgba(0,0,0,.1); cursor: pointer;}
+.sidebar-box-classification li:hover{ border-left:3px solid #ff0861; background-color:rgba(0,0,0,.2);}
+.sidebar-box-classification li:hover .sdb-ioc{ display:block}
+.sidebar-box-classification-content{ width:195px; margin:0 auto; border-bottom:1px solid #373636; font-size:14px; position: relative;}
+.sidebar-box-classification-content img{margin-left:-15px; margin-right:15px;}
+
+.sidebar-box-classification-two{ width:240px;position: absolute;bottom: 136px;}
+.sidebar-box-classification-two li{ margin-top:10px;}
+.sidebar-box-classification-two a:first-child li{ margin-top:51px;}
+.sidebar-box-classification-two li,.sidebar-box-classification-two li img{ width:100%;  height:90px;}
+.sdb-ioc{ position:absolute; right:-5px; top:18px; width:5px; height:9px; display:none; background-image:url("/static/images/ui/sdb-ioc.png")}
+.sdb-ioc img{ margin:0px;}
+/*侧栏页脚和我要直播按钮*/
+.sidebar-box-btn{ background-image:url("../images/ui/sidebar-btn.png"); width:165px; height:38px; margin:30px auto;}
+.sidebar-box-footer{ padding-top:0px; position:absolute; bottom:0; width:100%; overflow: hidden; height: 136px;}
+.sidebar-box-footer-list{ width:164px; margin:0 auto; margin-top: 5px;}
+.sidebar-box-footer-list a{color:#fff; font-size:12px;}
+.sidebar-box-footer-list a li{ float:left; margin-left:10px;}
+.sidebar-box-footer-list a:first-child li{ margin-left:0px;}
+.sidebar-box-footer-list a li:hover{ color:#009CFA;}
+.sidebar-content{padding: 0px 0px;position: absolute;width: 240px;top:116px;bottom:136px;overflow: hidden;}
+.sidebar-box-footer-listBg{background-color:rgba(0,0,0,.2); height:27px; width:100%; float:left;}
+
+/*登陆后状态样式*/
+.sidebar-box-ladingState{background-color:rgba(0,0,0,.2);}
+
+.sidebar-user p{ color:#fff; text-align:center; font-size:12px;}
+.sidebar-user-list{ width:225px; margin:0 auto; padding:10px 0px;}
+.sidebar-user-list li{ float:left; width:55px; text-align:center; margin-left:30px; cursor: pointer;}
+.sidebar-user-list a:first-child li{ margin-left:0px;}
+.sidebar-user-list p{ color:#fff; font-size:12px; margin-top:5px;}
+.sidebar-user-list li:hover p{ color:#009CFA;}
+.user-ioc{width:15px; height:15px; display:block; margin:0 auto;}
+.user-ioc-follow{ background-image:url("../images/ui/follow.png");}
+.user-ioc-money{ background-image:url("../images/ui/money.png");}
+.user-ioc-people{ background-image:url("../images/ui/people.png");}
+.user-ioc-follow-hover:hover .user-ioc-follow{background-image:url("../images/ui/follow-hover.png");color:#009CFA;}
+.user-ioc-money-hover:hover .user-ioc-money{background-image:url("../images/ui/money-hover.png");color:#009CFA;}
+.user-ioc-people-hover:hover .user-ioc-people{background-image:url("../images/ui/people-hover.png");color:#009CFA;}
+.recharge-btn{ width:86px; margin:0 auto; padding:1px 0px 16px 0px;}
+.recharge-btn img{ width:100%; height:35px;}
+.sidebar-user-level{ width:75px; height:24px; display:block; margin:0 auto; margin-top:5px;}
+.Scrollbar-topValue{ display:none;}
+.sidebar-user-off{ background-image:url("../images/ui/gobank-ioc.png"); width:43px; height:14px; position:absolute; right:10px; top:15px; cursor:pointer;}
+.sidebar-collapse-logions{ cursor: pointer; font-size: 14px; width: 50px; height: 50px; margin: 43px auto; border: 1px solid #009cfa; border-radius: 50%; text-align: center; line-height: 50px; color: #fff; transition:all 0.5s; -webkit-transition:all 0.5s;}
+.sidebar-collapse-logions:hover{ background-color:#009cfa;}
+
+.sidebar-collapse-navList a{ color:#fff;}

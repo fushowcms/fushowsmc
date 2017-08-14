@@ -1,0 +1,71 @@
+{{ define "root/organ_user_manage.html"}}
+{{ template "root/head.html" }}
+<body class="easyui-layout">
+<!--左start-->
+{{ template "root/sidebar.html" }} 
+<!--后台右start-->
+{{ template "root/header.html" }}
+<style>
+	.panel{
+		overflow-x:scroll;
+	}
+</style>
+<div id="mainPanle" region="center" style="overflow: hidden;padding:20px 20px 0 20px;">
+
+	<link rel="stylesheet" type="text/css" href="/static/jquery-easyui-1.5/demo/demo.css">
+	<script type="text/javascript" src="/static/jquery-easyui-1.5/jquery.edatagrid.js"></script>
+	
+	
+	<script type="text/javascript">
+		var url;
+		$(function(){
+			$('#dg').edatagrid({
+				url: '../root/findOrganManageByOrganId',	
+				queryParams:{  
+			        OrganId:1,  
+				}
+			});
+		});
+		
+	</script>
+
+	<h2 >联盟管理</h2>
+	<div class="demo-info" style="margin-bottom:10px">
+		<div class="demo-tip icon-tip">&nbsp;</div>
+		<div>管理员联盟管理页面，由管理员操作！</div>
+	</div>
+	
+	<table id="dg" title="联盟管理" style="overflow: hidden;padding:20px 0 0 20px;"
+			toolbar="#toolbar" pagination="true" idField="Id"
+			rownumbers="true" fitColumns="true" singleSelect="true">
+		<thead>
+			<tr> 
+<!--				<th field="ck" checkbox="true"></th> 	-->
+				<th field="UserId" width="50" align="center"  editor="text">用户id</th>
+				<th field="NickName" width="50" align="center"  editor="text">用户名称</th>
+				<th field="RechargeNum" width="50" align="center"  editor="text" >充值数量</th>
+				<th field="RechargeMethod" width="50" align="center" editor="text">充值方式</th>
+
+			</tr>
+		</thead>
+	</table>
+<!--	<div id="toolbar">
+		<div id="tb" style=" float:right">
+			<input class="easyui-searchbox" data-options="prompt:'请输入联盟名称',searcher:doSearch" style="width:200px"></input>
+		</div>	
+	</div>-->
+	<script>
+		function doSearch(value){
+			$('#dg').datagrid('load',{inputid: value})
+		}
+	//dialog取消按钮
+    function cancel(){
+        jQuery("#form").form("reset");
+        jQuery("#dlg").dialog("close");
+    }
+	</script>
+</div>
+<!--填充body-end-->
+{{ template "root/footer.html" }}
+<!--后台右end-->
+{{end}}

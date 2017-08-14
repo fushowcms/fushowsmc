@@ -1,0 +1,119 @@
+{{ define "user/recharge_html.html"}}
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="/static/css/rechargeCss/recharge-css.css" />
+		{{template "page/common_js.html"}}
+	</head>
+	<body>
+      <div class="recharge-title">
+      	    <span class="title">石榴籽充值</span>
+	      	<div class="recharge-Inform" style="width:250px">
+		      	<span>账户余额</span>
+		      	<span id="accountBalance">&nbsp;0&nbsp;</span>
+		      	<span>石榴籽</span>
+	      	</div>
+      </div>
+      
+      <div class="recharge-Box">
+           <div class="line1" style="height: 61px">
+           	    <div class="nameS">当前登录昵称:</div>
+           	    <div id="userName" class="contentS"></div>
+           </div>
+      	   <div class="line2" >
+      	   	    <div class="nameS" style="height: 83px; line-height: 83px;">请选择充值金额:</div>
+      	   	    <div class="contentS" style="margin-top: 20px;">
+      	   	    	<ul class="recharge-Ul"> 
+      	   	    		<li class="recharge-Mchoice">10</li>
+      	   	    		<li class="recharge-Mchoice">50</li>
+      	   	    		<li class="recharge-Mchoice">100</li>
+      	   	    		<li class="recharge-Mchoice">500</li>
+      	   	    		<li class="recharge-Mchoice">1000</li>
+      	   	    		<li class="recharge-inputBox">
+      	   	    			<input placeholder="其他金额"  id="recharge-btn" style="outline:none;"/>
+      	   	    			<span>元</span>
+      	   	    		</li>
+      	   	    	</ul>      	   	    	
+      	   	    </div>
+      	   </div>
+      	   
+      	   <div class="line3">
+      	   	    <div class="nameS" style="height: 31px;line-height: 31px;">兑换道具:</div>
+      	   	    <div class="contentS">
+      	   	    	<span class="recharge-money">100</span>
+      	   	    	<span class="recharge-moneyName">石榴籽<span style="font-size: 14px; color: #787878;">（兑换比例 1 元：10石榴币）</span></span>
+      	   	    </div>
+      	   </div>
+      	   <hr style="border: 1px dashed darkgray;" />
+      	   <div class="line4">
+      	   	    <div class="nameS" style="height: 80px;line-height: 80px;">支付方式:</div>
+      	   	    <div class="contentS">
+      	   	    	<ul class="recharge-Pay" style="margin-top: 10px;">
+      	   	    		<li></li>
+      	   	    		<li></li>
+						<input id="businesspay" type="hidden" value="">
+      	   	    	</ul>
+      	   	    </div>
+      	   </div>
+      	   <div class="recharge-queren" id="recharge">确认充值</div>
+      </div>
+      
+      
+	</body>
+</html>
+<script>
+	$("#indexShouye").hover(
+	function () {
+	     $("#indexShouye").css("background"," #e84c3d");
+	     $("#indexShouye a").css("color","white");
+	},
+	function () {
+	     $("#indexShouye").css("background"," white");
+	     $("#indexShouye a").css("color","#e84c3d");
+	}
+	);
+</script>
+<script type="text/javascript" src="/static/js/recharge/recharge.js"></script>
+<script>
+	var id = getStorage("Id");
+	$(function(){
+		reqAjax("/page/getuser",{UID:id},function(msg){
+			if(msg.ErrorCode!=0) {
+				Dialog(msg.ErrorMsg,true,"确定",null,function() {
+					$('.dialog').remove();
+				},null);
+			}else {
+				$("#userName").text(msg.Data.NickName);				
+				$("#accountBalance").html("&nbsp;"+msg.Data.Balance+"&nbsp;");
+			}
+		},true);
+	});
+	$("#recharge").click(function(){
+		var money = $(".recharge-money").html();
+		localStorage.setItem("rechargeMoney",money*10);
+		var business = $("#businesspay").val();
+		if(business==""){
+			alert("请选择支付方式");
+			return;
+		}
+		if(business=="0"){
+			if(money==""||money==0||money==null){
+				alert("请输入充值金额");
+				return;
+			}else{
+				window.location="recharge_weChat";
+				return;
+			}
+		}
+		if(business=="1"){
+			money = money/10
+			reqAjax("/user/alipay",{UID:id,money:money},function(data) {
+				document.write(data.data);
+			});
+		}	
+	});
+	</script>
+
+{{end}}
